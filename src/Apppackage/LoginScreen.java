@@ -12,14 +12,14 @@ import javax.swing.JOptionPane;
  * @author Eigenaar
  */
 public class LoginScreen extends javax.swing.JFrame {
-
+    public static String currentUser = "Niet ingelogt";
     /**
      * Creates new form LoginScreen
      */
     
     public LoginScreen() {
         initComponents();
-        
+        currentUser = "Niet ingelogt";
     }
 
     /**
@@ -222,6 +222,7 @@ public class LoginScreen extends javax.swing.JFrame {
      DatabaseManager dbManager = new DatabaseManager();
      if(dbManager.verifyUser(AccountText.getText(), passText.getText()))
     {
+     currentUser = AccountText.getText();
      GraphChoose graphChoose = new GraphChoose();
     graphChoose.setVisible(true);
     LoginScreen.this.dispose();
