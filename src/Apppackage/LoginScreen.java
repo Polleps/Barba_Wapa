@@ -16,8 +16,10 @@ public class LoginScreen extends javax.swing.JFrame {
     /**
      * Creates new form LoginScreen
      */
+    
     public LoginScreen() {
         initComponents();
+        
     }
 
     /**
@@ -216,7 +218,9 @@ public class LoginScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_backLoginScreenActionPerformed
 
     private void LoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginButtonActionPerformed
-    if(AccountText.getText().equals("admin") && passText.getText().equals("admin"))
+    //AccountText.getText().equals("admin") && passText.getText().equals("admin")
+     DatabaseManager dbManager = new DatabaseManager();
+     if(dbManager.verifyUser(AccountText.getText(), passText.getText()))
     {
      GraphChoose graphChoose = new GraphChoose();
     graphChoose.setVisible(true);
