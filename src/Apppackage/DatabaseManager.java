@@ -88,8 +88,8 @@ public class DatabaseManager {
                         con = DriverManager.getConnection("jdbc:mysql://db4free.net:3306/barbawapatest", "barba", "Ruggenmerg");
                         st = con.createStatement();*/
                         
-                        String quary = "INSERT INTO FbComments (commentID, commentBody, likes, replies, mood) VALUES('" + c.getId() + "', '" + c.getMessage() + "', " + c.getLikeCount() + ", " + 0 + ", '" + mood + "')";
-                        st.execute(quary);
+                        String query = "INSERT INTO FbComments (commentID, commentBody, likes, replies, mood) VALUES('" + c.getId() + "', '" + c.getMessage() + "', " + c.getLikeCount() + ", " + 0 + ", '" + mood + "')";
+                        st.execute(query);
                         System.out.println(" - " + c.getId() + " was added to the Database.");
                     } catch (Exception ex) {
                         System.out.println("Error 74: " + ex);
@@ -101,10 +101,7 @@ public class DatabaseManager {
             //System.out.println("This post has no comments");
         }
     }
-<<<<<<< HEAD
 
-    private String checkCommentMood(Comment c) {
-=======
     
     public void addTwitterCommentstoDB(Post.tweets tweets) {
         try {
@@ -137,7 +134,7 @@ public class DatabaseManager {
     
     
     private String checkCommentMood(Comment c){
->>>>>>> origin/master
+
         String mood;
         String mess = c.getMessage();
         String[] goodWords = {"goed", "oke", "vet"};
