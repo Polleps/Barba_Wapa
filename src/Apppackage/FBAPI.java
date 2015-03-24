@@ -24,19 +24,26 @@ import java.util.List;
 public class FBAPI {
     
     public void getFbData(){
-        FacebookClient fbClient = new DefaultFacebookClient("CAACEdEose0cBALhuVdtZAxErkkXU4FNS3XaxESHID0ozSrP7KUWwZBSAIqMxS1zGNw2PYDY5AdKTkRz6NZCljfIeE9ywKQWYqvvZAjxGKZCL9PuWQal0fnt1k2bhDyY1ZAljgtlaQYaktd8dE5S2VSCXHJzuOWMgUHBc8ZAqZCK5XhtEJPW92LBV529L9Xh37JkHDlzjf2Ehg7j58xP9rAGR");// HIER MOET EEN ACCES TOKEN
+        FacebookClient fbClient = new DefaultFacebookClient("CAACEdEose0cBAFaEHDiH3cwMNUE5xFd66zCS7mVN0uWG7wZCQJNmtSsNXoNP2opIPVafthAvGj0ZA5VvLwk8Pi2JuPKGVY0offJCGUbZBloXTTgGrZBda1HfyAcsoB9yXPhBVZC6FNQWYH3ZC5AOh1DJBXgEglzgxjVwMkAnZA3qTfH8LpdpXme3iLlmE1s6rvGUhZBv2C8aYcJFIXljyPnE");// HIER MOET EEN ACCES TOKEN
         Page page = fbClient.fetchObject("165327986836920", Page.class);  //ID van de pagina
-        BatchRequest postsRequest =  new BatchRequestBuilder("ahoyrotterdam/feed").parameters(Parameter.with("limit", 5)).build();
+        BatchRequest postsRequest =  new BatchRequestBuilder("ahoyrotterdam/posts").parameters(Parameter.with("limit", 10)).build();
         List<BatchResponse> batchResponses = fbClient.executeBatch(postsRequest);
         BatchResponse ahoyResponse = batchResponses.get(0);
         Connection<Post> ahoyPosts = new Connection<>(fbClient, ahoyResponse.getBody(), Post.class);
+        
         for (List<Post> ahoyPostsConnectionPage : ahoyPosts){
             for (Post post : ahoyPostsConnectionPage){
                 //System.out.println("=================================\n" + post.getMessage());
                 Post.Comments coms = post.getComments();
-                DatabaseManager dbManager = new DatabaseManager();
-                dbManager.addFBCommentsToDB(coms);
-                  
+                System.out.println(post.getCommentsCount());
+                if(post.getCommentsCount() <= 0){
+                    System.out.println("- " + post.getId() + " has no comments");
+                }  
+                else{
+                    DatabaseManager dbManager = new DatabaseManager();
+                    System.out.println("Adding comments of " + post.getId() + " to the Database.");
+                    dbManager.addFBCommentsToDB(coms);
+                }
             }
         }
     }

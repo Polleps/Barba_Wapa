@@ -38,6 +38,7 @@ public class GraphChoose extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         KNOP = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
+        fbButton = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -94,6 +95,13 @@ public class GraphChoose extends javax.swing.JFrame {
 
         jLabel4.setText("userNameText");
 
+        fbButton.setText("Facebook Sync");
+        fbButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fbButtonActionPerformed(evt);
+            }
+        });
+
         jMenu1.setText("File");
 
         jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_M, java.awt.event.InputEvent.CTRL_MASK));
@@ -134,6 +142,8 @@ public class GraphChoose extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(fbButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(Backbutton, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(109, 109, 109)
@@ -146,9 +156,9 @@ public class GraphChoose extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(192, 192, 192)
                                 .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
                                 .addComponent(jLabel4))
-                            .addGroup(layout.createSequentialGroup()
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addGap(76, 76, 76)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(graphAge, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -179,7 +189,9 @@ public class GraphChoose extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(graphAge, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
-                .addComponent(Backbutton, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Backbutton, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fbButton))
                 .addContainerGap())
         );
 
@@ -229,6 +241,11 @@ public class GraphChoose extends javax.swing.JFrame {
     Table.setVisible(true);
     GraphChoose.this.dispose();
     }//GEN-LAST:event_KNOPActionPerformed
+
+    private void fbButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fbButtonActionPerformed
+        FBAPI fb = new FBAPI();
+        fb.getFbData();
+    }//GEN-LAST:event_fbButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -333,6 +350,7 @@ public class GraphChoose extends javax.swing.JFrame {
     private javax.swing.JButton KNOP;
     private javax.swing.JButton PositiefGrafiek;
     private javax.swing.JLabel Tabellabel;
+    private javax.swing.JButton fbButton;
     private javax.swing.JButton graphAge;
     private javax.swing.JButton graphNegativeReactions;
     private javax.swing.JLabel jLabel1;

@@ -220,6 +220,8 @@ public class LoginScreen extends javax.swing.JFrame {
     private void LoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginButtonActionPerformed
     //AccountText.getText().equals("admin") && passText.getText().equals("admin")
      DatabaseManager dbManager = new DatabaseManager();
+     //FBAPI fb = new FBAPI();
+     //fb.getFbData();
      if(dbManager.verifyUser(AccountText.getText(), passText.getText()))
     {
      currentUser = AccountText.getText();
