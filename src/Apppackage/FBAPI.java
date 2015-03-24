@@ -34,14 +34,8 @@ public class FBAPI {
             for (Post post : ahoyPostsConnectionPage){
                 //System.out.println("=================================\n" + post.getMessage());
                 Post.Comments coms = post.getComments();
-                try{
-                    List<Comment> comment = coms.getData();
-                    for(Comment c : comment){
-                        //System.out.println("------: " + c.getId() + "\n" + c.getMessage());
-                    }
-                } catch(Exception e){
-                    //System.out.println("This post has no comments");
-                }
+                DatabaseManager dbManager = new DatabaseManager();
+                dbManager.addCommentsToDB(coms);
                   
             }
         }
