@@ -143,8 +143,8 @@ public class DatabaseManager {
         private String checkTweetMood(Comment c){
         String mood;
         String mess = c.getMessage();
-        String[] goodWords = {"goed", "oke", "vet"};
-        String[] badWords = {"slecht", "vreselijk", "stom"};
+        String[] goodWords = {"goed", "oke", "vet","leuk","mooi","lachen","vet","prachtig","benieuwd","adenbenemd"};
+        String[] badWords = {"slecht", "vreselijk", "stom","klote","vervelend","rot","laat"};
         int goodCount = 0;
         int badCount = 0;
         for(int i = 0; i < goodWords.length;i++){
