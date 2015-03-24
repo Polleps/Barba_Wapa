@@ -47,7 +47,7 @@ public class DatabaseManager {
         return false;
     }
 
-    public void addCommentsToDB(Post.Comments coms) {
+    public void addFBCommentsToDB(Post.Comments coms) {
         try {
             List<Comment> comment = coms.getData();
             for (Comment c : comment) {
@@ -63,7 +63,8 @@ public class DatabaseManager {
                     String quary = "select commentID from Comments where commentID='" + c.getId() + "'";
                     res = st.executeQuery(quary);
                     if (!res.first()){
-                        //De comment moet in de DB
+                        String mood = checkCommentMood(c);
+                        // Doe de statement enzo.
                     }                    
                 }
                 catch(Exception ex){
@@ -73,5 +74,38 @@ public class DatabaseManager {
         } catch (Exception e) {
             //System.out.println("This post has no comments");
         }
+    }
+    private String checkCommentMood(Comment c){
+        String mood;
+        String mess = c.getMessage();
+        String[] goodWords = {"goed", "oke", "vet"};
+        String[] badWords = {"slecht", "vreselijk", "stom"};
+        int goodCount = 0;
+        int badCount = 0;
+        for(int i = 0; i < goodWords.length;i++){
+            if(mess.contains(goodWords[i])){
+                goodCount++;
+            }
+        }
+        for(int i = 0; i < badWords.length;i++){
+            if(mess.contains(badWords[i])){
+                badCount++;
+            }
+        }
+        if(!(goodCount == 0 && badCount == 0)){
+            if(goodCount > badCount){
+                mood = "Positief";
+            }
+            else if(goodCount < badCount){
+                mood = "Negatief";
+            }
+            else{
+                mood = "Undefined";
+            }
+        }
+        else{
+            mood =  "No Keywords";
+        }
+        return mood;
     }
 }

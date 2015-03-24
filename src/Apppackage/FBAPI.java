@@ -35,7 +35,7 @@ public class FBAPI {
                 //System.out.println("=================================\n" + post.getMessage());
                 Post.Comments coms = post.getComments();
                 DatabaseManager dbManager = new DatabaseManager();
-                dbManager.addCommentsToDB(coms);
+                dbManager.addFBCommentsToDB(coms);
                   
             }
         }
