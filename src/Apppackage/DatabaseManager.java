@@ -75,7 +75,72 @@ public class DatabaseManager {
             //System.out.println("This post has no comments");
         }
     }
+    
+    public void addTwitterCommentstoDB(Post.tweets tweets) {
+        try {
+            List<Tweet> tweet = tweets.getData();
+            for (Tweet c : tweet) {
+                try {
+                    Class.forName("com.mysql.jdbc.Driver");
+
+                    con = DriverManager.getConnection("jdbc:mysql://db4free.net:3306/barbawapatest", "barba", "Ruggenmerg");
+                    st = con.createStatement();
+                } catch (Exception ex) {
+                    System.out.println("Error: " + ex);
+                }
+                try{
+                    String quary = "select commentID from Comments where commentID='" + c.getId() + "'";
+                    res = st.executeQuery(quary);
+                    if (!res.first()){
+                        String mood = checkTweetMood(c);
+                        // Checked voor de Mood (zie hierbeneden)
+                    }                    
+                }
+                catch(Exception ex){
+                    System.out.println("Error: " + ex);
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("This post has no tweets");
+        }
+    }
+    
+    
     private String checkCommentMood(Comment c){
+        String mood;
+        String mess = c.getMessage();
+        String[] goodWords = {"goed", "oke", "vet"};
+        String[] badWords = {"slecht", "vreselijk", "stom"};
+        int goodCount = 0;
+        int badCount = 0;
+        for(int i = 0; i < goodWords.length;i++){
+            if(mess.contains(goodWords[i])){
+                goodCount++;
+            }
+        }
+        for(int i = 0; i < badWords.length;i++){
+            if(mess.contains(badWords[i])){
+                badCount++;
+            }
+        }
+        if(!(goodCount == 0 && badCount == 0)){
+            if(goodCount > badCount){
+                mood = "Positief";
+            }
+            else if(goodCount < badCount){
+                mood = "Negatief";
+            }
+            else{
+                mood = "Undefined";
+            }
+        }
+        else{
+            mood =  "No Keywords";
+        }
+        return mood;
+    }
+    
+        private String checkTweetMood(Comment c){
         String mood;
         String mess = c.getMessage();
         String[] goodWords = {"goed", "oke", "vet"};
