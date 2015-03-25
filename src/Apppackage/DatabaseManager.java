@@ -7,9 +7,11 @@
 package Apppackage;
 
 import com.restfb.types.Comment;
-import com.restfb.types.Comment.Comments;
+import com.restfb.types.Post.Comments;
 import com.restfb.types.Post;
 import java.sql.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 /**
@@ -59,7 +61,7 @@ public class DatabaseManager {
             System.out.println("Error 61: " + ex);
         }
         try {
-            String quary = "SELECT commentID FROM FbComments";
+            String quary = "SELECT * FROM FbComments";
             commentsInDB = st.executeQuery(quary);
         } catch (Exception ex) {
             System.out.println("Error idChecker: " + ex);
@@ -67,11 +69,11 @@ public class DatabaseManager {
         try {
             List<Comment> comment = coms.getData();
             for (Comment c : comment) {
-
+                System.out.println(c.getMessage());
                 boolean isInDB = true;
                 boolean first = commentsInDB.first();
                 while (commentsInDB.next()) {
-                    if (res.getString("commentID").equals(c.getId())) {
+                    if (commentsInDB.getString("commentID").equals(c.getId())) {
                         isInDB = false;
                         System.out.println(" - Comment was found in the database.");
                         break;
@@ -81,15 +83,19 @@ public class DatabaseManager {
                     System.out.println(" - Comment is not yet in the database.");
                     String mood = checkCommentMood(c);
                     System.out.println(mood);
-                    Comments replies = c.getComments();
+                   
+                    
+                    //java.sql.Date sqlDate = new java.sql.Date(c.getCreatedTime().getTime());
+                    //Post.Comments replies = c.getComments();
                     try {
                         /*Class.forName("com.mysql.jdbc.Driver");
 
                         con = DriverManager.getConnection("jdbc:mysql://db4free.net:3306/barbawapatest", "barba", "Ruggenmerg");
                         st = con.createStatement();*/
                         
-                        String query = "INSERT INTO FbComments (commentID, commentBody, likes, replies, mood) VALUES('" + c.getId() + "', '" + c.getMessage() + "', " + c.getLikeCount() + ", " + 0 + ", '" + mood + "')";
+                        String query = "INSERT INTO FbComments (commentID, commentBody, likes, replies, mood, dates ) VALUES('" + c.getId() + "', '" + c.getMessage() + "', " + c.getLikeCount() + ", " + 0 + ", '" + mood + "','"+ c.getCreatedTime().getYear() + ":" + c.getCreatedTime().getMonth() + ":" + c.getCreatedTime().getDate()  + "')";
                         st.execute(query);
+                        
                         System.out.println(" - " + c.getId() + " was added to the Database.");
                     } catch (Exception ex) {
                         System.out.println("Error 74: " + ex);
@@ -137,8 +143,8 @@ public class DatabaseManager {
 
         String mood;
         String mess = c.getMessage();
-        String[] goodWords = {"goed", "oke", "vet"};
-        String[] badWords = {"slecht", "vreselijk", "stom"};
+        String[] goodWords = {"goed", "oke", "vet","leuk","mooi","lachen","vet","prachtig","benieuwd","adenbenemd"};
+        String[] badWords = {"slecht", "vreselijk", "stom","klote","vervelend","rot","laat"};
         int goodCount = 0;
         int badCount = 0;
         for (int i = 0; i < goodWords.length; i++) {

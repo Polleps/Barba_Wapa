@@ -24,7 +24,7 @@ import java.util.List;
 public class FBAPI {
     
     public void getFbData(){
-        FacebookClient fbClient = new DefaultFacebookClient("CAACEdEose0cBAFaEHDiH3cwMNUE5xFd66zCS7mVN0uWG7wZCQJNmtSsNXoNP2opIPVafthAvGj0ZA5VvLwk8Pi2JuPKGVY0offJCGUbZBloXTTgGrZBda1HfyAcsoB9yXPhBVZC6FNQWYH3ZC5AOh1DJBXgEglzgxjVwMkAnZA3qTfH8LpdpXme3iLlmE1s6rvGUhZBv2C8aYcJFIXljyPnE");// HIER MOET EEN ACCES TOKEN
+        FacebookClient fbClient = new DefaultFacebookClient("CAACEdEose0cBANYZAJ8QUxTZAqDRX39tFk8n7YxMkKunhBjEPgyMXjPWkmszo2G0q0ywDTLoJBKZB4O8wtKZCsrzChM7XDxKX5rXBuK2ZBQhdsb9JuN6qNyrHZA0udZBYZAMSSjKZB92OV4Pcx5XZBeorCZAGptuvdRn3b1EjqlwfdAdZCl9xR4vU5kj3OQUZCUluGUVhERZAVaTeZArNN8f1sOVXEa");// HIER MOET EEN ACCES TOKEN
         Page page = fbClient.fetchObject("165327986836920", Page.class);  //ID van de pagina
         BatchRequest postsRequest =  new BatchRequestBuilder("ahoyrotterdam/posts").parameters(Parameter.with("limit", 10)).build();
         List<BatchResponse> batchResponses = fbClient.executeBatch(postsRequest);
@@ -36,14 +36,14 @@ public class FBAPI {
                 //System.out.println("=================================\n" + post.getMessage());
                 Post.Comments coms = post.getComments();
                 System.out.println(post.getCommentsCount());
-                if(post.getCommentsCount() <= 0){
-                    System.out.println("- " + post.getId() + " has no comments");
-                }  
-                else{
+                //if(post.getCommentsCount() <= 0){
+                //    System.out.println("- " + post.getId() + " has no comments");
+                //}  
+                //else{
                     DatabaseManager dbManager = new DatabaseManager();
                     System.out.println("Adding comments of " + post.getId() + " to the Database.");
                     dbManager.addFBCommentsToDB(coms);
-                }
+                //}
             }
         }
     }
