@@ -24,6 +24,7 @@ public class DatabaseManager {
     private Statement st;
     private ResultSet res;
     private ResultSet commentsInDB;
+    private ResultSet tweetInDB;
 
     public boolean verifyUser(String userName, String password) {
 
@@ -108,35 +109,63 @@ public class DatabaseManager {
         }
     }
 
-    
-    public void addTwitterCommentstoDB(Post.tweets tweets) {
+    public void addTweetsToDB(Post.Comments coms) {
         try {
-            List<Tweet> tweet = tweets.getData();
-            for (Tweet c : tweet) {
-                try {
-                    Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.jdbc.Driver");
 
-                    con = DriverManager.getConnection("jdbc:mysql://db4free.net:3306/barbawapatest", "barba", "Ruggenmerg");
-                    st = con.createStatement();
-                } catch (Exception ex) {
-                    System.out.println("Error: " + ex);
+            con = DriverManager.getConnection("jdbc:mysql://db4free.net:3306/barbawapatest?useUnicode=true&amp;characterEncoding=UTF-8", "barba", "Ruggenmerg");
+            st = con.createStatement();
+        } catch (Exception ex) {
+            System.out.println("Error 61: " + ex);
+        }
+        try {
+            String quary = "SELECT * FROM tweets";
+            tweetInDB = st.executeQuery(quary);
+        } catch (Exception ex) {
+            System.out.println("Error idChecker: " + ex);
+        }
+        try {
+            List<Comment> comment = coms.getData();
+            for (Comment c : comment) {
+                System.out.println(c.getMessage());
+                boolean isInDB = true;
+                boolean first = tweetInDB.first();
+                while (tweetInDB.next()) {
+                    if (tweetInDB.getString("tweetID").equals(c.getId())) {
+                        isInDB = false;
+                        System.out.println(" - tweet was found in the database.");
+                        break;
+                    }
                 }
-                try{
-                    String quary = "select commentID from Comments where commentID='" + c.getId() + "'";
-                    res = st.executeQuery(quary);
-                    if (!res.first()){
-                        String mood = checkTweetMood(c);
-                        // Checked voor de Mood (zie hierbeneden)
-                    }                    
+                if (isInDB) {
+                    System.out.println(" - tweet is not yet in the database.");
+                    //String mood = checktweetMood(c);
+                    //System.out.println(mood);
+                   
+                    
+                    //java.sql.Date sqlDate = new java.sql.Date(c.getCreatedTime().getTime());
+                    //Post.Comments replies = c.getComments();
+                    try {
+                        /*Class.forName("com.mysql.jdbc.Driver");
+
+                        con = DriverManager.getConnection("jdbc:mysql://db4free.net:3306/barbawapatest", "barba", "Ruggenmerg");
+                        st = con.createStatement();*/
+                        
+                        String query = "INSERT INTO tweets (tweetID, tweet, date, tweetReplies, tweetReplies) VALUES('" + c.getId() + "', '" + c.gettweet() + "', " + c.getdate() + ", " + 0 + ", '" + c.gettweetReplies +  "')";
+                        st.execute(query);
+                        
+                        System.out.println(" - " + c.getId() + " was added to the Database.");
+                    } catch (Exception ex) {
+                        System.out.println("Error 74: " + ex);
+                    }
                 }
-                catch(Exception ex){
-                    System.out.println("Error: " + ex);
-                }
+
             }
         } catch (Exception e) {
-            System.out.println("This post has no tweets");
+            System.out.println("There are no tweets");
         }
     }
+  
     
     
     private String checkCommentMood(Comment c){
@@ -170,6 +199,7 @@ public class DatabaseManager {
         }
         return mood;
     }
+    /*
     
         private String checkTweetMood(Comment c){
         String mood;
@@ -204,4 +234,4 @@ public class DatabaseManager {
         }
         return mood;
     }
-}
+}*/
