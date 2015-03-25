@@ -40,6 +40,7 @@ public class Aanmelder {
         for(int i = 0; i < medewerker.length; i++){
             System.out.println(medewerker[i]);
         }
+        addToDB();
     }
     
     private boolean addToDB(){
@@ -47,7 +48,7 @@ public class Aanmelder {
          Class.forName("com.mysql.jdbc.Driver");
          con = DriverManager.getConnection("jdbc:mysql://db4free.net:3306/barbawapatest?useUnicode=true&amp;characterEncoding=UTF-8", "barba", "Ruggenmerg");
          st = con.createStatement();
-         String getMedewerkerQuery = "SELECT * FROM medewerkers";
+         String getMedewerkerQuery = "SELECT * FROM medewerker";
          res = st.executeQuery(getMedewerkerQuery);
          boolean hasRegisterd = false;
          while(res.next()){
@@ -58,8 +59,9 @@ public class Aanmelder {
              }
          }
          if(!hasRegisterd){
-             String addQuery = "INSERT INTO (name, l_name, adress, h_nr, initials, t_nr, m_nr, gender, email, reg_key) VALUES (" + this.firstName + ", " + this.lastName +"," + this.adress + ", " + this.huisNummer + ", " + this.initalen + ", " + this.telefoonNummer + "," + this.mobielNummer + ", " + this.sekse + ", " + this.email + ", " + this.regId + ");";
+             String addQuery = "INSERT INTO medewerker (name, l_name, adress, h_nr, initials, t_nr, m_nr, gender, email, reg_key) VALUES ('" + this.firstName + "', '" + this.lastName +"','" + this.adress + "', '" + this.huisNummer + "', '" + this.initalen + "', '" + this.telefoonNummer + "','" + this.mobielNummer + "', '" + this.sekse + "', '" + this.email + "', '" + this.regId + "');";
              st.execute(addQuery);
+             System.out.println("User was registered!");
              return true;
          } 
         }
