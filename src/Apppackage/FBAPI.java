@@ -24,7 +24,7 @@ import java.util.List;
 public class FBAPI {
     
     public void getFbData(){
-        FacebookClient fbClient = new DefaultFacebookClient("CAACEdEose0cBANYZAJ8QUxTZAqDRX39tFk8n7YxMkKunhBjEPgyMXjPWkmszo2G0q0ywDTLoJBKZB4O8wtKZCsrzChM7XDxKX5rXBuK2ZBQhdsb9JuN6qNyrHZA0udZBYZAMSSjKZB92OV4Pcx5XZBeorCZAGptuvdRn3b1EjqlwfdAdZCl9xR4vU5kj3OQUZCUluGUVhERZAVaTeZArNN8f1sOVXEa");// HIER MOET EEN ACCES TOKEN
+        FacebookClient fbClient = new DefaultFacebookClient("CAACEdEose0cBACR6Faj3sgVVcLYZB6P0Af8jZAr5ZAWL7eX5NZCQuDrZAGk4DekY9TIJTerMZBtbVYTjtzEHTQ0upmDMbPcUqYhpHIRDWZBFU6tjyCsQuY8mr4CW81RIHdnhVLRDWqX4J5OK66recpKNowGwH4RZAggYmMEWJGWWfxeSzJmAGVnZAC8jPpDvbkZABHZAjTMJHFHuL0yhHbsCud1");// HIER MOET EEN ACCES TOKEN
         Page page = fbClient.fetchObject("165327986836920", Page.class);  //ID van de pagina
         BatchRequest postsRequest =  new BatchRequestBuilder("ahoyrotterdam/posts").parameters(Parameter.with("limit", 10)).build();
         List<BatchResponse> batchResponses = fbClient.executeBatch(postsRequest);
