@@ -107,6 +107,7 @@ public class Register extends javax.swing.JFrame {
         huisNrField.setText(" ");
 
         sekseComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "M", "V" }));
+        sekseComboBox.setSelectedIndex(1);
 
         jMenu1.setText("File");
 
@@ -259,7 +260,17 @@ public class Register extends javax.swing.JFrame {
     }//GEN-LAST:event_telefoonNummerFieldActionPerformed
 
     private void ConfirmBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmBActionPerformed
-        String[] medewerker;
+        try{
+            String [] genders = {"N", "M", "V"};
+            String[] medewerker = {voorNaamField.getText(), achterNaamField.getText(), 
+                initealenField.getText(), adresField.getText(), huisNrField.getText(), 
+                telefoonNummerField.getText(), mobielField.getText(),
+                emailField.getText(), genders[sekseComboBox.getSelectedIndex()]};
+            Aanmelder medewerkerOBJ = new Aanmelder(medewerker);
+        }
+        catch(Exception e){
+            System.out.println("Leeg veld!");
+        }
     }//GEN-LAST:event_ConfirmBActionPerformed
 
     /**

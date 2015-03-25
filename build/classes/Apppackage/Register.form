@@ -304,6 +304,7 @@
             <StringItem index="2" value="V"/>
           </StringArray>
         </Property>
+        <Property name="selectedIndex" type="int" value="1"/>
       </Properties>
     </Component>
   </SubComponents>
