@@ -172,7 +172,7 @@ public class DatabaseManager {
 
         String mood;
         String mess = c.getMessage().toLowerCase();
-        String[] goodWords = {" goed ", " oke ", " vet "," leuk "," mooi "," lachen "," vet "," prachtig"," benieuwd "," adembenemend ", " trots ", " zin in ", " geweldige ", " slim ", " gelukkig ", " geweldig ", " duimen ", " gezellig ", " top ", " gefeliciteerd ", " wauw ", " super ", " topper ", "yes "   };
+        String[] goodWords = {" goed ", " oke ", " vet "," leuk "," mooi "," lachen "," vet "," prachtig"," benieuwd "," adembenemend ", " trots ", " zin in ", " geweldige ", " slim ", " gelukkig ", " geweldig ", " duimen ", " gezellig ", " top ", " gefeliciteerd ", " wauw ", " super ", " topper ", "yes ", ":)"  };
         String[] badWords = {" slecht ", " vreselijk ", " stom "," klote "," vervelend "," rot ", " teleurstelling ", " nee ", " blûh ", " jammer ", " waanzinnig ",  };
         int goodCount = 0;
         int badCount = 0;
