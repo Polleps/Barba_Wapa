@@ -5,29 +5,49 @@
  */
 package Apppackage;
 
+//import com.mysql.jdbc.Connection;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.*;
+import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartFrame;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.renderer.category.BarRenderer;
+import org.jfree.data.jdbc.JDBCCategoryDataset;
 
 /**
  *
  * @author Willl_000
  */
 public class Table extends javax.swing.JFrame {
+    static Statement mijnStat;
+    public Connection con;
 
     /**
      * Creates new form Table
      */
-    public Table() {
-        initComponents();
-        
+    public Table() throws ClassNotFoundException {
+        //try {
+            initComponents();
+           
+           
         Searchbutton.addActionListener(new ActionListener() 
                 {
         @Override
         public void actionPerformed(ActionEvent e)
                 {
-                   jLabel1.setText("Er zijn geen resultaten voor: "+Searchbar.getText()); 
+                   jLabel11.setText("Er zijn geen resultaten voor: "+Searchbar.getText()); 
                 }
          });
+        
+        
                 
                 }
 
@@ -43,47 +63,188 @@ public class Table extends javax.swing.JFrame {
 
         Searchbar = new javax.swing.JTextField();
         Searchbutton = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         BackbuttonTable = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        fbComTable = new javax.swing.JTable();
+        previewB = new javax.swing.JButton();
+        jLabel11 = new javax.swing.JLabel();
+        toonB = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        MainMenu = new javax.swing.JMenuItem();
+        OpenMenu = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        ExitMenu = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        TipsMenu = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         Searchbutton.setText("Zoeken");
+        Searchbutton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SearchbuttonActionPerformed(evt);
+            }
+        });
 
-        BackbuttonTable.setText("Terug");
+        BackbuttonTable.setText("Back");
         BackbuttonTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 BackbuttonTableMouseClicked(evt);
             }
         });
 
+        fbComTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {"", null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "UserID", "Likes ", "Date", "Gedrag", "Comment"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(fbComTable);
+        fbComTable.getColumnModel().getColumn(0).setMaxWidth(150);
+        fbComTable.getColumnModel().getColumn(1).setMaxWidth(40);
+        fbComTable.getColumnModel().getColumn(2).setMaxWidth(70);
+        fbComTable.getColumnModel().getColumn(3).setMaxWidth(70);
+
+        previewB.setText("Preview");
+        previewB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                previewBActionPerformed(evt);
+            }
+        });
+
+        jLabel11.setText(" ");
+
+        toonB.setText("Toon");
+        toonB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                toonBActionPerformed(evt);
+            }
+        });
+
+        jMenu1.setText("File");
+
+        MainMenu.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_M, java.awt.event.InputEvent.CTRL_MASK));
+        MainMenu.setText("Main");
+        MainMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MainMenuActionPerformed(evt);
+            }
+        });
+        jMenu1.add(MainMenu);
+
+        OpenMenu.setText("Open");
+
+        jMenuItem1.setText("jMenuItem1");
+        OpenMenu.add(jMenuItem1);
+
+        jMenuItem2.setText("jMenuItem2");
+        OpenMenu.add(jMenuItem2);
+
+        jMenuItem3.setText("jMenuItem3");
+        OpenMenu.add(jMenuItem3);
+
+        jMenuItem4.setText("jMenuItem4");
+        OpenMenu.add(jMenuItem4);
+
+        jMenu1.add(OpenMenu);
+
+        ExitMenu.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
+        ExitMenu.setText("Exit");
+        ExitMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ExitMenuActionPerformed(evt);
+            }
+        });
+        jMenu1.add(ExitMenu);
+
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Edit");
+
+        TipsMenu.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_T, java.awt.event.InputEvent.CTRL_MASK));
+        TipsMenu.setText("Tips");
+        TipsMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TipsMenuActionPerformed(evt);
+            }
+        });
+        jMenu2.add(TipsMenu);
+
+        jMenuBar1.add(jMenu2);
+
+        setJMenuBar(jMenuBar1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(372, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(BackbuttonTable, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(Searchbar, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(Searchbar, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE)
+                            .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Searchbutton)))
-                .addGap(17, 17, 17))
+                        .addComponent(Searchbutton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 753, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(previewB, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(toonB, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(182, 182, 182)
+                                .addComponent(BackbuttonTable, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(32, 32, 32)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Searchbar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Searchbutton))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 231, Short.MAX_VALUE)
-                .addComponent(BackbuttonTable, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(14, 14, 14)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(BackbuttonTable, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(previewB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(toonB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -95,6 +256,146 @@ public class Table extends javax.swing.JFrame {
     graphChoose.setVisible(true);
     Table.this.dispose();
     }//GEN-LAST:event_BackbuttonTableMouseClicked
+
+    private void MainMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MainMenuActionPerformed
+    GraphChoose graphChoose = new GraphChoose();
+    graphChoose.setVisible(true);
+    Table.this.dispose();
+    }//GEN-LAST:event_MainMenuActionPerformed
+
+    private void ExitMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitMenuActionPerformed
+     Table.this.dispose();
+    }//GEN-LAST:event_ExitMenuActionPerformed
+
+    private void TipsMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TipsMenuActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TipsMenuActionPerformed
+
+    private void toonBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toonBActionPerformed
+        String connectionUrl = "jdbc:mysql://localhost/barbawapatest";
+        String driver = "com.mysql.jdbc.Driver";
+        try{
+             
+
+        //Class.forName(driver);
+        try {
+            con = DriverManager.getConnection(connectionUrl, "root", "root");
+            mijnStat = con.createStatement();
+        } catch (SQLException ex) {
+            Logger.getLogger(Table.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            //create connection
+           
+            Statement state = con.createStatement();
+            ResultSet rs = state.executeQuery("select * from FbComments");
+            ResultSetMetaData rsmdata = rs.getMetaData();
+            //store column numbers
+            int columns = rsmdata.getColumnCount();
+            //set data into Jtable
+            DefaultTableModel dtm = new DefaultTableModel();
+            Vector columns_name = new Vector();
+            Vector data_rows = new Vector();
+            
+            for (int i=1; i<columns; i++)
+            {
+                columns_name.addElement(rsmdata.getColumnName(i));
+            }
+            dtm.setColumnIdentifiers(columns_name);
+            
+            while(rs.next())
+            {
+                data_rows = new Vector();
+                for(int j=1; j<columns; j++)
+                {
+                    data_rows.addElement(rs.getString(j));
+                }
+                dtm.addRow(data_rows);                
+            }
+            //pass default table object over into jtable
+            fbComTable.setModel(dtm);
+        } catch (SQLException ex) {
+            Logger.getLogger(Table.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        /*try {
+            
+                   //create connection
+                  String connectionUrl = "jdbc:mysql://db4free.net:3306/barbawapatest; user=barba; password=Ruggenmerg";
+                   Connection con = DriverManager.getConnection(connectionUrl);
+                   Statement state = con.createStatement();
+                   ResultSet rs = state.executeQuery("select * from FbComments");
+                   ResultSetMetaData rsmdata = rs.getMetaData();
+                   //store column numbers
+                   int columns = rsmdata.getColumnCount();
+                   //set data into Jtable
+                   DefaultTableModel dtm = new DefaultTableModel();
+                   Vector columns_name = new Vector();
+                   Vector data_rows = new Vector();
+                   
+                   for (int i=1; i<columns; i++)
+                   {
+                       columns_name.addElement(rsmdata.getColumnName(i));
+                   }
+                   dtm.setColumnIdentifiers(columns_name);
+                   
+                   while(rs.next())
+                   {
+                       data_rows = new Vector();
+                       for(int j=1; j<columns; j++)
+                       {
+                           data_rows.addElement(rs.getString(j));
+                       }
+                       dtm.addRow(data_rows);                
+                   }
+                   //pass default table object over into jtable
+                   fbComTable.setModel(dtm);
+        } catch (SQLException ex) {
+            Logger.getLogger(Table.class.getName()).log(Level.SEVERE, null, ex);
+        }*/
+        
+        
+        
+    }//GEN-LAST:event_toonBActionPerformed
+
+    private void SearchbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchbuttonActionPerformed
+        try {
+            String connectionUrl = "jdbc:mysql://localhost/barbawapatest";
+            String driver = "com.mysql.jdbc.Driver";
+            con = DriverManager.getConnection(connectionUrl, "root", "root");
+            mijnStat = con.createStatement();
+       
+        String searched = Searchbar.getText();
+            ResultSet result = mijnStat.executeQuery("select commentBody from fbComments where commentBody like '%" + searched + "%'");
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Table.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_SearchbuttonActionPerformed
+
+    private void previewBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_previewBActionPerformed
+        String connectionUrl = "jdbc:mysql://localhost/barbawapatest";
+        String driver = "com.mysql.jdbc.Driver";
+        //Class.forName(driver);
+        try {
+            con = DriverManager.getConnection(connectionUrl, "root", "root");
+            mijnStat = con.createStatement();     
+            String query="select dates, commentBody from fbComments";
+        JDBCCategoryDataset dataset = new JDBCCategoryDataset(Connect.Connectie.getConnection(), query);
+        JFreeChart chart = ChartFactory.createLineChart("Reactions", "dates", "commentBody", dataset, PlotOrientation.VERTICAL, false, true, true);
+        BarRenderer renderer = null;
+        CategoryPlot plot = null;
+        renderer = new BarRenderer();
+        ChartFrame frame = new ChartFrame("Reactions", chart);
+        frame.setVisible(true);
+        frame.setSize(1000, 650);        
+        }
+    catch (Exception e) { 
+    JOptionPane.showMessageDialog(null, e);{
+        
+}
+    }
+        
+    }//GEN-LAST:event_previewBActionPerformed
 
     /**
      * @param args the command line arguments
@@ -127,15 +428,34 @@ public class Table extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new Table().setVisible(true);
+                try {
+                    new Table().setVisible(true);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(Table.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BackbuttonTable;
+    private javax.swing.JMenuItem ExitMenu;
+    private javax.swing.JMenuItem MainMenu;
+    private javax.swing.JMenu OpenMenu;
     private javax.swing.JTextField Searchbar;
     private javax.swing.JButton Searchbutton;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JMenuItem TipsMenu;
+    private javax.swing.JTable fbComTable;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton previewB;
+    private javax.swing.JButton toonB;
     // End of variables declaration//GEN-END:variables
 }

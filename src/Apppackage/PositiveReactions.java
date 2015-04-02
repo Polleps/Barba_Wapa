@@ -5,18 +5,110 @@
  */
 package Apppackage;
 
+import javax.swing.*;
+import java.sql.*;
+import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartFrame;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.renderer.category.BarRenderer;
+import org.jfree.data.general.*;
+import org.jfree.data.jdbc.JDBCCategoryDataset;
+import net.proteanit.sql.DbUtils;
+
+
+
 /**
  *
  * @author Eigenaar
  */
 public class PositiveReactions extends javax.swing.JFrame {
+   //Connection conn= null;
+    //PreparedStatement pst = null;
+    //ResultSet res = null;  
+    static Statement mijnStat;
+    public Connection con;
+    String user = "barba";
+    String password = "Ruggenmerg";
 
     /**
      * Creates new form PostiveReactions
      */
     public PositiveReactions() {
-        initComponents();
+        
+            initComponents();
+      
+            String connectionUrl = "jdbc:mysql://localhost/barbawapatest";
+        String driver = "com.mysql.jdbc.Driver";
+        try{
+             
+
+        //Class.forName(driver);
+        try {
+            con = DriverManager.getConnection(connectionUrl, "root", "root");
+            mijnStat = con.createStatement();
+        } catch (SQLException ex) {
+            Logger.getLogger(Table.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            //create connection
+           
+            Statement state = con.createStatement();
+            ResultSet rs = state.executeQuery("select * from fbpositive");
+            ResultSetMetaData rsmdata = rs.getMetaData();
+            //store column numbers
+            int columns = rsmdata.getColumnCount();
+            //set data into Jtable
+            DefaultTableModel dtm = new DefaultTableModel();
+            Vector columns_name = new Vector();
+            Vector data_rows = new Vector();
+            
+            for (int i=1; i<columns; i++)
+            {
+                columns_name.addElement(rsmdata.getColumnName(i));
+            }
+            dtm.setColumnIdentifiers(columns_name);
+            
+            while(rs.next())
+            {
+                data_rows = new Vector();
+                for(int j=1; j<columns; j++)
+                {
+                    data_rows.addElement(rs.getString(j));
+                }
+                dtm.addRow(data_rows);                
+            }
+            //pass default table object over into jtable
+            fbPosT.setModel(dtm);
+        } catch (SQLException ex) {
+            Logger.getLogger(Table.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            /* try {
+            conn = Connect.Connectie.getConnection();
+        } catch (SQLException ex) {
+            Logger.getLogger(PositiveReactions.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            update_table();*/
+       
     }
+            //Statement statement = conn.createStatement();
+    
+   /*private void update_table(){
+        try{
+            String sql = "select * from positive";
+            pst=conn.prepareStatement(sql);
+            res=pst.executeQuery(sql);
+            fbPosT.setModel(DbUtils.resultSetToTableModel(res));
+        }
+        catch(Exception e){
+                   JOptionPane.showMessageDialog(null, e);    
+        }
+    }*/
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -28,6 +120,10 @@ public class PositiveReactions extends javax.swing.JFrame {
     private void initComponents() {
 
         backPositiveReactions = new javax.swing.JButton();
+        datGB = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        fbPosT = new javax.swing.JTable();
+        datCB = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -42,6 +138,44 @@ public class PositiveReactions extends javax.swing.JFrame {
         backPositiveReactions.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backPositiveReactionsActionPerformed(evt);
+            }
+        });
+
+        datGB.setText("Datum/Gedrag");
+        datGB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                datGBActionPerformed(evt);
+            }
+        });
+
+        fbPosT.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "pos_id", "dates", "amount", "comments"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(fbPosT);
+        fbPosT.getColumnModel().getColumn(0).setMaxWidth(200);
+        fbPosT.getColumnModel().getColumn(1).setMaxWidth(75);
+        fbPosT.getColumnModel().getColumn(2).setMaxWidth(50);
+
+        datCB.setText("datum/comments");
+        datCB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                datCBActionPerformed(evt);
             }
         });
 
@@ -81,21 +215,39 @@ public class PositiveReactions extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addComponent(backPositiveReactions, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(674, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(82, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(datGB, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(datCB)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(backPositiveReactions, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 688, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(52, 52, 52))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(309, Short.MAX_VALUE)
-                .addComponent(backPositiveReactions, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21))
+                .addGap(38, 38, 38)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 27, Short.MAX_VALUE)
+                        .addComponent(backPositiveReactions, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(datCB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(datGB, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void backPositiveReactionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backPositiveReactionsActionPerformed
@@ -109,10 +261,62 @@ public class PositiveReactions extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-    LoginScreen loginScreen = new LoginScreen();
-    loginScreen.setVisible(true);
+    GraphChoose graphChoose = new GraphChoose();
+    graphChoose.setVisible(true);
     PositiveReactions.this.dispose();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void datGBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_datGBActionPerformed
+        
+        
+        /*String connectionUrl = "jdbc:mysql://localhost/barbawapatest";
+        String driver = "com.mysql.jdbc.Driver";
+        */
+
+        
+        /*try {
+            con = DriverManager.getConnection(connectionUrl, "root", "root");
+            mijnStat = con.createStatement();
+        } catch (SQLException ex) {
+            Logger.getLogger(Table.class.getName()).log(Level.SEVERE, null, ex);
+        */try{
+            String query="select distinct pos_id, dates from fbpositive";
+        JDBCCategoryDataset dataset = new JDBCCategoryDataset(Connect.ConnectToFb.getConnection(),query);
+        //JDBCCategoryDataset dataset = new JDBCCategoryDataset(DriverManager.getConnection(connectionUrl, "root", "root"), query);
+        JFreeChart chart = ChartFactory.createLineChart("Positive Reactions", "dates", "users", dataset, PlotOrientation.VERTICAL, false, true, true);
+        BarRenderer renderer = null;
+        CategoryPlot plot = null;
+        renderer = new BarRenderer();
+        ChartFrame frame = new ChartFrame("Amount of users", chart);
+        frame.setVisible(true);
+        frame.setSize(1000, 650);        
+        }
+    catch (Exception e) { 
+    JOptionPane.showMessageDialog(null, e);{
+        
+}
+    }
+        
+    }//GEN-LAST:event_datGBActionPerformed
+
+    private void datCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_datCBActionPerformed
+        try {
+            String query = "select dates, amount from fbpositive";
+            JDBCCategoryDataset dataset = new JDBCCategoryDataset(Connect.ConnectToFb.getConnection(), query);
+            //JDBCCategoryDataset dataset = new JDBCCategoryDataset(DriverManager.getConnection(connectionUrl, "root", "root"), query);
+            JFreeChart chart = ChartFactory.createLineChart("Positive Reactions", "dates", "amount", dataset, PlotOrientation.VERTICAL, false, true, true);
+            BarRenderer renderer = null;
+            CategoryPlot plot = null;
+            renderer = new BarRenderer();
+            ChartFrame frame = new ChartFrame("Positive Reactions", chart);
+            frame.setVisible(true);
+            frame.setSize(1000, 650);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+            {
+            }
+        }
+    }//GEN-LAST:event_datCBActionPerformed
 
     /**
      * @param args the command line arguments
@@ -152,11 +356,15 @@ public class PositiveReactions extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backPositiveReactions;
+    private javax.swing.JButton datCB;
+    private javax.swing.JButton datGB;
+    private javax.swing.JTable fbPosT;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

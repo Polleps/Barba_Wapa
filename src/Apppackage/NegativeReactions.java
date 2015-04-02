@@ -5,17 +5,86 @@
  */
 package Apppackage;
 
+import javax.swing.*;
+import java.sql.*;
+import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartFrame;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.renderer.category.BarRenderer;
+import org.jfree.data.general.*;
+import org.jfree.data.jdbc.JDBCCategoryDataset;
+import net.proteanit.sql.DbUtils;
+
+
+
+
 /**
  *
  * @author Eigenaar
  */
 public class NegativeReactions extends javax.swing.JFrame {
 
+    static Statement mijnStat;
+    public Connection con;
+    String user = "barba";
+    String password = "Ruggenmerg";
+    
     /**
      * Creates new form NegativeReactions
      */
     public NegativeReactions() {
         initComponents();
+        String connectionUrl = "jdbc:mysql://localhost/barbawapatest";
+        String driver = "com.mysql.jdbc.Driver";
+        try{
+             
+
+        //Class.forName(driver);
+        try {
+            con = DriverManager.getConnection(connectionUrl, "root", "root");
+            mijnStat = con.createStatement();
+        } catch (SQLException ex) {
+            Logger.getLogger(Table.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            //create connection
+           
+            Statement state = con.createStatement();
+            ResultSet rs = state.executeQuery("select * from fbnegative");
+            ResultSetMetaData rsmdata = rs.getMetaData();
+            //store column numbers
+            int columns = rsmdata.getColumnCount();
+            //set data into Jtable
+            DefaultTableModel dtm = new DefaultTableModel();
+            Vector columns_name = new Vector();
+            Vector data_rows = new Vector();
+            
+            for (int i=1; i<columns; i++)
+            {
+                columns_name.addElement(rsmdata.getColumnName(i));
+            }
+            dtm.setColumnIdentifiers(columns_name);
+            
+            while(rs.next())
+            {
+                data_rows = new Vector();
+                for(int j=1; j<columns; j++)
+                {
+                    data_rows.addElement(rs.getString(j));
+                }
+                dtm.addRow(data_rows);                
+            }
+            //pass default table object over into jtable
+            fbNegT.setModel(dtm);
+        } catch (SQLException ex) {
+            Logger.getLogger(Table.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -28,6 +97,10 @@ public class NegativeReactions extends javax.swing.JFrame {
     private void initComponents() {
 
         backNegativeReactions = new javax.swing.JButton();
+        PreviewB = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        fbNegT = new javax.swing.JTable();
+        datUB = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         FileMainmenu = new javax.swing.JMenuItem();
@@ -42,6 +115,44 @@ public class NegativeReactions extends javax.swing.JFrame {
         backNegativeReactions.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backNegativeReactionsActionPerformed(evt);
+            }
+        });
+
+        PreviewB.setText("Preview");
+        PreviewB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PreviewBActionPerformed(evt);
+            }
+        });
+
+        fbNegT.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "neg_id", "dates", "amount", "comments"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(fbNegT);
+        fbNegT.getColumnModel().getColumn(0).setMaxWidth(200);
+        fbNegT.getColumnModel().getColumn(1).setMaxWidth(75);
+        fbNegT.getColumnModel().getColumn(2).setMaxWidth(50);
+
+        datUB.setText("Datum/Users");
+        datUB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                datUBActionPerformed(evt);
             }
         });
 
@@ -86,21 +197,38 @@ public class NegativeReactions extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(35, 35, 35)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(44, 44, 44)
+                .addComponent(PreviewB, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(89, 89, 89)
+                .addComponent(datUB)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 272, Short.MAX_VALUE)
                 .addComponent(backNegativeReactions, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(567, Short.MAX_VALUE))
+                .addContainerGap())
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 688, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(256, Short.MAX_VALUE)
-                .addComponent(backNegativeReactions, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(315, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(backNegativeReactions, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(PreviewB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(datUB)))
                 .addContainerGap())
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(4, 4, 4)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(63, Short.MAX_VALUE)))
         );
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void backNegativeReactionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backNegativeReactionsActionPerformed
@@ -114,14 +242,73 @@ public class NegativeReactions extends javax.swing.JFrame {
     }//GEN-LAST:event_HelptipmenuActionPerformed
 
     private void FileMainmenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FileMainmenuActionPerformed
-    LoginScreen lgn = new LoginScreen();
-    lgn.setVisible(true);
+    GraphChoose graphChoose = new GraphChoose();
+    graphChoose.setVisible(true);
     NegativeReactions.this.dispose();
     }//GEN-LAST:event_FileMainmenuActionPerformed
 
     private void FileExitmenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FileExitmenuActionPerformed
     NegativeReactions.this.dispose();
     }//GEN-LAST:event_FileExitmenuActionPerformed
+
+    private void PreviewBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PreviewBActionPerformed
+    
+        try{
+            String query="select dates, amount from fbnegative";
+        JDBCCategoryDataset dataset = new JDBCCategoryDataset(Connect.ConnectToFbn.getConnection(),query);
+        //JDBCCategoryDataset dataset = new JDBCCategoryDataset(DriverManager.getConnection("//db4free.net:3306", user, password), query);
+        //JDBCCategoryDataset dataset = new JDBCCategoryDataset(Connect.Connectie.getConnection(), query);
+        JFreeChart chart = ChartFactory.createLineChart("Negative Reactions", "dates", "amount", dataset, PlotOrientation.VERTICAL, false, true, true);
+        BarRenderer renderer = null;
+        CategoryPlot plot = null;
+        renderer = new BarRenderer();
+        ChartFrame frame = new ChartFrame("Negative Reactions", chart);
+        frame.setVisible(true);
+        frame.setSize(1000, 650);        
+        }
+    catch (Exception e) { 
+    JOptionPane.showMessageDialog(null, e);{
+        
+}
+    }
+    
+        
+        /*try{
+        String query="select dates, amount from negatve";
+        JDBCCategoryDataset dataset = new JDBCCategoryDataset(Connect.ConnectToFb.getConnection());
+        JFreeChart chart = ChartFactory.createLineChart("Negative Reactions", "dates", "amount", dataset, PlotOrientation.VERTICAL, false, true, true);
+        BarRenderer renderer = null;
+        CategoryPlot plot = null;
+        renderer = new BarRenderer();
+        ChartFrame frame = new ChartFrame("Negative Reactions", chart);
+        frame.setVisible(true);
+        frame.setSize(1000, 650);        
+        }
+    catch (Exception e) { 
+    JOptionPane.showMessageDialog(null, e);
+    }*/
+    }//GEN-LAST:event_PreviewBActionPerformed
+
+    private void datUBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_datUBActionPerformed
+       try{
+            String query="select distinct neg_id, dates from fbnegative order by neg_id";
+        JDBCCategoryDataset dataset = new JDBCCategoryDataset(Connect.ConnectToFbn.getConnection(),query);
+        //JDBCCategoryDataset dataset = new JDBCCategoryDataset(DriverManager.getConnection(connectionUrl, "root", "root"), query);
+        JFreeChart chart = ChartFactory.createBarChart("Negative Reactions", "dates", "users", dataset, PlotOrientation.VERTICAL, false, true, true);
+        BarRenderer renderer = null;
+        CategoryPlot plot = null;
+        renderer = new BarRenderer();
+        ChartFrame frame = new ChartFrame("Amount of users", chart);
+        frame.setVisible(true);
+        frame.setSize(1000, 650);        
+        }
+    catch (Exception e) { 
+    JOptionPane.showMessageDialog(null, e);{
+        
+}
+    }
+        
+    }//GEN-LAST:event_datUBActionPerformed
 
     /**
      * @param args the command line arguments
@@ -162,9 +349,13 @@ public class NegativeReactions extends javax.swing.JFrame {
     private javax.swing.JMenuItem FileExitmenu;
     private javax.swing.JMenuItem FileMainmenu;
     private javax.swing.JMenuItem Helptipmenu;
+    private javax.swing.JButton PreviewB;
     private javax.swing.JButton backNegativeReactions;
+    private javax.swing.JButton datUB;
+    private javax.swing.JTable fbNegT;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
