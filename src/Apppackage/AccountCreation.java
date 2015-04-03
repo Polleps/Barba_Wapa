@@ -139,7 +139,7 @@ public class AccountCreation extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(285, 285, 285)
                                 .addComponent(CreateAccountButton, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 265, Short.MAX_VALUE)))
+                        .addGap(0, 263, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(

@@ -32,7 +32,7 @@ public class LoginScreen extends javax.swing.JFrame {
     private void initComponents() {
 
         createAccountLogin = new javax.swing.JButton();
-        backLoginScreen = new javax.swing.JButton();
+        exitButton = new javax.swing.JButton();
         LoginButton = new javax.swing.JButton();
         graphAge1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -58,10 +58,10 @@ public class LoginScreen extends javax.swing.JFrame {
             }
         });
 
-        backLoginScreen.setText("Back");
-        backLoginScreen.addActionListener(new java.awt.event.ActionListener() {
+        exitButton.setText("Exit");
+        exitButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backLoginScreenActionPerformed(evt);
+                exitButtonActionPerformed(evt);
             }
         });
 
@@ -161,7 +161,7 @@ public class LoginScreen extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(LoginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(backLoginScreen, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(exitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(layout.createSequentialGroup()
                                     .addGap(255, 255, 255)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -195,7 +195,7 @@ public class LoginScreen extends javax.swing.JFrame {
                     .addComponent(TTCreate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(createAccountLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE))
                 .addGap(48, 48, 48)
-                .addComponent(backLoginScreen, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(exitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -211,11 +211,9 @@ public class LoginScreen extends javax.swing.JFrame {
     LoginScreen.this.dispose();
     }//GEN-LAST:event_createAccountLoginActionPerformed
 
-    private void backLoginScreenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backLoginScreenActionPerformed
-    DatabaseApp databaseApp = new DatabaseApp();
-    databaseApp.setVisible(true);
-    LoginScreen.this.dispose();
-    }//GEN-LAST:event_backLoginScreenActionPerformed
+    private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
+    System.exit(0);
+    }//GEN-LAST:event_exitButtonActionPerformed
 
     private void LoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginButtonActionPerformed
     //AccountText.getText().equals("admin") && passText.getText().equals("admin")
@@ -307,8 +305,8 @@ public class LoginScreen extends javax.swing.JFrame {
     private javax.swing.JButton LoginButton;
     private javax.swing.JButton TTCreate;
     private javax.swing.JButton TTReg;
-    private javax.swing.JButton backLoginScreen;
     private javax.swing.JButton createAccountLogin;
+    private javax.swing.JButton exitButton;
     private javax.swing.JButton graphAge1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

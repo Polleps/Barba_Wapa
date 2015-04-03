@@ -32,7 +32,6 @@ public class GraphChoose extends javax.swing.JFrame {
         PositiefGrafiek = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         graphNegativeReactions = new javax.swing.JButton();
-        graphAge = new javax.swing.JButton();
         Backbutton = new javax.swing.JButton();
         Tabellabel = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -66,13 +65,6 @@ public class GraphChoose extends javax.swing.JFrame {
             }
         });
 
-        graphAge.setText("Leeftijd");
-        graphAge.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                graphAgeActionPerformed(evt);
-            }
-        });
-
         Backbutton.setText("Uitloggen");
         Backbutton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -86,7 +78,7 @@ public class GraphChoose extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel3.setText("Grafiek");
 
-        KNOP.setText("KNOP");
+        KNOP.setText("Facebook Posts");
         KNOP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 KNOPActionPerformed(evt);
@@ -154,17 +146,16 @@ public class GraphChoose extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(192, 192, 192)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
+                                .addGap(108, 108, 108)
                                 .addComponent(jLabel4))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addGap(76, 76, 76)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(graphAge, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(graphNegativeReactions, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
                                     .addComponent(PositiefGrafiek, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 219, Short.MAX_VALUE)
                                 .addComponent(KNOP, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(66, 66, 66)))
                 .addContainerGap())
@@ -186,9 +177,7 @@ public class GraphChoose extends javax.swing.JFrame {
                     .addComponent(PositiefGrafiek, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(graphNegativeReactions, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(graphAge, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 150, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Backbutton, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(fbButton))
@@ -207,12 +196,6 @@ public class GraphChoose extends javax.swing.JFrame {
     positiveReactions.setVisible(true);
     GraphChoose.this.dispose();
     }//GEN-LAST:event_PositiefGrafiekActionPerformed
-
-    private void graphAgeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_graphAgeActionPerformed
-    Age age = new Age();
-    age.setVisible(true);
-    GraphChoose.this.dispose();
-    }//GEN-LAST:event_graphAgeActionPerformed
 
     private void graphNegativeReactionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_graphNegativeReactionsActionPerformed
     NegativeReactions negativeReactions = new NegativeReactions();
@@ -351,7 +334,6 @@ public class GraphChoose extends javax.swing.JFrame {
     private javax.swing.JButton PositiefGrafiek;
     private javax.swing.JLabel Tabellabel;
     private javax.swing.JButton fbButton;
-    private javax.swing.JButton graphAge;
     private javax.swing.JButton graphNegativeReactions;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
