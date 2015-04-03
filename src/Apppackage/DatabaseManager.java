@@ -13,6 +13,15 @@ import java.sql.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
+ import java.util.ArrayList;
+import java.util.List;
+import twitter4j.Paging;
+import twitter4j.ResponseList;
+import twitter4j.Status;
+import twitter4j.Twitter;
+import twitter4j.TwitterException;
+import twitter4j.TwitterFactory;
+import twitter4j.conf.ConfigurationBuilder;
 
 /**
  *
@@ -108,8 +117,8 @@ public class DatabaseManager {
             //System.out.println("This post has no comments");
         }
     }
-
-    public void addTweetsToDB(Post.Comments coms) {
+/*
+    public void addTweetsToDB() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
 
@@ -125,13 +134,13 @@ public class DatabaseManager {
             System.out.println("Error idChecker: " + ex);
         }
         try {
-            List<Comment> comment = coms.getData();
-            for (Comment c : comment) {
-                System.out.println(c.getMessage());
+            List<Tweets> tweet = Tweet.getData();
+            for (Tweet t : comment) {
+                System.out.println(t.getMessage());
                 boolean isInDB = true;
                 boolean first = tweetInDB.first();
                 while (tweetInDB.next()) {
-                    if (tweetInDB.getString("tweetID").equals(c.getId())) {
+                    if (tweetInDB.getString("tweetID").equals(t.getId())) {
                         isInDB = false;
                         System.out.println(" - tweet was found in the database.");
                         break;
@@ -150,8 +159,8 @@ public class DatabaseManager {
 
                         con = DriverManager.getConnection("jdbc:mysql://db4free.net:3306/barbawapatest", "barba", "Ruggenmerg");
                         st = con.createStatement();*/
-                        
-                        String query = "INSERT INTO tweets (tweetID, tweet, date, tweetReplies, tweetReplies) VALUES('" + c.getId() + "', '" + c.gettweet() + "', " + c.getdate() + ", " + 0 + ", '" + c.gettweetReplies +  "')";
+                        /*
+                        String query = "INSERT INTO tweets (tweetID, tweet) VALUES('" + c.getId() + "', '" + c.gettweet() + "')";
                         st.execute(query);
                         
                         System.out.println(" - " + c.getId() + " was added to the Database.");
@@ -166,7 +175,7 @@ public class DatabaseManager {
         }
     }
   
-    
+    */
     
     private String checkCommentMood(Comment c){
 
