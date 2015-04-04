@@ -31,10 +31,10 @@ public class Connectie {
       }
 
 
-      dbserver="localhost";
-      database="projectendatabase";
-      username = "root";
-      password = "root";
+      dbserver="db4free.net:3306";
+      database="barbawapatest";
+      username = "barba";
+      password = "Ruggenmerg";
       
       
    }

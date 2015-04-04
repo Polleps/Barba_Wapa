@@ -5,6 +5,9 @@
  */
 package Apppackage;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Eigenaar
@@ -220,9 +223,13 @@ public class GraphChoose extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void KNOPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KNOPActionPerformed
-    Table Table = new Table();
-    Table.setVisible(true);
-    GraphChoose.this.dispose();
+        try {
+            Table table = new Table();
+            table.setVisible(true);
+            GraphChoose.this.dispose();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(GraphChoose.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_KNOPActionPerformed
 
     private void fbButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fbButtonActionPerformed
