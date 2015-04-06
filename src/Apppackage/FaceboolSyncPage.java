@@ -62,6 +62,11 @@ public class FaceboolSyncPage extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         backButton.setText("Back");
+        backButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backButtonActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Access Token:");
 
@@ -129,6 +134,12 @@ public class FaceboolSyncPage extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    Thread t1 = new Thread(){
+        public void run(){
+            System.out.println("Thread1 started!");
+            getFbData(tokenField.getText());
+        }
+    };
      public void addFBCommentsToDB(Post.Comments coms) {
        
         try {
@@ -174,13 +185,13 @@ public class FaceboolSyncPage extends javax.swing.JFrame {
                         con = DriverManager.getConnection("jdbc:mysql://db4free.net:3306/barbawapatest", "barba", "Ruggenmerg");
                         st = con.createStatement();*/
                         c.setMessage(c.getMessage().replaceAll("'", "."));
-                        String query = "INSERT INTO FbComments (commentID, commentBody, likes, replies, mood, dates, times ) VALUES('" + c.getId() + "', '" + c.getMessage() + "', " + c.getLikeCount() + ", " + 0 + ", '" + mood + "','"+ c.getCreatedTime().getYear() + ":" + c.getCreatedTime().getMonth() + ":" + c.getCreatedTime().getDate()  + "','" + c.getCreatedTime().getHours() + ":" + c.getCreatedTime().getMinutes() + ":" + c.getCreatedTime().getSeconds() +"')";
+                        String query = "INSERT INTO FbComments (commentID, commentBody, likes, replies, mood, dates ) VALUES('" + c.getId() + "', '" + c.getMessage() + "', " + c.getLikeCount() + ", " + 0 + ", '" + mood + "','"+ (c.getCreatedTime().getYear()+ 1900) + ":" + (c.getCreatedTime().getMonth() + 1) + ":" + c.getCreatedTime().getDate() + ":" + c.getCreatedTime().getHours() + ":" + c.getCreatedTime().getMinutes() + ":" + c.getCreatedTime().getSeconds() +"')";
                         st.execute(query);
                         
                        
                         output("- " + c.getId() + " was added to the Database.");
                     } catch (Exception ex) {
-                        output("Error 74: " + ex);
+                        System.out.println("Error 74: " + ex);
                        
                     }
                 }
@@ -191,6 +202,7 @@ public class FaceboolSyncPage extends javax.swing.JFrame {
         }
     }
     public boolean getFbData(String token){
+        output("Sync prosses wordt gestart.");
         Canceled = false;
         cancelButton.setEnabled(true);
         FacebookClient fbClient = new DefaultFacebookClient(token);// HIER MOET EEN ACCES TOKEN
@@ -225,7 +237,7 @@ public class FaceboolSyncPage extends javax.swing.JFrame {
 
         String mood;
         String mess = c.getMessage().toLowerCase();
-        String[] goodWords = {" goed ", " oke ", " vet "," leuk "," mooi "," lachen "," vet "," prachtig"," benieuwd "," adembenemend ", " trots ", " zin in ", " geweldige ", " slim ", " gelukkig ", " geweldig ", " duimen ", " gezellig ", " top ", " gefeliciteerd ", " wauw ", " super ", " topper ", " yes ", " :) ", " :D ", " :-) "  };
+        String[] goodWords = {" goed ", " oke ", " vet "," leuk "," mooi "," lachen "," vet "," prachtig "," benieuwd "," adembenemend ", " trots ", " zin in ", " geweldige ", " slim ", " gelukkig ", " geweldig ", " duimen ", " gezellig ", " top ", " gefeliciteerd ", " wauw ", " super ", " topper ", " yes ", " :) ", " :D ", " :-) "  };
         String[] badWords = {" slecht ", " vreselijk ", " stom "," klote "," vervelend "," rot ", " teleurstelling ", " nee ", " blûh ", " jammer ", " waanzinnig ",  };
         int goodCount = 0;
         int badCount = 0;
@@ -258,13 +270,19 @@ public class FaceboolSyncPage extends javax.swing.JFrame {
             output("Vul een Access token in.");
         }
         else{
-            boolean succes = getFbData(tokenField.getText());
+            t1.start();
         }
     }//GEN-LAST:event_syncButtonActionPerformed
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
-        this.Canceled = true;
+        t1.stop();
     }//GEN-LAST:event_cancelButtonActionPerformed
+
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+        GraphChoose gpChoose = new GraphChoose();
+        gpChoose.setVisible(true);
+        FaceboolSyncPage.this.dispose();
+    }//GEN-LAST:event_backButtonActionPerformed
     private void output(String text){
         StyledDocument doc = (StyledDocument) outputPane.getDocument();
         Style style = doc.addStyle("StyleName", null);

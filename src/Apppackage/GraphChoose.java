@@ -233,8 +233,9 @@ public class GraphChoose extends javax.swing.JFrame {
     }//GEN-LAST:event_KNOPActionPerformed
 
     private void fbButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fbButtonActionPerformed
-        FBAPI fb = new FBAPI();
-        fb.getFbData();
+        FaceboolSyncPage fb = new FaceboolSyncPage();
+        fb.setVisible(true);
+        GraphChoose.this.dispose();
     }//GEN-LAST:event_fbButtonActionPerformed
 
     /**
