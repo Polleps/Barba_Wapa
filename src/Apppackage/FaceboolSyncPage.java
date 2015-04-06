@@ -1,4 +1,3 @@
-
 package Apppackage;
 
 import com.restfb.Connection;
@@ -13,8 +12,11 @@ import com.restfb.types.Post;
 import java.awt.Color;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
@@ -24,17 +26,18 @@ import javax.swing.text.StyledDocument;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author Polle
  */
 public class FaceboolSyncPage extends javax.swing.JFrame {
+
     private boolean Canceled = false;
     private java.sql.Connection con;
     private Statement st;
     private ResultSet res;
     private ResultSet commentsInDB;
+
     /**
      * Creates new form FaceboolSyncPage
      */
@@ -77,6 +80,8 @@ public class FaceboolSyncPage extends javax.swing.JFrame {
             }
         });
 
+        outputPane.setEditable(false);
+        outputPane.setDragEnabled(true);
         jScrollPane2.setViewportView(outputPane);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -122,65 +127,69 @@ public class FaceboolSyncPage extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    Thread t1 = new Thread(){
-        public void run(){
+    Thread t1 = new Thread() {
+        public void run() {
             System.out.println("Thread1 started!");
             getFbData(tokenField.getText());
         }
     };
-     public void addFBCommentsToDB(Post.Comments coms) {
-       
+
+    public void addFBCommentsToDB(Post.Comments coms) {
+        java.sql.Connection conFB = null;
+        Statement stFB = null;
+        ResultSet resFB = null;
+        ResultSet commentsInDBFB = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
 
-            con = DriverManager.getConnection("jdbc:mysql://db4free.net:3306/barbawapatest?useUnicode=true&amp;characterEncoding=UTF-8", "barba", "Ruggenmerg");
-            st = con.createStatement();
+            conFB = DriverManager.getConnection("jdbc:mysql://db4free.net:3306/barbawapatest?useUnicode=true&amp;characterEncoding=UTF-8", "barba", "Ruggenmerg");
+            stFB = conFB.createStatement();
+
         } catch (Exception ex) {
             output("Error 61: " + ex, Color.RED);
-            
         }
         try {
             String quary = "SELECT * FROM FbComments";
-            commentsInDB = st.executeQuery(quary);
+            commentsInDBFB = stFB.executeQuery(quary);
         } catch (Exception ex) {
             output("Error idChecker: " + ex, Color.RED);
-            
+
         }
         try {
             List<Comment> comment = coms.getData();
             for (Comment c : comment) {
                 output(c.getMessage(), Color.magenta);
                 boolean isInDB = true;
-                boolean first = commentsInDB.first();
-                while (commentsInDB.next()) {
-                    if (commentsInDB.getString("commentID").equals(c.getId())) {
+                boolean first = commentsInDBFB.first();
+                while (commentsInDBFB.next()) {
+                    if (commentsInDBFB.getString("commentID").equals(c.getId())) {
                         isInDB = false;
                         output("- Comment was found in the database.", Color.BLACK);
                         break;
                     }
                 }
                 if (isInDB) {
+                    Statement stIntoFB = conFB.createStatement();
                     output("- Comment is not yet in the database.", Color.GREEN);
                     String mood = checkCommentMood(c);
                     System.out.println(mood);
-                   
-                    
+
                     //java.sql.Date sqlDate = new java.sql.Date(c.getCreatedTime().getTime());
                     //Post.Comments replies = c.getComments();
                     try {
                         /*Class.forName("com.mysql.jdbc.Driver");
 
-                        con = DriverManager.getConnection("jdbc:mysql://db4free.net:3306/barbawapatest", "barba", "Ruggenmerg");
-                        st = con.createStatement();*/
-                        c.setMessage(c.getMessage().replaceAll("'", "."));
-                        String query = "INSERT INTO FbComments (commentID, commentBody, likes, replies, mood, dates ) VALUES('" + c.getId() + "', '" + c.getMessage() + "', " + c.getLikeCount() + ", " + 0 + ", '" + mood + "','"+ (c.getCreatedTime().getYear()+ 1900) + ":" + (c.getCreatedTime().getMonth() + 1) + ":" + c.getCreatedTime().getDate() + ":" + c.getCreatedTime().getHours() + ":" + c.getCreatedTime().getMinutes() + ":" + c.getCreatedTime().getSeconds() +"')";
-                        st.execute(query);
-                        
-                       
+                         con = DriverManager.getConnection("jdbc:mysql://db4free.net:3306/barbawapatest", "barba", "Ruggenmerg");
+                         st = con.createStatement();*/
+                        c.setMessage(c.getMessage().replaceAll("'", "\'"));
+
+                        String query = "INSERT INTO FbComments (commentID, commentBody, likes, replies, mood, dates ) VALUES('" + c.getId() + "', '" + c.getMessage() + "', " + c.getLikeCount() + ", " + 0 + ", '" + mood + "','" + (c.getCreatedTime().getYear() + 1900) + ":" + (c.getCreatedTime().getMonth() + 1) + ":" + c.getCreatedTime().getDate() + ":" + c.getCreatedTime().getHours() + ":" + c.getCreatedTime().getMinutes() + ":" + c.getCreatedTime().getSeconds() + "')";
+                        stIntoFB.execute(query);
+
                         output("- " + c.getId() + " was added to the Database.", Color.BLACK);
                     } catch (Exception ex) {
                         System.out.println("Error 74: " + ex);
-                       
+
                     }
                 }
 
@@ -188,20 +197,26 @@ public class FaceboolSyncPage extends javax.swing.JFrame {
         } catch (Exception e) {
             output(e.getMessage(), Color.RED);
         }
+        try {
+            conFB.close();
+        } catch (SQLException ex) {
+           output(ex.toString(), Color.RED);
+        }
     }
-    public boolean getFbData(String token){
+
+    public boolean getFbData(String token) {
         output("Sync prosses wordt gestart.", Color.BLACK);
         Canceled = false;
-        
+
         FacebookClient fbClient = new DefaultFacebookClient(token);// HIER MOET EEN ACCES TOKEN
         Page page = fbClient.fetchObject("165327986836920", Page.class);  //ID van de pagina
-        BatchRequest postsRequest =  new BatchRequest.BatchRequestBuilder("ahoyrotterdam/posts").parameters(Parameter.with("limit", 100)).build();
+        BatchRequest postsRequest = new BatchRequest.BatchRequestBuilder("ahoyrotterdam/posts").parameters(Parameter.with("limit", 100)).build();
         List<BatchResponse> batchResponses = fbClient.executeBatch(postsRequest);
         BatchResponse ahoyResponse = batchResponses.get(0);
         Connection<Post> ahoyPosts = new Connection<>(fbClient, ahoyResponse.getBody(), Post.class);
-        
-        for (List<Post> ahoyPostsConnectionPage : ahoyPosts){
-            for (Post post : ahoyPostsConnectionPage){
+
+        for (List<Post> ahoyPostsConnectionPage : ahoyPosts) {
+            for (Post post : ahoyPostsConnectionPage) {
                 //System.out.println("=================================\n" + post.getMessage());
                 Post.Comments coms = post.getComments();
                 System.out.println(post.getCommentsCount());
@@ -209,24 +224,25 @@ public class FaceboolSyncPage extends javax.swing.JFrame {
                 //    System.out.println("- " + post.getId() + " has no comments");
                 //}  
                 //else{
-                    output("Adding comments of " + post.getId() + " to the Database.", Color.BLACK);
-                    addFBCommentsToDB(coms);
-                   
+                output("Adding comments of " + post.getId() + " to the Database.", Color.BLACK);
+                addFBCommentsToDB(coms);
+
                 //}
             }
-            if(Canceled){
+            if (Canceled) {
                 break;
             }
         }
-        
+
         return true;
     }
-     private String checkCommentMood(Comment c){
+
+    private String checkCommentMood(Comment c) {
 
         String mood;
         String mess = c.getMessage().toLowerCase();
-        String[] goodWords = {" goed ", " oke ", " vet "," leuk "," mooi "," lachen "," vet "," prachtig "," benieuwd "," adembenemend ", " trots ", " zin in ", " geweldige ", " slim ", " gelukkig ", " geweldig ", " duimen ", " gezellig ", " top ", " gefeliciteerd ", " wauw ", " super ", " topper ", " yes ", " :) ", " :D ", " :-) "  };
-        String[] badWords = {" slecht ", " vreselijk ", " stom "," klote "," vervelend "," rot ", " teleurstelling ", " nee ", " blûh ", " jammer ", " waanzinnig ",  };
+        String[] goodWords = {" goed ", " oke ", " vet ", " leuk ", " mooi ", " lachen ", " vet ", " prachtig ", " benieuwd ", " adembenemend ", " trots ", " zin in ", " geweldige ", " slim ", " gelukkig ", " geweldig ", " duimen ", " gezellig ", " top ", " gefeliciteerd ", " wauw ", " super ", " topper ", " yes ", " :) ", " :D ", " :-) "};
+        String[] badWords = {" slecht ", " vreselijk ", " stom ", " klote ", " vervelend ", " rot ", " teleurstelling ", " nee ", " blûh ", " jammer ", " waanzinnig ",};
         int goodCount = 0;
         int badCount = 0;
         for (int i = 0; i < goodWords.length; i++) {
@@ -252,14 +268,13 @@ public class FaceboolSyncPage extends javax.swing.JFrame {
         }
         return mood;
     }
-     
+
     private void syncButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_syncButtonActionPerformed
-        if(tokenField.getText().isEmpty()){
+        if (tokenField.getText().isEmpty()) {
             output("Vul een Access token in.", Color.RED);
-        }
-        else{
+        } else {
             syncButton.setEnabled(false);
-     
+
             t1.start();
         }
     }//GEN-LAST:event_syncButtonActionPerformed
@@ -269,19 +284,18 @@ public class FaceboolSyncPage extends javax.swing.JFrame {
         gpChoose.setVisible(true);
         FaceboolSyncPage.this.dispose();
     }//GEN-LAST:event_backButtonActionPerformed
-   
-    
-    private void output(String text, Color col){
+
+    private void output(String text, Color col) {
         StyledDocument doc = (StyledDocument) outputPane.getDocument();
         Style style = doc.addStyle("StyleName", null);
         StyleConstants.setForeground(style, col);
-        try{
-        doc.insertString(doc.getLength(),"\n" + text,style);
-        }
-        catch(Exception e){
+        try {
+            doc.insertString(doc.getLength(), "\n" + text, style);
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
+
     /**
      * @param args the command line arguments
      */
