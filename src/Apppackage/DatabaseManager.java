@@ -15,13 +15,13 @@ import java.text.SimpleDateFormat;
 import java.util.List;
  import java.util.ArrayList;
 import java.util.List;
-import twitter4j.Paging;
+/*import twitter4j.Paging;
 import twitter4j.ResponseList;
 import twitter4j.Status;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
 import twitter4j.TwitterFactory;
-import twitter4j.conf.ConfigurationBuilder;
+import twitter4j.conf.ConfigurationBuilder;*/
 
 /**
  *
@@ -103,9 +103,10 @@ public class DatabaseManager {
                         con = DriverManager.getConnection("jdbc:mysql://db4free.net:3306/barbawapatest", "barba", "Ruggenmerg");
                         st = con.createStatement();*/
                         
-                        String query = "INSERT INTO FbComments (commentID, commentBody, likes, replies, mood, dates ) VALUES('" + c.getId() + "', '" + c.getMessage() + "', " + c.getLikeCount() + ", " + 0 + ", '" + mood + "','"+ c.getCreatedTime().getYear() + ":" + c.getCreatedTime().getMonth() + ":" + c.getCreatedTime().getDate()  + "')";
+                        String query = "INSERT INTO FbComments (commentID, commentBody, likes, replies, mood, dates, times ) VALUES('" + c.getId() + "', '" + c.getMessage() + "', " + c.getLikeCount() + ", " + 0 + ", '" + mood + "','"+ c.getCreatedTime().getYear() + ":" + c.getCreatedTime().getMonth() + ":" + c.getCreatedTime().getDate()  + "','" + c.getCreatedTime().getHours() + ":" + c.getCreatedTime().getMinutes() + ":" + c.getCreatedTime().getSeconds() +"')";
                         st.execute(query);
                         
+                       
                         System.out.println(" - " + c.getId() + " was added to the Database.");
                     } catch (Exception ex) {
                         System.out.println("Error 74: " + ex);
