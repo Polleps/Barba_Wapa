@@ -7,9 +7,13 @@ import com.restfb.FacebookClient;
 import com.restfb.Parameter;
 import com.restfb.batch.BatchRequest;
 import com.restfb.batch.BatchResponse;
+import com.restfb.types.Comment;
 import com.restfb.types.Page;
 import com.restfb.types.Post;
 import java.awt.Color;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.List;
 import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
@@ -27,6 +31,10 @@ import javax.swing.text.StyledDocument;
  */
 public class FaceboolSyncPage extends javax.swing.JFrame {
     private boolean Canceled = false;
+    private java.sql.Connection con;
+    private Statement st;
+    private ResultSet res;
+    private ResultSet commentsInDB;
     /**
      * Creates new form FaceboolSyncPage
      */
@@ -121,7 +129,67 @@ public class FaceboolSyncPage extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
+     public void addFBCommentsToDB(Post.Comments coms) {
+       
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+
+            con = DriverManager.getConnection("jdbc:mysql://db4free.net:3306/barbawapatest?useUnicode=true&amp;characterEncoding=UTF-8", "barba", "Ruggenmerg");
+            st = con.createStatement();
+        } catch (Exception ex) {
+            output("Error 61: " + ex);
+            
+        }
+        try {
+            String quary = "SELECT * FROM FbComments";
+            commentsInDB = st.executeQuery(quary);
+        } catch (Exception ex) {
+            output("Error idChecker: " + ex);
+            
+        }
+        try {
+            List<Comment> comment = coms.getData();
+            for (Comment c : comment) {
+                output(c.getMessage());
+                boolean isInDB = true;
+                boolean first = commentsInDB.first();
+                while (commentsInDB.next()) {
+                    if (commentsInDB.getString("commentID").equals(c.getId())) {
+                        isInDB = false;
+                        output("- Comment was found in the database.");
+                        break;
+                    }
+                }
+                if (isInDB) {
+                    output("- Comment is not yet in the database.");
+                    String mood = checkCommentMood(c);
+                    System.out.println(mood);
+                   
+                    
+                    //java.sql.Date sqlDate = new java.sql.Date(c.getCreatedTime().getTime());
+                    //Post.Comments replies = c.getComments();
+                    try {
+                        /*Class.forName("com.mysql.jdbc.Driver");
+
+                        con = DriverManager.getConnection("jdbc:mysql://db4free.net:3306/barbawapatest", "barba", "Ruggenmerg");
+                        st = con.createStatement();*/
+                        c.setMessage(c.getMessage().replaceAll("'", "."));
+                        String query = "INSERT INTO FbComments (commentID, commentBody, likes, replies, mood, dates, times ) VALUES('" + c.getId() + "', '" + c.getMessage() + "', " + c.getLikeCount() + ", " + 0 + ", '" + mood + "','"+ c.getCreatedTime().getYear() + ":" + c.getCreatedTime().getMonth() + ":" + c.getCreatedTime().getDate()  + "','" + c.getCreatedTime().getHours() + ":" + c.getCreatedTime().getMinutes() + ":" + c.getCreatedTime().getSeconds() +"')";
+                        st.execute(query);
+                        
+                       
+                        output("- " + c.getId() + " was added to the Database.");
+                    } catch (Exception ex) {
+                        output("Error 74: " + ex);
+                       
+                    }
+                }
+
+            }
+        } catch (Exception e) {
+            output(e.getMessage());
+        }
+    }
     public boolean getFbData(String token){
         Canceled = false;
         cancelButton.setEnabled(true);
@@ -141,9 +209,9 @@ public class FaceboolSyncPage extends javax.swing.JFrame {
                 //    System.out.println("- " + post.getId() + " has no comments");
                 //}  
                 //else{
-                    DatabaseManager dbManager = new DatabaseManager();
                     output("Adding comments of " + post.getId() + " to the Database.");
-                    dbManager.addFBCommentsToDB(coms);
+                    addFBCommentsToDB(coms);
+                   
                 //}
             }
             if(Canceled){
@@ -153,6 +221,38 @@ public class FaceboolSyncPage extends javax.swing.JFrame {
         cancelButton.setEnabled(false);
         return true;
     }
+     private String checkCommentMood(Comment c){
+
+        String mood;
+        String mess = c.getMessage().toLowerCase();
+        String[] goodWords = {" goed ", " oke ", " vet "," leuk "," mooi "," lachen "," vet "," prachtig"," benieuwd "," adembenemend ", " trots ", " zin in ", " geweldige ", " slim ", " gelukkig ", " geweldig ", " duimen ", " gezellig ", " top ", " gefeliciteerd ", " wauw ", " super ", " topper ", " yes ", " :) ", " :D ", " :-) "  };
+        String[] badWords = {" slecht ", " vreselijk ", " stom "," klote "," vervelend "," rot ", " teleurstelling ", " nee ", " blûh ", " jammer ", " waanzinnig ",  };
+        int goodCount = 0;
+        int badCount = 0;
+        for (int i = 0; i < goodWords.length; i++) {
+            if (mess.contains(goodWords[i])) {
+                goodCount++;
+            }
+        }
+        for (int i = 0; i < badWords.length; i++) {
+            if (mess.contains(badWords[i])) {
+                badCount++;
+            }
+        }
+        if (!(goodCount == 0 && badCount == 0)) {
+            if (goodCount > badCount) {
+                mood = "Positief";
+            } else if (goodCount < badCount) {
+                mood = "Negatief";
+            } else {
+                mood = "Undefined";
+            }
+        } else {
+            mood = "No Keywords";
+        }
+        return mood;
+    }
+     
     private void syncButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_syncButtonActionPerformed
         if(tokenField.getText().isEmpty()){
             output("Vul een Access token in.");

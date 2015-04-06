@@ -61,36 +61,39 @@ public class DatabaseManager {
         return false;
     }
 
-    public void addFBCommentsToDB(Post.Comments coms) {
+    public String addFBCommentsToDB(Post.Comments coms) {
+       String out = "";
         try {
             Class.forName("com.mysql.jdbc.Driver");
 
             con = DriverManager.getConnection("jdbc:mysql://db4free.net:3306/barbawapatest?useUnicode=true&amp;characterEncoding=UTF-8", "barba", "Ruggenmerg");
             st = con.createStatement();
         } catch (Exception ex) {
-            System.out.println("Error 61: " + ex);
+            out = out + "\nError 61: " + ex;
+            return out;
         }
         try {
             String quary = "SELECT * FROM FbComments";
             commentsInDB = st.executeQuery(quary);
         } catch (Exception ex) {
-            System.out.println("Error idChecker: " + ex);
+            out = out + "\nError idChecker: " + ex;
+            return out;
         }
         try {
             List<Comment> comment = coms.getData();
             for (Comment c : comment) {
-                System.out.println(c.getMessage());
+                out = out + c.getMessage();
                 boolean isInDB = true;
                 boolean first = commentsInDB.first();
                 while (commentsInDB.next()) {
                     if (commentsInDB.getString("commentID").equals(c.getId())) {
                         isInDB = false;
-                        System.out.println(" - Comment was found in the database.");
+                        out = out + "\n - Comment was found in the database.";
                         break;
                     }
                 }
                 if (isInDB) {
-                    System.out.println(" - Comment is not yet in the database.");
+                    out = out + "\n - Comment is not yet in the database.";
                     String mood = checkCommentMood(c);
                     System.out.println(mood);
                    
@@ -102,21 +105,23 @@ public class DatabaseManager {
 
                         con = DriverManager.getConnection("jdbc:mysql://db4free.net:3306/barbawapatest", "barba", "Ruggenmerg");
                         st = con.createStatement();*/
-                        
+                        c.setMessage(c.getMessage().replaceAll("'", "."));
                         String query = "INSERT INTO FbComments (commentID, commentBody, likes, replies, mood, dates, times ) VALUES('" + c.getId() + "', '" + c.getMessage() + "', " + c.getLikeCount() + ", " + 0 + ", '" + mood + "','"+ c.getCreatedTime().getYear() + ":" + c.getCreatedTime().getMonth() + ":" + c.getCreatedTime().getDate()  + "','" + c.getCreatedTime().getHours() + ":" + c.getCreatedTime().getMinutes() + ":" + c.getCreatedTime().getSeconds() +"')";
                         st.execute(query);
                         
                        
-                        System.out.println(" - " + c.getId() + " was added to the Database.");
+                        out = out + "\n - " + c.getId() + " was added to the Database.";
                     } catch (Exception ex) {
-                        System.out.println("Error 74: " + ex);
+                        out = out + "\nError 74: " + ex;
+                        return out;
                     }
                 }
 
             }
         } catch (Exception e) {
-            //System.out.println("This post has no comments");
+            return out;
         }
+        return out;
     }
 /*
     public void addTweetsToDB() {
