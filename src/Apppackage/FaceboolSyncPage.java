@@ -81,6 +81,7 @@ public class FaceboolSyncPage extends javax.swing.JFrame {
         });
 
         outputPane.setEditable(false);
+        outputPane.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         outputPane.setDragEnabled(true);
         jScrollPane2.setViewportView(outputPane);
 
@@ -291,6 +292,11 @@ public class FaceboolSyncPage extends javax.swing.JFrame {
         StyleConstants.setForeground(style, col);
         try {
             doc.insertString(doc.getLength(), "\n" + text, style);
+            if(doc.getLength() > 3000){
+                outputPane.setText("");
+            }
+            outputPane.setCaretPosition(doc.getLength());
+            
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

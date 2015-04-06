@@ -107,6 +107,9 @@
         <Component class="javax.swing.JTextPane" name="outputPane">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Default Cursor"/>
+            </Property>
             <Property name="dragEnabled" type="boolean" value="true"/>
           </Properties>
         </Component>
