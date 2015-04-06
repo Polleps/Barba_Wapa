@@ -55,11 +55,11 @@ public class FaceboolSyncPage extends javax.swing.JFrame {
         tokenField = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         syncButton = new javax.swing.JButton();
-        cancelButton = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         outputPane = new javax.swing.JTextPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(655, 475));
 
         backButton.setText("Back");
         backButton.addActionListener(new java.awt.event.ActionListener() {
@@ -74,14 +74,6 @@ public class FaceboolSyncPage extends javax.swing.JFrame {
         syncButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 syncButtonActionPerformed(evt);
-            }
-        });
-
-        cancelButton.setText("Cancel");
-        cancelButton.setEnabled(false);
-        cancelButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelButtonActionPerformed(evt);
             }
         });
 
@@ -102,11 +94,9 @@ public class FaceboolSyncPage extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(backButton))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(syncButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cancelButton, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(syncButton, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -120,9 +110,7 @@ public class FaceboolSyncPage extends javax.swing.JFrame {
                         .addComponent(tokenField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(syncButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cancelButton)
-                        .addGap(0, 124, Short.MAX_VALUE))
+                        .addGap(0, 297, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(36, 36, 36)
                         .addComponent(jScrollPane2)))
@@ -148,31 +136,31 @@ public class FaceboolSyncPage extends javax.swing.JFrame {
             con = DriverManager.getConnection("jdbc:mysql://db4free.net:3306/barbawapatest?useUnicode=true&amp;characterEncoding=UTF-8", "barba", "Ruggenmerg");
             st = con.createStatement();
         } catch (Exception ex) {
-            output("Error 61: " + ex);
+            output("Error 61: " + ex, Color.RED);
             
         }
         try {
             String quary = "SELECT * FROM FbComments";
             commentsInDB = st.executeQuery(quary);
         } catch (Exception ex) {
-            output("Error idChecker: " + ex);
+            output("Error idChecker: " + ex, Color.RED);
             
         }
         try {
             List<Comment> comment = coms.getData();
             for (Comment c : comment) {
-                output(c.getMessage());
+                output(c.getMessage(), Color.magenta);
                 boolean isInDB = true;
                 boolean first = commentsInDB.first();
                 while (commentsInDB.next()) {
                     if (commentsInDB.getString("commentID").equals(c.getId())) {
                         isInDB = false;
-                        output("- Comment was found in the database.");
+                        output("- Comment was found in the database.", Color.BLACK);
                         break;
                     }
                 }
                 if (isInDB) {
-                    output("- Comment is not yet in the database.");
+                    output("- Comment is not yet in the database.", Color.GREEN);
                     String mood = checkCommentMood(c);
                     System.out.println(mood);
                    
@@ -189,7 +177,7 @@ public class FaceboolSyncPage extends javax.swing.JFrame {
                         st.execute(query);
                         
                        
-                        output("- " + c.getId() + " was added to the Database.");
+                        output("- " + c.getId() + " was added to the Database.", Color.BLACK);
                     } catch (Exception ex) {
                         System.out.println("Error 74: " + ex);
                        
@@ -198,16 +186,16 @@ public class FaceboolSyncPage extends javax.swing.JFrame {
 
             }
         } catch (Exception e) {
-            output(e.getMessage());
+            output(e.getMessage(), Color.RED);
         }
     }
     public boolean getFbData(String token){
-        output("Sync prosses wordt gestart.");
+        output("Sync prosses wordt gestart.", Color.BLACK);
         Canceled = false;
-        cancelButton.setEnabled(true);
+        
         FacebookClient fbClient = new DefaultFacebookClient(token);// HIER MOET EEN ACCES TOKEN
         Page page = fbClient.fetchObject("165327986836920", Page.class);  //ID van de pagina
-        BatchRequest postsRequest =  new BatchRequest.BatchRequestBuilder("ahoyrotterdam/posts").parameters(Parameter.with("limit", 10)).build();
+        BatchRequest postsRequest =  new BatchRequest.BatchRequestBuilder("ahoyrotterdam/posts").parameters(Parameter.with("limit", 100)).build();
         List<BatchResponse> batchResponses = fbClient.executeBatch(postsRequest);
         BatchResponse ahoyResponse = batchResponses.get(0);
         Connection<Post> ahoyPosts = new Connection<>(fbClient, ahoyResponse.getBody(), Post.class);
@@ -221,7 +209,7 @@ public class FaceboolSyncPage extends javax.swing.JFrame {
                 //    System.out.println("- " + post.getId() + " has no comments");
                 //}  
                 //else{
-                    output("Adding comments of " + post.getId() + " to the Database.");
+                    output("Adding comments of " + post.getId() + " to the Database.", Color.BLACK);
                     addFBCommentsToDB(coms);
                    
                 //}
@@ -230,7 +218,7 @@ public class FaceboolSyncPage extends javax.swing.JFrame {
                 break;
             }
         }
-        cancelButton.setEnabled(false);
+        
         return true;
     }
      private String checkCommentMood(Comment c){
@@ -267,26 +255,26 @@ public class FaceboolSyncPage extends javax.swing.JFrame {
      
     private void syncButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_syncButtonActionPerformed
         if(tokenField.getText().isEmpty()){
-            output("Vul een Access token in.");
+            output("Vul een Access token in.", Color.RED);
         }
         else{
+            syncButton.setEnabled(false);
+     
             t1.start();
         }
     }//GEN-LAST:event_syncButtonActionPerformed
-
-    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
-        t1.stop();
-    }//GEN-LAST:event_cancelButtonActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         GraphChoose gpChoose = new GraphChoose();
         gpChoose.setVisible(true);
         FaceboolSyncPage.this.dispose();
     }//GEN-LAST:event_backButtonActionPerformed
-    private void output(String text){
+   
+    
+    private void output(String text, Color col){
         StyledDocument doc = (StyledDocument) outputPane.getDocument();
         Style style = doc.addStyle("StyleName", null);
-        StyleConstants.setForeground(style, Color.BLACK);
+        StyleConstants.setForeground(style, col);
         try{
         doc.insertString(doc.getLength(),"\n" + text,style);
         }
@@ -333,7 +321,6 @@ public class FaceboolSyncPage extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
-    private javax.swing.JButton cancelButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextPane outputPane;
