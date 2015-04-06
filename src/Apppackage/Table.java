@@ -75,17 +75,17 @@ public class Table extends javax.swing.JFrame {
         catch (ClassNotFoundException ex) {
             Logger.getLogger(Table.class.getName()).log(Level.SEVERE, null, ex);
         } */
-            
+            /*
             Searchbutton.addActionListener(new ActionListener() 
                     {
             @Override
             public void actionPerformed(ActionEvent e)
                     {
-                       jLabel1.setText("Er zijn geen resultaten voor: "+Searchbar.getText()); 
+                       jLabel1.setText("Er zijn geen resultaten voor: "+Searchbar_txt.getText()); 
                     }
              });
         
-                
+              */  
                 }
 
     
@@ -101,13 +101,23 @@ public class Table extends javax.swing.JFrame {
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
-        Searchbar = new javax.swing.JTextField();
+        Searchbar_txt = new javax.swing.JTextField();
         Searchbutton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         BackbuttonTable = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         fbComTable = new javax.swing.JTable();
         toonDataB = new javax.swing.JButton();
+        UserID_txt = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        Likes_txt = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        Datum_txt = new javax.swing.JTextField();
+        Gedrag_txt = new javax.swing.JTextField();
+        Commentaar_txt = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         MainMenu = new javax.swing.JMenuItem();
@@ -121,6 +131,12 @@ public class Table extends javax.swing.JFrame {
         jMenuBar2.add(jMenu4);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        Searchbar_txt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                Searchbar_txtKeyReleased(evt);
+            }
+        });
 
         Searchbutton.setText("Zoeken");
 
@@ -151,10 +167,12 @@ public class Table extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(fbComTable);
-        fbComTable.getColumnModel().getColumn(0).setMaxWidth(200);
-        fbComTable.getColumnModel().getColumn(1).setMaxWidth(50);
-        fbComTable.getColumnModel().getColumn(2).setMaxWidth(75);
-        fbComTable.getColumnModel().getColumn(3).setMaxWidth(200);
+        if (fbComTable.getColumnModel().getColumnCount() > 0) {
+            fbComTable.getColumnModel().getColumn(0).setMaxWidth(200);
+            fbComTable.getColumnModel().getColumn(1).setMaxWidth(50);
+            fbComTable.getColumnModel().getColumn(2).setMaxWidth(75);
+            fbComTable.getColumnModel().getColumn(3).setMaxWidth(200);
+        }
 
         toonDataB.setText("Toon");
         toonDataB.addActionListener(new java.awt.event.ActionListener() {
@@ -162,6 +180,16 @@ public class Table extends javax.swing.JFrame {
                 toonDataBActionPerformed(evt);
             }
         });
+
+        jLabel2.setText("UserID");
+
+        jLabel3.setText("Likes");
+
+        jLabel4.setText("Datum");
+
+        jLabel5.setText("Gedrag");
+
+        jLabel6.setText("Commentaar");
 
         jMenu1.setText("File");
 
@@ -190,22 +218,37 @@ public class Table extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(186, 186, 186)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 562, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(Searchbar, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Searchbutton))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(Searchbar_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(Searchbutton))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 562, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(UserID_txt)
+                                    .addComponent(Likes_txt)
+                                    .addComponent(Datum_txt, javax.swing.GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE)
+                                    .addComponent(Gedrag_txt, javax.swing.GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE)
+                                    .addComponent(Commentaar_txt, javax.swing.GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(200, 200, 200)
                         .addComponent(toonDataB, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(132, 132, 132)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(BackbuttonTable, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -214,14 +257,35 @@ public class Table extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Searchbar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Searchbar_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Searchbutton))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(UserID_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Likes_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Datum_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Gedrag_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Commentaar_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(BackbuttonTable, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(toonDataB))
                 .addContainerGap())
@@ -297,6 +361,37 @@ public class Table extends javax.swing.JFrame {
         
     }//GEN-LAST:event_toonDataBActionPerformed
 
+    private void Searchbar_txtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Searchbar_txtKeyReleased
+         try
+     {
+         String sql = "select * from FbComments where commentBody =? ";
+       
+         
+         pst = con.prepareStatement(sql);
+         pst.setString(1, Searchbar_txt.getText());
+         
+         rs=pst.executeQuery();
+         if(rs.next()){
+             String add1=rs.getString("commentID");
+             UserID_txt.setText(add1);
+             String add2=rs.getString("likes");
+             Likes_txt.setText(add2);
+             String add3=rs.getString("dates");
+             Datum_txt.setText(add3);
+             String add4=rs.getString("mood");
+             Gedrag_txt.setText(add4);
+             String add5=rs.getString("commentBody");
+             Commentaar_txt.setText(add5);
+         }
+     }
+     
+     
+         catch(Exception e)
+         {
+             JOptionPane.showMessageDialog(null, e);
+         }
+    }//GEN-LAST:event_Searchbar_txtKeyReleased
+
      
     /**
      * @param args the command line arguments
@@ -341,11 +436,21 @@ public class Table extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BackbuttonTable;
+    private javax.swing.JTextField Commentaar_txt;
+    private javax.swing.JTextField Datum_txt;
+    private javax.swing.JTextField Gedrag_txt;
+    private javax.swing.JTextField Likes_txt;
     private javax.swing.JMenuItem MainMenu;
-    private javax.swing.JTextField Searchbar;
+    private javax.swing.JTextField Searchbar_txt;
     private javax.swing.JButton Searchbutton;
+    private javax.swing.JTextField UserID_txt;
     private javax.swing.JTable fbComTable;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
