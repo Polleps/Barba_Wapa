@@ -7,6 +7,7 @@ package Apppackage;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.sql.*;
 import java.util.Vector;
 import java.util.logging.Level;
@@ -76,14 +77,7 @@ public class Table extends javax.swing.JFrame {
             Logger.getLogger(Table.class.getName()).log(Level.SEVERE, null, ex);
         } */
             
-            Searchbutton.addActionListener(new ActionListener() 
-                    {
-            @Override
-            public void actionPerformed(ActionEvent e)
-                    {
-                       jLabel1.setText("Er zijn geen resultaten voor: "+Searchbar.getText()); 
-                    }
-             });
+           
         
                 
                 }
@@ -101,13 +95,15 @@ public class Table extends javax.swing.JFrame {
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
-        Searchbar = new javax.swing.JTextField();
+        searchbar = new javax.swing.JTextField();
         Searchbutton = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         BackbuttonTable = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         fbComTable = new javax.swing.JTable();
         toonDataB = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        textarea = new javax.swing.JTextArea();
+        jLabel2 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         MainMenu = new javax.swing.JMenuItem();
@@ -151,10 +147,12 @@ public class Table extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(fbComTable);
-        fbComTable.getColumnModel().getColumn(0).setMaxWidth(200);
-        fbComTable.getColumnModel().getColumn(1).setMaxWidth(50);
-        fbComTable.getColumnModel().getColumn(2).setMaxWidth(75);
-        fbComTable.getColumnModel().getColumn(3).setMaxWidth(200);
+        if (fbComTable.getColumnModel().getColumnCount() > 0) {
+            fbComTable.getColumnModel().getColumn(0).setMaxWidth(200);
+            fbComTable.getColumnModel().getColumn(1).setMaxWidth(50);
+            fbComTable.getColumnModel().getColumn(2).setMaxWidth(75);
+            fbComTable.getColumnModel().getColumn(3).setMaxWidth(200);
+        }
 
         toonDataB.setText("Toon");
         toonDataB.addActionListener(new java.awt.event.ActionListener() {
@@ -162,6 +160,12 @@ public class Table extends javax.swing.JFrame {
                 toonDataBActionPerformed(evt);
             }
         });
+
+        textarea.setColumns(20);
+        textarea.setRows(5);
+        jScrollPane2.setViewportView(textarea);
+
+        jLabel2.setText("Commentaar");
 
         jMenu1.setText("File");
 
@@ -190,38 +194,42 @@ public class Table extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(186, 186, 186)
+                        .addContainerGap()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 562, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(Searchbar, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(searchbar, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE)
+                            .addComponent(jScrollPane2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Searchbutton))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(200, 200, 200)
                         .addComponent(toonDataB, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(132, 132, 132)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(BackbuttonTable, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addGap(194, 194, 194))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Searchbar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(searchbar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Searchbutton))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
+                .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 105, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(BackbuttonTable, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(toonDataB))
                 .addContainerGap())
@@ -245,7 +253,7 @@ public class Table extends javax.swing.JFrame {
     private void toonDataBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toonDataBActionPerformed
         try {            
         //EXTERNE DATABASE_______________________            
-                Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");   
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");   
             String connectionUrl = "jdbc:sqlserver://db4free.net:3306; databaseName=barbawapatest; user=barba; password=Ruggenmerg";
             Connection con = Database.Connectie.getConnection();
             //Connection con = DriverManager.getConnection(connectionUrl);
@@ -342,10 +350,9 @@ public class Table extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BackbuttonTable;
     private javax.swing.JMenuItem MainMenu;
-    private javax.swing.JTextField Searchbar;
     private javax.swing.JButton Searchbutton;
     private javax.swing.JTable fbComTable;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -354,6 +361,9 @@ public class Table extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextField searchbar;
+    private javax.swing.JTextArea textarea;
     private javax.swing.JButton toonDataB;
     // End of variables declaration//GEN-END:variables
 }
