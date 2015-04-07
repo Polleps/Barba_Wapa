@@ -1,9 +1,3 @@
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Apppackage;
 
 import com.restfb.types.Comment;
@@ -13,7 +7,7 @@ import java.sql.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
- import java.util.ArrayList;
+import java.util.ArrayList;
 import java.util.List;
 /*import twitter4j.Paging;
 import twitter4j.ResponseList;
@@ -23,10 +17,6 @@ import twitter4j.TwitterException;
 import twitter4j.TwitterFactory;
 import twitter4j.conf.ConfigurationBuilder;*/
 
-/**
- *
- * @author Polle
- */
 public class DatabaseManager {
 
     private Connection con;
@@ -187,7 +177,7 @@ public class DatabaseManager {
 
         String mood;
         String mess = c.getMessage().toLowerCase();
-        String[] goodWords = {" goed ", " oke ", " vet "," leuk "," mooi "," lachen "," vet "," prachtig"," benieuwd "," adembenemend ", " trots ", " zin in ", " geweldige ", " slim ", " gelukkig ", " geweldig ", " duimen ", " gezellig ", " top ", " gefeliciteerd ", " wauw ", " super ", " topper ", " yes ", " :) ", " :D ", " :-) "  };
+        String[] goodWords = {" goed ", " oke ", " vet "," leuk "," mooi "," lachen "," vet "," prachtig"," benieuwd "," adembenemend ", " trots ", " zin ", " geweldige ", " slim ", " gelukkig ", " geweldig ", " duimen ", " gezellig ", " top ", " gefeliciteerd ", " wauw ", " super ", " topper ", " yes ", " Gezellig ", " gaaf ", " plezier ", " favorite ", " Wauw ", " stoere ", " cool ", "Prachtig", " Hardstikke ", " Superleuke "    };
         String[] badWords = {" slecht ", " vreselijk ", " stom "," klote "," vervelend "," rot ", " teleurstelling ", " nee ", " blûh ", " jammer ", " waanzinnig ",  };
         int goodCount = 0;
         int badCount = 0;
