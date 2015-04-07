@@ -22,8 +22,6 @@ import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.renderer.category.BarRenderer;
 import org.jfree.data.jdbc.JDBCCategoryDataset;
 
-
-
 /**
  *
  * @author Willl_000
@@ -32,57 +30,53 @@ public class Table extends javax.swing.JFrame {
 
     static Statement mijnStat;
     public Connection con;
-    
+
     /**
      * Creates new form Table
      */
-    public Table() throws ClassNotFoundException  {
+    public Table() throws ClassNotFoundException {
         initComponents();
         /*try {
            
-            //load the driver
-            Class.forName("com.microsoft.sqlserver.jbdc.SQLServerDriver");
-            String connectionUrl = "jdbc:sqlserver://db4free.net:3306; databaseName=barbawapatest; user=barba; password=Ruggenmerg";
-            Connection con = DriverManager.getConnection(connectionUrl);
-            Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("select * from FbComments");
-            ResultSetMetaData rsmdata = rs.getMetaData();
-            //store culumn number
-            int columns = rsmdata.getColumnCount();
-            //set data into jTable
-            DefaultTableModel dtm = new DefaultTableModel();
-            Vector columns_name = new Vector();
-            Vector data_rows = new Vector();
-            for (int i=1; i<columns; i++)
-            {
-                columns_name.addElement(rsmdata.getColumnName(1));
-            }
-            dtm.setColumnIdentifiers(columns_name);
+         //load the driver
+         Class.forName("com.microsoft.sqlserver.jbdc.SQLServerDriver");
+         String connectionUrl = "jdbc:sqlserver://db4free.net:3306; databaseName=barbawapatest; user=barba; password=Ruggenmerg";
+         Connection con = DriverManager.getConnection(connectionUrl);
+         Statement stmt = con.createStatement();
+         ResultSet rs = stmt.executeQuery("select * from FbComments");
+         ResultSetMetaData rsmdata = rs.getMetaData();
+         //store culumn number
+         int columns = rsmdata.getColumnCount();
+         //set data into jTable
+         DefaultTableModel dtm = new DefaultTableModel();
+         Vector columns_name = new Vector();
+         Vector data_rows = new Vector();
+         for (int i=1; i<columns; i++)
+         {
+         columns_name.addElement(rsmdata.getColumnName(1));
+         }
+         dtm.setColumnIdentifiers(columns_name);
                 
-                while(rs.next())
-                {
-                    data_rows = new Vector();
-                    for(int j=1; j<columns; j++)
-                    {
-                        data_rows.addElement(rs.getString(j));
-                    }
-                    dtm.addRow(data_rows);                
-                }
-                //pass default table object over into jtable
-                fbComTable.setModel(dtm);
-        } catch (SQLException ex) {
-            Logger.getLogger(Table.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        catch (ClassNotFoundException ex) {
-            Logger.getLogger(Table.class.getName()).log(Level.SEVERE, null, ex);
-        } */
-            
-           
-        
-                
-                }
+         while(rs.next())
+         {
+         data_rows = new Vector();
+         for(int j=1; j<columns; j++)
+         {
+         data_rows.addElement(rs.getString(j));
+         }
+         dtm.addRow(data_rows);                
+         }
+         //pass default table object over into jtable
+         fbComTable.setModel(dtm);
+         } catch (SQLException ex) {
+         Logger.getLogger(Table.class.getName()).log(Level.SEVERE, null, ex);
+         }
+         catch (ClassNotFoundException ex) {
+         Logger.getLogger(Table.class.getName()).log(Level.SEVERE, null, ex);
+         } */
 
-    
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -104,6 +98,9 @@ public class Table extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         textarea = new javax.swing.JTextArea();
         jLabel2 = new javax.swing.JLabel();
+        commentCountLabel = new javax.swing.JLabel();
+        positiefCount = new javax.swing.JLabel();
+        negatiefCount = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         MainMenu = new javax.swing.JMenuItem();
@@ -119,6 +116,11 @@ public class Table extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         Searchbutton.setText("Zoeken");
+        Searchbutton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SearchbuttonActionPerformed(evt);
+            }
+        });
 
         BackbuttonTable.setText("Terug");
         BackbuttonTable.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -161,11 +163,18 @@ public class Table extends javax.swing.JFrame {
             }
         });
 
+        textarea.setEditable(false);
         textarea.setColumns(20);
         textarea.setRows(5);
         jScrollPane2.setViewportView(textarea);
 
         jLabel2.setText("Commentaar");
+
+        commentCountLabel.setText("Aantal Comments:");
+
+        positiefCount.setText("Positief:");
+
+        negatiefCount.setText("Negatief:");
 
         jMenu1.setText("File");
 
@@ -196,19 +205,24 @@ public class Table extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 562, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(searchbar, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE)
-                            .addComponent(jScrollPane2))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Searchbutton))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(200, 200, 200)
                         .addComponent(toonDataB, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(BackbuttonTable, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(BackbuttonTable, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 562, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(commentCountLabel)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(searchbar, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE)
+                                    .addComponent(jScrollPane2))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(Searchbutton))
+                            .addComponent(positiefCount)
+                            .addComponent(negatiefCount))))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -228,7 +242,13 @@ public class Table extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
                     .addComponent(jScrollPane2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 105, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(commentCountLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(positiefCount)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(negatiefCount)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(BackbuttonTable, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(toonDataB))
@@ -239,36 +259,36 @@ public class Table extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BackbuttonTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BackbuttonTableMouseClicked
-    GraphChoose graphChoose = new GraphChoose();
-    graphChoose.setVisible(true);
-    Table.this.dispose();
+        GraphChoose graphChoose = new GraphChoose();
+        graphChoose.setVisible(true);
+        Table.this.dispose();
     }//GEN-LAST:event_BackbuttonTableMouseClicked
 
     private void MainMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MainMenuActionPerformed
-    LoginScreen loginScreen = new LoginScreen();
-    loginScreen.setVisible(true);
-    Table.this.dispose();
+        LoginScreen loginScreen = new LoginScreen();
+        loginScreen.setVisible(true);
+        Table.this.dispose();
     }//GEN-LAST:event_MainMenuActionPerformed
 
     private void toonDataBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toonDataBActionPerformed
-        try {            
-        //EXTERNE DATABASE_______________________            
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");   
+        try {
+            //EXTERNE DATABASE_______________________            
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             String connectionUrl = "jdbc:sqlserver://db4free.net:3306; databaseName=barbawapatest; user=barba; password=Ruggenmerg";
             Connection con = Database.Connectie.getConnection();
             //Connection con = DriverManager.getConnection(connectionUrl);
-        
-     /*   //LOKAAL DATABASE!!______________________
-            String connectionUrl = "jdbc:mysql://localhost/barbawapatest";
-            String driver = "com.mysql.jdbc.Driver";
-            try{
-                //Class.forName(driver);
-            try{
-                con = DriverManager.getConnection(connectionUrl, "root", "root");
-                mijnStat = con.createStatement();
-            }catch (SQLException ex){
-                Logger.getLogger(Table.class.getName()).log(Level.SEVERE, null, ex);
-            }  */               
+
+            /*   //LOKAAL DATABASE!!______________________
+             String connectionUrl = "jdbc:mysql://localhost/barbawapatest";
+             String driver = "com.mysql.jdbc.Driver";
+             try{
+             //Class.forName(driver);
+             try{
+             con = DriverManager.getConnection(connectionUrl, "root", "root");
+             mijnStat = con.createStatement();
+             }catch (SQLException ex){
+             Logger.getLogger(Table.class.getName()).log(Level.SEVERE, null, ex);
+             }  */
             //Create Connection..
             Statement state = con.createStatement();
             ResultSet rs = state.executeQuery("select * from FbComments");
@@ -279,33 +299,62 @@ public class Table extends javax.swing.JFrame {
             DefaultTableModel dtm = new DefaultTableModel();
             Vector columns_name = new Vector();
             Vector data_rows = new Vector();
-            for (int i=1; i<columns; i++)
-            {
+            for (int i = 1; i < columns; i++) {
                 columns_name.addElement(rsmdata.getColumnName(1));
             }
             dtm.setColumnIdentifiers(columns_name);
-                
-                while(rs.next())
-                {
-                    data_rows = new Vector();
-                    for(int j=1; j<columns; j++)
-                    {
-                        data_rows.addElement(rs.getString(j));
-                    }
-                    dtm.addRow(data_rows);                
+
+            while (rs.next()) {
+                data_rows = new Vector();
+                for (int j = 1; j < columns; j++) {
+                    data_rows.addElement(rs.getString(j));
                 }
-                //pass default table object over into jtable
-                fbComTable.setModel(dtm);
+                dtm.addRow(data_rows);
+            }
+            //pass default table object over into jtable
+            fbComTable.setModel(dtm);
+
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Table.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        catch (SQLException ex) {
+        } catch (SQLException ex) {
             Logger.getLogger(Table.class.getName()).log(Level.SEVERE, null, ex);
-        } 
-        
+        }
+
     }//GEN-LAST:event_toonDataBActionPerformed
 
-     
+    private void SearchbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchbuttonActionPerformed
+        try {
+            int comCount = 0;
+            int pCount = 0;
+            int nCount = 0;
+            textarea.setText("");
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            String connectionUrl = "jdbc:sqlserver://db4free.net:3306; databaseName=barbawapatest; user=barba; password=Ruggenmerg";
+            Connection con = Database.Connectie.getConnection();
+            Statement state = con.createStatement();
+            ResultSet rs = state.executeQuery("select * from FbComments");
+            while (rs.next()) {
+                if (rs.getString("commentBody").contains(searchbar.getText())) {
+                    textarea.append(rs.getString("commentBody") + "\n---------------------------------------------\n");
+                    comCount++;
+                    if(rs.getString("mood").equals("Positief")){
+                        pCount++;
+                    }
+                    else if(rs.getString("mood").equals("Negatief")){
+                        nCount++;
+                    }
+                    
+
+                }
+                commentCountLabel.setText("Aantal Comments: " + comCount);
+                positiefCount.setText("Positief: " + pCount);
+                negatiefCount.setText("Negatief: " + nCount);
+            }
+        } catch (ClassNotFoundException | SQLException e) {
+
+        }
+    }//GEN-LAST:event_SearchbuttonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -342,15 +391,17 @@ public class Table extends javax.swing.JFrame {
                 } catch (ClassNotFoundException ex) {
                     Logger.getLogger(Table.class.getName()).log(Level.SEVERE, null, ex);
                 }
-               
+
             }
         });
     }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BackbuttonTable;
     private javax.swing.JMenuItem MainMenu;
     private javax.swing.JButton Searchbutton;
+    private javax.swing.JLabel commentCountLabel;
     private javax.swing.JTable fbComTable;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
@@ -362,6 +413,8 @@ public class Table extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel negatiefCount;
+    private javax.swing.JLabel positiefCount;
     private javax.swing.JTextField searchbar;
     private javax.swing.JTextArea textarea;
     private javax.swing.JButton toonDataB;

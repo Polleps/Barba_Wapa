@@ -95,12 +95,12 @@ public class FaceboolSyncPage extends javax.swing.JFrame {
                     .addComponent(tokenField, javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(backButton))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(syncButton, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+                        .addComponent(syncButton, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
@@ -273,6 +273,8 @@ public class FaceboolSyncPage extends javax.swing.JFrame {
     private void syncButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_syncButtonActionPerformed
         if (tokenField.getText().isEmpty()) {
             output("Vul een Access token in.", Color.RED);
+            output("Deze kun je hier halen:", Color.RED);
+            output("https://developers.facebook.com/tools/explorer", Color.BLUE);
         } else {
             syncButton.setEnabled(false);
 
@@ -296,7 +298,6 @@ public class FaceboolSyncPage extends javax.swing.JFrame {
                 outputPane.setText("");
             }
             outputPane.setCaretPosition(doc.getLength());
-            
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

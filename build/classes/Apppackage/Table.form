@@ -81,22 +81,29 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="1" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" min="-2" pref="562" max="-2" attributes="0"/>
-                      <EmptySpace pref="61" max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="searchbar" pref="277" max="32767" attributes="0"/>
-                          <Component id="jScrollPane2" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="Searchbutton" min="-2" max="-2" attributes="0"/>
-                  </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="-2" pref="200" max="-2" attributes="0"/>
                       <Component id="toonDataB" min="-2" pref="84" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="BackbuttonTable" min="-2" pref="88" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jScrollPane1" min="-2" pref="562" max="-2" attributes="0"/>
+                      <EmptySpace pref="61" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="commentCountLabel" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="searchbar" pref="277" max="32767" attributes="0"/>
+                                  <Component id="jScrollPane2" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="Searchbutton" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="positiefCount" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="negatiefCount" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -123,7 +130,13 @@
                   <Component id="jScrollPane1" pref="276" max="32767" attributes="0"/>
                   <Component id="jScrollPane2" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace pref="105" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="commentCountLabel" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="positiefCount" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="negatiefCount" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="36" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="BackbuttonTable" min="-2" pref="39" max="-2" attributes="0"/>
                   <Component id="toonDataB" min="-2" max="-2" attributes="0"/>
@@ -140,6 +153,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Zoeken"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="SearchbuttonActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="BackbuttonTable">
       <Properties>
@@ -220,6 +236,7 @@
       <SubComponents>
         <Component class="javax.swing.JTextArea" name="textarea">
           <Properties>
+            <Property name="editable" type="boolean" value="false"/>
             <Property name="columns" type="int" value="20"/>
             <Property name="rows" type="int" value="5"/>
           </Properties>
@@ -229,6 +246,21 @@
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
         <Property name="text" type="java.lang.String" value="Commentaar"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="commentCountLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Aantal Comments:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="positiefCount">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Positief:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="negatiefCount">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Negatief:"/>
       </Properties>
     </Component>
   </SubComponents>
