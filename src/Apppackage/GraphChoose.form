@@ -79,6 +79,8 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
+                      <Component id="twitterSyncButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="fbButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="Backbutton" min="-2" pref="147" max="-2" attributes="0"/>
@@ -139,6 +141,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="Backbutton" alignment="3" min="-2" pref="48" max="-2" attributes="0"/>
                   <Component id="fbButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="twitterSyncButton" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -213,6 +216,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="fbButtonActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="twitterSyncButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Twitter Sync"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="twitterSyncButtonActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

@@ -41,6 +41,7 @@ public class GraphChoose extends javax.swing.JFrame {
         KNOP = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         fbButton = new javax.swing.JButton();
+        twitterSyncButton = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -97,6 +98,13 @@ public class GraphChoose extends javax.swing.JFrame {
             }
         });
 
+        twitterSyncButton.setText("Twitter Sync");
+        twitterSyncButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                twitterSyncButtonActionPerformed(evt);
+            }
+        });
+
         jMenu1.setText("File");
 
         jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_M, java.awt.event.InputEvent.CTRL_MASK));
@@ -137,6 +145,8 @@ public class GraphChoose extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(twitterSyncButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(fbButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(Backbutton, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -183,12 +193,12 @@ public class GraphChoose extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 150, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Backbutton, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(fbButton))
+                    .addComponent(fbButton)
+                    .addComponent(twitterSyncButton))
                 .addContainerGap())
         );
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
   
@@ -237,6 +247,11 @@ public class GraphChoose extends javax.swing.JFrame {
         fb.setVisible(true);
         GraphChoose.this.dispose();
     }//GEN-LAST:event_fbButtonActionPerformed
+
+    private void twitterSyncButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_twitterSyncButtonActionPerformed
+       Tweet tw = new Tweet();
+       tw.getTweets();
+    }//GEN-LAST:event_twitterSyncButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -352,5 +367,6 @@ public class GraphChoose extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JButton twitterSyncButton;
     // End of variables declaration//GEN-END:variables
 }

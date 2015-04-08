@@ -187,7 +187,7 @@ public class FaceboolSyncPage extends javax.swing.JFrame {
                         String query = "INSERT INTO FbComments (commentID, commentBody, likes, replies, mood, dates ) VALUES('" + c.getId() + "', '" + c.getMessage() + "', " + c.getLikeCount() + ", " + 0 + ", '" + mood + "','" + (c.getCreatedTime().getYear() + 1900) + ":" + (c.getCreatedTime().getMonth() + 1) + ":" + c.getCreatedTime().getDate() + ":" + c.getCreatedTime().getHours() + ":" + c.getCreatedTime().getMinutes() + ":" + c.getCreatedTime().getSeconds() + "')";
                         stIntoFB.execute(query);
 
-                        output("- " + c.getId() + " was added to the Database.", Color.BLACK);
+                        output("- " + c.getId() + " was added to the Database.", Color.BLUE);
                     } catch (Exception ex) {
                         System.out.println("Error 74: " + ex);
 
@@ -242,8 +242,14 @@ public class FaceboolSyncPage extends javax.swing.JFrame {
 
         String mood;
         String mess = c.getMessage().toLowerCase();
-        String[] goodWords = {" goed ", " oke ", " vet ", " leuk ", " mooi ", " lachen ", " vet ", " prachtig ", " benieuwd ", " adembenemend ", " trots ", " zin in ", " geweldige ", " slim ", " gelukkig ", " geweldig ", " duimen ", " gezellig ", " top ", " gefeliciteerd ", " wauw ", " super ", " topper ", " yes ", " :) ", " :D ", " :-) "};
-        String[] badWords = {" slecht ", " vreselijk ", " stom ", " klote ", " vervelend ", " rot ", " teleurstelling ", " nee ", " blûh ", " jammer ", " waanzinnig ",};
+        String[] goodWords = {"goed ", "oke ", "vet ", "leuk ", "mooi ", "lachen ", "vet ", "prachtig ", "benieuwd ", "adembenemend ", "trots ",
+            "zin in ", "geweldige ", "slim ", "gelukkig ", "geweldig ", "duimen ", "gezellig ", "top ", "gefeliciteerd ", "wauw ", "super ",
+            "topper ", "yes ", " :) ", " :D ", " :-) ", "beste ", "leukste " , "wauw ", "wow ", "leuke ", " gaan ook", "gaaf ", "uitstekend ",
+            "uitstekende ", "genieten ", "genoten ",
+             "favoriete ", "ik ga", "(Y)", "plezier "};
+        String[] badWords = {"slecht ", "vreselijk ", "stom ", "klote ", "vervelend ", "rot ", "teleurstelling ", "blûh ", "jammer ", "waanzinnig ",
+            ":( ", ">:( ", "niet mijn ding ", "nee bedankt ", "kloten ",
+            "klote ", "overbodig ", "gvd ", "belachelijk ", "ik kom niet", "schaam ", "shame ", "scande ", "achterlijke ", "zielig "};
         int goodCount = 0;
         int badCount = 0;
         for (int i = 0; i < goodWords.length; i++) {
