@@ -42,7 +42,7 @@ public class Tables extends javax.swing.JFrame {
 
     @Override
     public void setSize(int width, int height) {
-        super.setSize(1200, 571);
+        super.setSize(1200, 600);
     }
     static Statement mijnStat;
     public Connection con;
@@ -325,7 +325,13 @@ private void rbgroup(){
 
         jLabel11.setText(" ");
 
-        BackbuttonTable.setText("Back");
+        searchbar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchbarActionPerformed(evt);
+            }
+        });
+
+        BackbuttonTable.setText("Terug");
         BackbuttonTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 BackbuttonTableMouseClicked(evt);
@@ -2123,7 +2129,7 @@ private void rbgroup(){
                                 .addComponent(searchbar, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(Searchbutton)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 8, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -4973,7 +4979,7 @@ try{
                     }   
                 }
             }
-                commentCountLabel.setText("Aantal Comments: " + comCount);
+                commentCountLabel.setText("Totaal: " + comCount);
                 positiefCount.setText("Positief: " + pCount);
                 negatiefCount.setText("Negatief: " + nCount);
         } catch (ClassNotFoundException | SQLException e) {
@@ -7190,6 +7196,10 @@ try{
     private void negfld1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_negfld1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_negfld1ActionPerformed
+
+    private void searchbarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchbarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchbarActionPerformed
 
     /**
      * @param args the command line arguments

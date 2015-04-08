@@ -75,7 +75,7 @@ public class AccountCreation extends javax.swing.JFrame {
             }
         });
 
-        backAccountCreation.setText("Back");
+        backAccountCreation.setText("Terug");
         backAccountCreation.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backAccountCreationActionPerformed(evt);

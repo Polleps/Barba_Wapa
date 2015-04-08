@@ -230,7 +230,7 @@ public class TweetieSyncPage extends javax.swing.JFrame {
 
         jScrollPane1.setViewportView(outputPane);
 
-        backButton.setText("Back");
+        backButton.setText("Terug");
         backButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backButtonActionPerformed(evt);
