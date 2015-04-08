@@ -334,7 +334,7 @@ public class Table extends javax.swing.JFrame {
             Statement state = con.createStatement();
             ResultSet rs = state.executeQuery("select * from FbComments");
             while (rs.next()) {
-                if (rs.getString("commentBody").contains(searchbar.getText())) {
+                if (rs.getString("commentBody").toLowerCase().contains(searchbar.getText().toLowerCase())) {
                     textarea.append(rs.getString("commentBody") + "\n---------------------------------------------\n");
                     comCount++;
                     if(rs.getString("mood").equals("Positief")){
