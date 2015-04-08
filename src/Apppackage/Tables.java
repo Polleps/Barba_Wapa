@@ -155,29 +155,6 @@ private void rbgroup(){
         jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        pantpos = new javax.swing.JPanel();
-        jScrollPane6 = new javax.swing.JScrollPane();
-        fbPosT1 = new javax.swing.JTable();
-        trdrb3 = new javax.swing.JRadioButton();
-        febtrb = new javax.swing.JRadioButton();
-        fppmb1 = new javax.swing.JButton();
-        frtrb3 = new javax.swing.JRadioButton();
-        mrttrb = new javax.swing.JRadioButton();
-        fppjb1 = new javax.swing.JButton();
-        firstrb3 = new javax.swing.JRadioButton();
-        aprtrb = new javax.swing.JRadioButton();
-        secrb3 = new javax.swing.JRadioButton();
-        meitrb = new javax.swing.JRadioButton();
-        fppwb1 = new javax.swing.JButton();
-        junrb3 = new javax.swing.JRadioButton();
-        julrb3 = new javax.swing.JRadioButton();
-        fftrb3 = new javax.swing.JRadioButton();
-        augrb3 = new javax.swing.JRadioButton();
-        seprb3 = new javax.swing.JRadioButton();
-        jantrb = new javax.swing.JRadioButton();
-        octrb3 = new javax.swing.JRadioButton();
-        decrb3 = new javax.swing.JRadioButton();
-        novrb3 = new javax.swing.JRadioButton();
         panfbc = new javax.swing.JPanel();
         fbgrafiek = new javax.swing.JButton();
         fbpie = new javax.swing.JButton();
@@ -193,7 +170,6 @@ private void rbgroup(){
         negfld = new javax.swing.JTextField();
         neufld = new javax.swing.JTextField();
         panfbp = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
         fppwb = new javax.swing.JButton();
         fppmb = new javax.swing.JButton();
         fppjb = new javax.swing.JButton();
@@ -249,6 +225,29 @@ private void rbgroup(){
         tnegfld = new javax.swing.JTextField();
         tneufld = new javax.swing.JTextField();
         forpie = new javax.swing.JPanel();
+        pantpos = new javax.swing.JPanel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        fbPosT1 = new javax.swing.JTable();
+        trdrb3 = new javax.swing.JRadioButton();
+        febtrb = new javax.swing.JRadioButton();
+        fppmb1 = new javax.swing.JButton();
+        frtrb3 = new javax.swing.JRadioButton();
+        mrttrb = new javax.swing.JRadioButton();
+        fppjb1 = new javax.swing.JButton();
+        firstrb3 = new javax.swing.JRadioButton();
+        aprtrb = new javax.swing.JRadioButton();
+        secrb3 = new javax.swing.JRadioButton();
+        meitrb = new javax.swing.JRadioButton();
+        fppwb1 = new javax.swing.JButton();
+        junrb3 = new javax.swing.JRadioButton();
+        julrb3 = new javax.swing.JRadioButton();
+        fftrb3 = new javax.swing.JRadioButton();
+        augrb3 = new javax.swing.JRadioButton();
+        seprb3 = new javax.swing.JRadioButton();
+        jantrb = new javax.swing.JRadioButton();
+        octrb3 = new javax.swing.JRadioButton();
+        decrb3 = new javax.swing.JRadioButton();
+        novrb3 = new javax.swing.JRadioButton();
         here = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         textarea = new javax.swing.JTextArea();
@@ -337,7 +336,7 @@ private void rbgroup(){
 
         pantneg.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Twitter Negatief Tabel", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.ABOVE_TOP));
         pantneg.setMinimumSize(new java.awt.Dimension(680, 420));
-        pantneg.setName("pantneg");
+        pantneg.setName("pantneg"); // NOI18N
         pantneg.setPreferredSize(new java.awt.Dimension(680, 342));
 
         jLabel2.setText("Selectie per maand van dit jaar:");
@@ -373,9 +372,11 @@ private void rbgroup(){
             }
         });
         jScrollPane5.setViewportView(fbNegT1);
-        fbNegT1.getColumnModel().getColumn(0).setMaxWidth(200);
-        fbNegT1.getColumnModel().getColumn(1).setMaxWidth(75);
-        fbNegT1.getColumnModel().getColumn(2).setMaxWidth(50);
+        if (fbNegT1.getColumnModel().getColumnCount() > 0) {
+            fbNegT1.getColumnModel().getColumn(0).setMaxWidth(200);
+            fbNegT1.getColumnModel().getColumn(1).setMaxWidth(75);
+            fbNegT1.getColumnModel().getColumn(2).setMaxWidth(50);
+        }
 
         fbnpjb1.setText("Elk Jaar");
         fbnpjb1.addActionListener(new java.awt.event.ActionListener() {
@@ -578,9 +579,11 @@ private void rbgroup(){
             }
         });
         jScrollPane4.setViewportView(fbNegT);
-        fbNegT.getColumnModel().getColumn(0).setMaxWidth(200);
-        fbNegT.getColumnModel().getColumn(1).setMaxWidth(75);
-        fbNegT.getColumnModel().getColumn(2).setMaxWidth(50);
+        if (fbNegT.getColumnModel().getColumnCount() > 0) {
+            fbNegT.getColumnModel().getColumn(0).setMaxWidth(200);
+            fbNegT.getColumnModel().getColumn(1).setMaxWidth(75);
+            fbNegT.getColumnModel().getColumn(2).setMaxWidth(50);
+        }
 
         yearGroup.add(secrb1);
         secrb1.setText("2012");
@@ -729,289 +732,12 @@ private void rbgroup(){
 
         jLabel1.setText("Selectie per maand van dit jaar:");
 
-        pantpos.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Twitter Positief Tabel", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.ABOVE_TOP));
-        pantpos.setMinimumSize(new java.awt.Dimension(680, 420));
-
-        fbPosT1.setAutoCreateRowSorter(true);
-        fbPosT1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "pos_id", "dates", "amount", "comments"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        fbPosT1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        fbPosT1.setRowSorter(null);
-        jScrollPane6.setViewportView(fbPosT1);
-        fbPosT1.getColumnModel().getColumn(0).setMaxWidth(200);
-        fbPosT1.getColumnModel().getColumn(1).setMaxWidth(75);
-        fbPosT1.getColumnModel().getColumn(2).setMaxWidth(75);
-
-        yearGroup.add(trdrb3);
-        trdrb3.setText("2013");
-        trdrb3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                trdrb3ActionPerformed(evt);
-            }
-        });
-
-        monthGroup.add(febtrb);
-        febtrb.setText("feb");
-        febtrb.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                febtrbActionPerformed(evt);
-            }
-        });
-
-        fppmb1.setText("Per Maand");
-        fppmb1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fppmb1ActionPerformed(evt);
-            }
-        });
-
-        yearGroup.add(frtrb3);
-        frtrb3.setText("2014");
-        frtrb3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                frtrb3ActionPerformed(evt);
-            }
-        });
-
-        monthGroup.add(mrttrb);
-        mrttrb.setText("mrt");
-        mrttrb.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mrttrbActionPerformed(evt);
-            }
-        });
-
-        fppjb1.setText("Elk Jaar");
-        fppjb1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fppjb1ActionPerformed(evt);
-            }
-        });
-
-        yearGroup.add(firstrb3);
-        firstrb3.setText("2011");
-        firstrb3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                firstrb3ActionPerformed(evt);
-            }
-        });
-
-        monthGroup.add(aprtrb);
-        aprtrb.setText("apr");
-        aprtrb.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                aprtrbActionPerformed(evt);
-            }
-        });
-
-        yearGroup.add(secrb3);
-        secrb3.setText("2012");
-        secrb3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                secrb3ActionPerformed(evt);
-            }
-        });
-
-        monthGroup.add(meitrb);
-        meitrb.setText("mei");
-        meitrb.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                meitrbActionPerformed(evt);
-            }
-        });
-
-        fppwb1.setText("Per Week");
-        fppwb1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fppwb1ActionPerformed(evt);
-            }
-        });
-
-        monthGroup.add(junrb3);
-        junrb3.setText("jun");
-        junrb3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                junrb3ActionPerformed(evt);
-            }
-        });
-
-        monthGroup.add(julrb3);
-        julrb3.setText("jul");
-        julrb3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                julrb3ActionPerformed(evt);
-            }
-        });
-
-        yearGroup.add(fftrb3);
-        fftrb3.setText("2015");
-        fftrb3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fftrb3ActionPerformed(evt);
-            }
-        });
-
-        monthGroup.add(augrb3);
-        augrb3.setText("aug");
-        augrb3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                augrb3ActionPerformed(evt);
-            }
-        });
-
-        monthGroup.add(seprb3);
-        seprb3.setText("sep");
-        seprb3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                seprb3ActionPerformed(evt);
-            }
-        });
-
-        monthGroup.add(jantrb);
-        jantrb.setText("jan");
-        jantrb.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jantrbActionPerformed(evt);
-            }
-        });
-
-        monthGroup.add(octrb3);
-        octrb3.setText("oct");
-        octrb3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                octrb3ActionPerformed(evt);
-            }
-        });
-
-        monthGroup.add(decrb3);
-        decrb3.setText("dec");
-        decrb3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                decrb3ActionPerformed(evt);
-            }
-        });
-
-        monthGroup.add(novrb3);
-        novrb3.setText("nov");
-        novrb3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                novrb3ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout pantposLayout = new javax.swing.GroupLayout(pantpos);
-        pantpos.setLayout(pantposLayout);
-        pantposLayout.setHorizontalGroup(
-            pantposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pantposLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pantposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane6)
-                    .addGroup(pantposLayout.createSequentialGroup()
-                        .addComponent(fppwb1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(fppmb1, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(fppjb1, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pantposLayout.createSequentialGroup()
-                        .addGap(64, 64, 64)
-                        .addGroup(pantposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(pantposLayout.createSequentialGroup()
-                                .addComponent(jantrb)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(febtrb)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(mrttrb)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(aprtrb)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(meitrb)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(junrb3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(julrb3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(augrb3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(seprb3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(octrb3))
-                            .addGroup(pantposLayout.createSequentialGroup()
-                                .addComponent(firstrb3)
-                                .addGap(18, 18, 18)
-                                .addComponent(secrb3)
-                                .addGap(18, 18, 18)
-                                .addComponent(trdrb3)
-                                .addGap(18, 18, 18)
-                                .addComponent(frtrb3)
-                                .addGap(18, 18, 18)
-                                .addComponent(fftrb3)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(novrb3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(decrb3)
-                        .addGap(0, 94, Short.MAX_VALUE)))
-                .addGap(16, 16, 16))
-        );
-        pantposLayout.setVerticalGroup(
-            pantposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pantposLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(pantposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jantrb)
-                    .addComponent(mrttrb)
-                    .addComponent(meitrb)
-                    .addComponent(febtrb)
-                    .addComponent(aprtrb)
-                    .addComponent(junrb3)
-                    .addComponent(julrb3)
-                    .addComponent(augrb3)
-                    .addComponent(seprb3)
-                    .addComponent(octrb3)
-                    .addComponent(decrb3)
-                    .addComponent(novrb3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(pantposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(firstrb3)
-                    .addComponent(secrb3)
-                    .addComponent(trdrb3)
-                    .addComponent(frtrb3)
-                    .addComponent(fftrb3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(pantposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(fppwb1)
-                    .addComponent(fppjb1)
-                    .addComponent(fppmb1))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
         javax.swing.GroupLayout panfbnLayout = new javax.swing.GroupLayout(panfbn);
         panfbn.setLayout(panfbnLayout);
         panfbnLayout.setHorizontalGroup(
             panfbnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panfbnLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(pantpos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(720, 720, 720)
                 .addGroup(panfbnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panfbnLayout.createSequentialGroup()
                         .addGroup(panfbnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1108,14 +834,8 @@ private void rbgroup(){
                 .addGroup(panfbnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton3))
-                .addContainerGap())
-            .addGroup(panfbnLayout.createSequentialGroup()
-                .addComponent(pantpos, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
-
-        pantpos.getAccessibleContext().setAccessibleName("");
-        pantpos.getAccessibleContext().setAccessibleParent(jLayeredPane1);
 
         javax.swing.GroupLayout pantnegLayout = new javax.swing.GroupLayout(pantneg);
         pantneg.setLayout(pantnegLayout);
@@ -1275,8 +995,8 @@ private void rbgroup(){
         jButton5.getAccessibleContext().setAccessibleDescription("");
         jButton5.getAccessibleContext().setAccessibleParent(jLayeredPane1);
 
-        pantneg.setBounds(0, 40, 680, 342);
-        jLayeredPane1.add(pantneg, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.add(pantneg);
+        pantneg.setBounds(0, 60, 680, 342);
 
         panfbc.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Facebook Alle Comments", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.ABOVE_TOP));
         panfbc.setPreferredSize(new java.awt.Dimension(670, 340));
@@ -1344,11 +1064,13 @@ private void rbgroup(){
             }
         });
         jScrollPane1.setViewportView(fbComTable);
-        fbComTable.getColumnModel().getColumn(0).setMaxWidth(200);
-        fbComTable.getColumnModel().getColumn(1).setMaxWidth(50);
-        fbComTable.getColumnModel().getColumn(2).setMaxWidth(75);
-        fbComTable.getColumnModel().getColumn(3).setMaxWidth(200);
-        fbComTable.getColumnModel().getColumn(4).setMaxWidth(1000);
+        if (fbComTable.getColumnModel().getColumnCount() > 0) {
+            fbComTable.getColumnModel().getColumn(0).setMaxWidth(200);
+            fbComTable.getColumnModel().getColumn(1).setMaxWidth(50);
+            fbComTable.getColumnModel().getColumn(2).setMaxWidth(75);
+            fbComTable.getColumnModel().getColumn(3).setMaxWidth(200);
+            fbComTable.getColumnModel().getColumn(4).setMaxWidth(1000);
+        }
 
         jPos.setText("Positief:");
 
@@ -1422,18 +1144,11 @@ private void rbgroup(){
                 .addContainerGap(24, Short.MAX_VALUE))
         );
 
-        panfbc.setBounds(0, 30, 680, 370);
-        jLayeredPane1.add(panfbc, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.add(panfbc);
+        panfbc.setBounds(0, 50, 680, 370);
         panfbc.getAccessibleContext().setAccessibleParent(jLayeredPane1);
 
         panfbp.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Facebook Positief Tabel", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.ABOVE_TOP));
-
-        jButton2.setText("Piechart");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
 
         fppwb.setText("Per Week");
         fppwb.addActionListener(new java.awt.event.ActionListener() {
@@ -1479,9 +1194,11 @@ private void rbgroup(){
         fbPosT.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         fbPosT.setRowSorter(null);
         jScrollPane2.setViewportView(fbPosT);
-        fbPosT.getColumnModel().getColumn(0).setMaxWidth(200);
-        fbPosT.getColumnModel().getColumn(1).setMaxWidth(75);
-        fbPosT.getColumnModel().getColumn(2).setMaxWidth(75);
+        if (fbPosT.getColumnModel().getColumnCount() > 0) {
+            fbPosT.getColumnModel().getColumn(0).setMaxWidth(200);
+            fbPosT.getColumnModel().getColumn(1).setMaxWidth(75);
+            fbPosT.getColumnModel().getColumn(2).setMaxWidth(75);
+        }
 
         monthGroup.add(janrb);
         janrb.setText("jan");
@@ -1627,7 +1344,6 @@ private void rbgroup(){
             .addGroup(panfbpLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panfbpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(panfbpLayout.createSequentialGroup()
                         .addComponent(fppwb, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
@@ -1668,7 +1384,7 @@ private void rbgroup(){
                                 .addGap(18, 18, 18)
                                 .addComponent(fftrb)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(novrb)
+                        .addComponent(novrb, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(decrb)
                         .addGap(0, 78, Short.MAX_VALUE)))
@@ -1704,13 +1420,11 @@ private void rbgroup(){
                     .addComponent(fppwb)
                     .addComponent(fppjb)
                     .addComponent(fppmb))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
-        panfbp.setBounds(0, 20, 0, 360);
-        jLayeredPane1.add(panfbp, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.add(panfbp);
+        panfbp.setBounds(0, 40, 670, 360);
 
         pantall.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Twitter Alle Comments", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.ABOVE_TOP));
         pantall.setMinimumSize(new java.awt.Dimension(680, 420));
@@ -1754,11 +1468,13 @@ private void rbgroup(){
             }
         });
         jScrollPane7.setViewportView(fbComTable1);
-        fbComTable1.getColumnModel().getColumn(0).setMaxWidth(200);
-        fbComTable1.getColumnModel().getColumn(1).setMaxWidth(50);
-        fbComTable1.getColumnModel().getColumn(2).setMaxWidth(75);
-        fbComTable1.getColumnModel().getColumn(3).setMaxWidth(200);
-        fbComTable1.getColumnModel().getColumn(4).setMaxWidth(1000);
+        if (fbComTable1.getColumnModel().getColumnCount() > 0) {
+            fbComTable1.getColumnModel().getColumn(0).setMaxWidth(200);
+            fbComTable1.getColumnModel().getColumn(1).setMaxWidth(50);
+            fbComTable1.getColumnModel().getColumn(2).setMaxWidth(75);
+            fbComTable1.getColumnModel().getColumn(3).setMaxWidth(200);
+            fbComTable1.getColumnModel().getColumn(4).setMaxWidth(1000);
+        }
 
         fbmaand1.setText("Alle maanden");
         fbmaand1.addActionListener(new java.awt.event.ActionListener() {
@@ -1797,6 +1513,11 @@ private void rbgroup(){
 
         negfld1.setEditable(false);
         negfld1.setText(" ");
+        negfld1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                negfld1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pantallLayout = new javax.swing.GroupLayout(pantall);
         pantall.setLayout(pantallLayout);
@@ -1858,8 +1579,8 @@ private void rbgroup(){
                 .addContainerGap(63, Short.MAX_VALUE))
         );
 
-        pantall.setBounds(10, 10, 680, 360);
-        jLayeredPane1.add(pantall, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.add(pantall);
+        pantall.setBounds(10, 30, 692, 360);
         pantall.getAccessibleContext().setAccessibleName("");
         pantall.getAccessibleContext().setAccessibleParent(jLayeredPane1);
 
@@ -2029,10 +1750,293 @@ private void rbgroup(){
                 .addContainerGap(44, Short.MAX_VALUE))
         );
 
-        panfbt.setBounds(0, 0, 680, 420);
-        jLayeredPane1.add(panfbt, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.add(panfbt);
+        panfbt.setBounds(0, 20, 692, 445);
         panfbt.getAccessibleContext().setAccessibleName("");
         panfbt.getAccessibleContext().setAccessibleParent(jLayeredPane1);
+
+        pantpos.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Twitter Positief Tabel", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.ABOVE_TOP));
+        pantpos.setMinimumSize(new java.awt.Dimension(680, 420));
+
+        fbPosT1.setAutoCreateRowSorter(true);
+        fbPosT1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "pos_id", "dates", "amount", "comments"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        fbPosT1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        fbPosT1.setRowSorter(null);
+        jScrollPane6.setViewportView(fbPosT1);
+        if (fbPosT1.getColumnModel().getColumnCount() > 0) {
+            fbPosT1.getColumnModel().getColumn(0).setMaxWidth(200);
+            fbPosT1.getColumnModel().getColumn(1).setMaxWidth(75);
+            fbPosT1.getColumnModel().getColumn(2).setMaxWidth(75);
+        }
+
+        yearGroup.add(trdrb3);
+        trdrb3.setText("2013");
+        trdrb3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                trdrb3ActionPerformed(evt);
+            }
+        });
+
+        monthGroup.add(febtrb);
+        febtrb.setText("feb");
+        febtrb.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                febtrbActionPerformed(evt);
+            }
+        });
+
+        fppmb1.setText("Per Maand");
+        fppmb1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fppmb1ActionPerformed(evt);
+            }
+        });
+
+        yearGroup.add(frtrb3);
+        frtrb3.setText("2014");
+        frtrb3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                frtrb3ActionPerformed(evt);
+            }
+        });
+
+        monthGroup.add(mrttrb);
+        mrttrb.setText("mrt");
+        mrttrb.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mrttrbActionPerformed(evt);
+            }
+        });
+
+        fppjb1.setText("Elk Jaar");
+        fppjb1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fppjb1ActionPerformed(evt);
+            }
+        });
+
+        yearGroup.add(firstrb3);
+        firstrb3.setText("2011");
+        firstrb3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                firstrb3ActionPerformed(evt);
+            }
+        });
+
+        monthGroup.add(aprtrb);
+        aprtrb.setText("apr");
+        aprtrb.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aprtrbActionPerformed(evt);
+            }
+        });
+
+        yearGroup.add(secrb3);
+        secrb3.setText("2012");
+        secrb3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                secrb3ActionPerformed(evt);
+            }
+        });
+
+        monthGroup.add(meitrb);
+        meitrb.setText("mei");
+        meitrb.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                meitrbActionPerformed(evt);
+            }
+        });
+
+        fppwb1.setText("Per Week");
+        fppwb1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fppwb1ActionPerformed(evt);
+            }
+        });
+
+        monthGroup.add(junrb3);
+        junrb3.setText("jun");
+        junrb3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                junrb3ActionPerformed(evt);
+            }
+        });
+
+        monthGroup.add(julrb3);
+        julrb3.setText("jul");
+        julrb3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                julrb3ActionPerformed(evt);
+            }
+        });
+
+        yearGroup.add(fftrb3);
+        fftrb3.setText("2015");
+        fftrb3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fftrb3ActionPerformed(evt);
+            }
+        });
+
+        monthGroup.add(augrb3);
+        augrb3.setText("aug");
+        augrb3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                augrb3ActionPerformed(evt);
+            }
+        });
+
+        monthGroup.add(seprb3);
+        seprb3.setText("sep");
+        seprb3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                seprb3ActionPerformed(evt);
+            }
+        });
+
+        monthGroup.add(jantrb);
+        jantrb.setText("jan");
+        jantrb.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jantrbActionPerformed(evt);
+            }
+        });
+
+        monthGroup.add(octrb3);
+        octrb3.setText("oct");
+        octrb3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                octrb3ActionPerformed(evt);
+            }
+        });
+
+        monthGroup.add(decrb3);
+        decrb3.setText("dec");
+        decrb3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                decrb3ActionPerformed(evt);
+            }
+        });
+
+        monthGroup.add(novrb3);
+        novrb3.setText("nov");
+        novrb3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                novrb3ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pantposLayout = new javax.swing.GroupLayout(pantpos);
+        pantpos.setLayout(pantposLayout);
+        pantposLayout.setHorizontalGroup(
+            pantposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pantposLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pantposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane6)
+                    .addGroup(pantposLayout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addComponent(fppwb1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(fppmb1, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(fppjb1, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pantposLayout.createSequentialGroup()
+                        .addGap(64, 64, 64)
+                        .addGroup(pantposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(pantposLayout.createSequentialGroup()
+                                .addComponent(jantrb)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(febtrb)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(mrttrb)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(aprtrb)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(meitrb)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(junrb3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(julrb3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(augrb3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(seprb3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(octrb3))
+                            .addGroup(pantposLayout.createSequentialGroup()
+                                .addComponent(firstrb3)
+                                .addGap(18, 18, 18)
+                                .addComponent(secrb3)
+                                .addGap(18, 18, 18)
+                                .addComponent(trdrb3)
+                                .addGap(18, 18, 18)
+                                .addComponent(frtrb3)
+                                .addGap(18, 18, 18)
+                                .addComponent(fftrb3)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(novrb3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(decrb3)
+                        .addGap(0, 94, Short.MAX_VALUE)))
+                .addGap(16, 16, 16))
+        );
+        pantposLayout.setVerticalGroup(
+            pantposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pantposLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(pantposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jantrb)
+                    .addComponent(mrttrb)
+                    .addComponent(meitrb)
+                    .addComponent(febtrb)
+                    .addComponent(aprtrb)
+                    .addComponent(junrb3)
+                    .addComponent(julrb3)
+                    .addComponent(augrb3)
+                    .addComponent(seprb3)
+                    .addComponent(octrb3)
+                    .addComponent(decrb3)
+                    .addComponent(novrb3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(pantposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(firstrb3)
+                    .addComponent(secrb3)
+                    .addComponent(trdrb3)
+                    .addComponent(frtrb3)
+                    .addComponent(fftrb3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(pantposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(fppwb1)
+                    .addComponent(fppjb1)
+                    .addComponent(fppmb1))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jLayeredPane1.add(pantpos);
+        pantpos.setBounds(20, 10, 692, 410);
+        pantpos.getAccessibleContext().setAccessibleName("");
+        pantpos.getAccessibleContext().setAccessibleParent(jLayeredPane1);
 
         here.setText("Maak keuze:");
         here.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -2281,8 +2285,8 @@ private void showInTable(){
 private void FBPRBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FBPRBActionPerformed
         yearGroup.clearSelection();  
         monthGroup.clearSelection();  
-       panfbn.setVisible(false);
-       panfbc.setVisible(false);
+        panfbn.setVisible(false);
+        panfbc.setVisible(false);
         pantneg.setVisible(false);
         pantpos.setVisible(false);
         pantall.setVisible(false);
@@ -2306,7 +2310,7 @@ private void FBPRBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:e
             DefaultTableModel dtm = new DefaultTableModel();
             Vector columns_name = new Vector();
             Vector data_rows = new Vector();            
-            for (int i=1; i<5; i++)
+            for (int i=1; i<7; i++)
             {
                 columns_name.addElement(rsmdata.getColumnName(i));
             }
@@ -2314,7 +2318,7 @@ private void FBPRBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:e
             while(rs.next())
             {
                 data_rows = new Vector();
-                for(int j=1; j<5; j++)
+                for(int j=1; j<7; j++)
                 {
                     data_rows.addElement(rs.getString(j));
                 }
@@ -2857,7 +2861,7 @@ private void BackbuttonTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-F
             DefaultTableModel dtm = new DefaultTableModel();
             Vector columns_name = new Vector();
             Vector data_rows = new Vector();            
-            for (int i=1; i<5; i++)
+            for (int i=1; i<7; i++)
             {
                 columns_name.addElement(rsmdata.getColumnName(i));
             }
@@ -2865,7 +2869,7 @@ private void BackbuttonTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-F
             while(rs.next())
             {
                 data_rows = new Vector();
-                for(int j=1; j<5; j++)
+                for(int j=1; j<7; j++)
                 {
                     data_rows.addElement(rs.getString(j));
                 }
@@ -2922,14 +2926,14 @@ private void BackbuttonTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-F
             DefaultTableModel dtm = new DefaultTableModel();
             Vector columns_name = new Vector();
             Vector data_rows = new Vector();            
-            for (int i=1; i<5; i++)            {
+            for (int i=1; i<7; i++)            {
                 columns_name.addElement(rsmdata.getColumnName(i));
             }
             dtm.setColumnIdentifiers(columns_name);            
             while(rs.next())
             {
                 data_rows = new Vector();
-                for(int j=1; j<5; j++)
+                for(int j=1; j<7; j++)
                 {
                     data_rows.addElement(rs.getString(j));
                 }
@@ -2988,7 +2992,7 @@ private void BackbuttonTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-F
             DefaultTableModel dtm = new DefaultTableModel();
             Vector columns_name = new Vector();
             Vector data_rows = new Vector();            
-            for (int i=1; i<5; i++)
+            for (int i=1; i<7; i++)
             {
                 columns_name.addElement(rsmdata.getColumnName(i));
             }
@@ -2996,7 +3000,7 @@ private void BackbuttonTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-F
             while(rs.next())
             {
                 data_rows = new Vector();
-                for(int j=1; j<5; j++)
+                for(int j=1; j<7; j++)
                 {
                     data_rows.addElement(rs.getString(j));
                 }
@@ -3054,7 +3058,7 @@ private void BackbuttonTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-F
             Vector columns_name = new Vector();
             Vector data_rows = new Vector();
             
-            for (int i=1; i<5; i++)
+            for (int i=1; i<7; i++)
             {
                 columns_name.addElement(rsmdata.getColumnName(i));
             }
@@ -3063,7 +3067,7 @@ private void BackbuttonTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-F
             while(rs.next())
             {
                 data_rows = new Vector();
-                for(int j=1; j<5; j++)
+                for(int j=1; j<7; j++)
                 {
                     data_rows.addElement(rs.getString(j));
                 }
@@ -3130,7 +3134,7 @@ private void BackbuttonTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-F
             Vector columns_name = new Vector();
             Vector data_rows = new Vector();
             
-            for (int i=1; i<5; i++)
+            for (int i=1; i<7; i++)
             {
                 columns_name.addElement(rsmdata.getColumnName(i));
             }
@@ -3139,7 +3143,7 @@ private void BackbuttonTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-F
             while(rs.next())
             {
                 data_rows = new Vector();
-                for(int j=1; j<5; j++)
+                for(int j=1; j<7; j++)
                 {
                     data_rows.addElement(rs.getString(j));
                 }
@@ -3198,12 +3202,12 @@ private void BackbuttonTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-F
             DefaultTableModel dtm = new DefaultTableModel();
             Vector columns_name = new Vector();
             Vector data_rows = new Vector();            
-            for (int i=1; i<5; i++)
+            for (int i=1; i<7; i++)
             {  columns_name.addElement(rsmdata.getColumnName(i));  }
             dtm.setColumnIdentifiers(columns_name);            
             while(rs.next())
             {   data_rows = new Vector();
-                for(int j=1; j<5; j++)
+                for(int j=1; j<7; j++)
                 { data_rows.addElement(rs.getString(j)); }
                 dtm.addRow(data_rows);  }
             //pass default table object over into jtable
@@ -3219,7 +3223,7 @@ private void BackbuttonTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-F
            
 //EXTERNE DATABASE!!______________________
         JDBCCategoryDataset dataset = new JDBCCategoryDataset(Database.Connectie.getConnection(), query);
-        JFreeChart chart = ChartFactory.createLineChart("Negatieve reacties van Jan 2015", "Maand", "Positieve reacties", dataset, PlotOrientation.VERTICAL, false, true, true);
+        JFreeChart chart = ChartFactory.createLineChart("Positieve reacties van Jan 2015", "Maand", "Positieve reacties", dataset, PlotOrientation.VERTICAL, false, true, true);
         BarRenderer renderer = null;
         CategoryPlot plot = null;
         renderer = new BarRenderer();
@@ -3257,12 +3261,12 @@ private void BackbuttonTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-F
             DefaultTableModel dtm = new DefaultTableModel();
             Vector columns_name = new Vector();
             Vector data_rows = new Vector();            
-            for (int i=1; i<5; i++)
+            for (int i=1; i<7; i++)
             {  columns_name.addElement(rsmdata.getColumnName(i));  }
             dtm.setColumnIdentifiers(columns_name);            
             while(rs.next())
             {   data_rows = new Vector();
-                for(int j=1; j<5; j++)
+                for(int j=1; j<7; j++)
                 { data_rows.addElement(rs.getString(j)); }
                 dtm.addRow(data_rows);  }
             //pass default table object over into jtable
@@ -3277,7 +3281,7 @@ private void BackbuttonTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-F
            
 //EXTERNE DATABASE!!______________________
         JDBCCategoryDataset dataset = new JDBCCategoryDataset(Database.Connectie.getConnection(), query);
-        JFreeChart chart = ChartFactory.createLineChart("Negatieve reacties van Feb 2015", "Maand", "Positieve reacties", dataset, PlotOrientation.VERTICAL, false, true, true);
+        JFreeChart chart = ChartFactory.createLineChart("Positieve reacties van Feb 2015", "Maand", "Positieve reacties", dataset, PlotOrientation.VERTICAL, false, true, true);
         BarRenderer renderer = null;
         CategoryPlot plot = null;
         renderer = new BarRenderer();
@@ -3315,12 +3319,12 @@ private void BackbuttonTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-F
             DefaultTableModel dtm = new DefaultTableModel();
             Vector columns_name = new Vector();
             Vector data_rows = new Vector();            
-            for (int i=1; i<5; i++)
+            for (int i=1; i<7; i++)
             {  columns_name.addElement(rsmdata.getColumnName(i));  }
             dtm.setColumnIdentifiers(columns_name);            
             while(rs.next())
             {   data_rows = new Vector();
-                for(int j=1; j<5; j++)
+                for(int j=1; j<7; j++)
                 { data_rows.addElement(rs.getString(j)); }
                 dtm.addRow(data_rows);  }
             //pass default table object over into jtable
@@ -3335,7 +3339,7 @@ try{
            
 //EXTERNE DATABASE!!______________________
         JDBCCategoryDataset dataset = new JDBCCategoryDataset(Database.Connectie.getConnection(), query);
-        JFreeChart chart = ChartFactory.createLineChart("Negatieve reacties van Mrt 2015", "Maand", "Positieve reacties", dataset, PlotOrientation.VERTICAL, false, true, true);
+        JFreeChart chart = ChartFactory.createLineChart("Positieve reacties van Mrt 2015", "Maand", "Positieve reacties", dataset, PlotOrientation.VERTICAL, false, true, true);
         BarRenderer renderer = null;
         CategoryPlot plot = null;
         renderer = new BarRenderer();
@@ -3374,12 +3378,12 @@ try{
             DefaultTableModel dtm = new DefaultTableModel();
             Vector columns_name = new Vector();
             Vector data_rows = new Vector();            
-            for (int i=1; i<5; i++)
+            for (int i=1; i<7; i++)
             {  columns_name.addElement(rsmdata.getColumnName(i));  }
             dtm.setColumnIdentifiers(columns_name);            
             while(rs.next())
             {   data_rows = new Vector();
-                for(int j=1; j<5; j++)
+                for(int j=1; j<7; j++)
                 { data_rows.addElement(rs.getString(j)); }
                 dtm.addRow(data_rows);  }
             //pass default table object over into jtable
@@ -3394,7 +3398,7 @@ try{
            
 //EXTERNE DATABASE!!______________________
         JDBCCategoryDataset dataset = new JDBCCategoryDataset(Database.Connectie.getConnection(), query);
-        JFreeChart chart = ChartFactory.createLineChart("Negatieve reacties van Apr 2015", "Maand", "Positieve reacties", dataset, PlotOrientation.VERTICAL, false, true, true);
+        JFreeChart chart = ChartFactory.createLineChart("Positieve reacties van Apr 2015", "Maand", "Positieve reacties", dataset, PlotOrientation.VERTICAL, false, true, true);
         BarRenderer renderer = null;
         CategoryPlot plot = null;
         renderer = new BarRenderer();
@@ -3432,12 +3436,12 @@ try{
             DefaultTableModel dtm = new DefaultTableModel();
             Vector columns_name = new Vector();
             Vector data_rows = new Vector();            
-            for (int i=1; i<5; i++)
+            for (int i=1; i<7; i++)
             {  columns_name.addElement(rsmdata.getColumnName(i));  }
             dtm.setColumnIdentifiers(columns_name);            
             while(rs.next())
             {   data_rows = new Vector();
-                for(int j=1; j<5; j++)
+                for(int j=1; j<7; j++)
                 { data_rows.addElement(rs.getString(j)); }
                 dtm.addRow(data_rows);  }
             //pass default table object over into jtable
@@ -3452,7 +3456,7 @@ try{
            
 //EXTERNE DATABASE!!______________________
         JDBCCategoryDataset dataset = new JDBCCategoryDataset(Database.Connectie.getConnection(), query);
-        JFreeChart chart = ChartFactory.createLineChart("Negatieve reacties van Mei 2015", "Maand", "Positieve reacties", dataset, PlotOrientation.VERTICAL, false, true, true);
+        JFreeChart chart = ChartFactory.createLineChart("Positieve reacties van Mei 2015", "Maand", "Positieve reacties", dataset, PlotOrientation.VERTICAL, false, true, true);
         BarRenderer renderer = null;
         CategoryPlot plot = null;
         renderer = new BarRenderer();
@@ -3490,12 +3494,12 @@ try{
             DefaultTableModel dtm = new DefaultTableModel();
             Vector columns_name = new Vector();
             Vector data_rows = new Vector();            
-            for (int i=1; i<5; i++)
+            for (int i=1; i<7; i++)
             {  columns_name.addElement(rsmdata.getColumnName(i));  }
             dtm.setColumnIdentifiers(columns_name);            
             while(rs.next())
             {   data_rows = new Vector();
-                for(int j=1; j<5; j++)
+                for(int j=1; j<7; j++)
                 { data_rows.addElement(rs.getString(j)); }
                 dtm.addRow(data_rows);  }
             //pass default table object over into jtable
@@ -3510,7 +3514,7 @@ try{
            
 //EXTERNE DATABASE!!______________________
         JDBCCategoryDataset dataset = new JDBCCategoryDataset(Database.Connectie.getConnection(), query);
-        JFreeChart chart = ChartFactory.createLineChart("Negatieve reacties van Jun 2015", "Maand", "Positieve reacties", dataset, PlotOrientation.VERTICAL, false, true, true);
+        JFreeChart chart = ChartFactory.createLineChart("Positieve reacties van Jun 2015", "Maand", "Positieve reacties", dataset, PlotOrientation.VERTICAL, false, true, true);
         BarRenderer renderer = null;
         CategoryPlot plot = null;
         renderer = new BarRenderer();
@@ -3548,12 +3552,12 @@ try{
             DefaultTableModel dtm = new DefaultTableModel();
             Vector columns_name = new Vector();
             Vector data_rows = new Vector();            
-            for (int i=1; i<5; i++)
+            for (int i=1; i<7; i++)
             {  columns_name.addElement(rsmdata.getColumnName(i));  }
             dtm.setColumnIdentifiers(columns_name);            
             while(rs.next())
             {   data_rows = new Vector();
-                for(int j=1; j<5; j++)
+                for(int j=1; j<7; j++)
                 { data_rows.addElement(rs.getString(j)); }
                 dtm.addRow(data_rows);  }
             //pass default table object over into jtable
@@ -3568,7 +3572,7 @@ try{
            
 //EXTERNE DATABASE!!______________________
         JDBCCategoryDataset dataset = new JDBCCategoryDataset(Database.Connectie.getConnection(), query);
-        JFreeChart chart = ChartFactory.createLineChart("Negatieve reacties van Jul 2015", "Maand", "Positieve reacties", dataset, PlotOrientation.VERTICAL, false, true, true);
+        JFreeChart chart = ChartFactory.createLineChart("Positieve reacties van Jul 2015", "Maand", "Positieve reacties", dataset, PlotOrientation.VERTICAL, false, true, true);
         BarRenderer renderer = null;
         CategoryPlot plot = null;
         renderer = new BarRenderer();
@@ -3606,12 +3610,12 @@ try{
             DefaultTableModel dtm = new DefaultTableModel();
             Vector columns_name = new Vector();
             Vector data_rows = new Vector();            
-            for (int i=1; i<5; i++)
+            for (int i=1; i<7; i++)
             {  columns_name.addElement(rsmdata.getColumnName(i));  }
             dtm.setColumnIdentifiers(columns_name);            
             while(rs.next())
             {   data_rows = new Vector();
-                for(int j=1; j<5; j++)
+                for(int j=1; j<7; j++)
                 { data_rows.addElement(rs.getString(j)); }
                 dtm.addRow(data_rows);  }
             //pass default table object over into jtable
@@ -3626,7 +3630,7 @@ try{
            
 //EXTERNE DATABASE!!______________________
         JDBCCategoryDataset dataset = new JDBCCategoryDataset(Database.Connectie.getConnection(), query);
-        JFreeChart chart = ChartFactory.createLineChart("Negatieve reacties van Aug 2015", "Maand", "Positieve reacties", dataset, PlotOrientation.VERTICAL, false, true, true);
+        JFreeChart chart = ChartFactory.createLineChart("Positieve reacties van Aug 2015", "Maand", "Positieve reacties", dataset, PlotOrientation.VERTICAL, false, true, true);
         BarRenderer renderer = null;
         CategoryPlot plot = null;
         renderer = new BarRenderer();
@@ -3664,12 +3668,12 @@ try{
             DefaultTableModel dtm = new DefaultTableModel();
             Vector columns_name = new Vector();
             Vector data_rows = new Vector();            
-            for (int i=1; i<5; i++)
+            for (int i=1; i<7; i++)
             {  columns_name.addElement(rsmdata.getColumnName(i));  }
             dtm.setColumnIdentifiers(columns_name);            
             while(rs.next())
             {   data_rows = new Vector();
-                for(int j=1; j<5; j++)
+                for(int j=1; j<7; j++)
                 { data_rows.addElement(rs.getString(j)); }
                 dtm.addRow(data_rows);  }
             //pass default table object over into jtable
@@ -3684,7 +3688,7 @@ try{
            
 //EXTERNE DATABASE!!______________________
         JDBCCategoryDataset dataset = new JDBCCategoryDataset(Database.Connectie.getConnection(), query);
-        JFreeChart chart = ChartFactory.createLineChart("Negatieve reacties van Sep 2015", "Maand", "Positieve reacties", dataset, PlotOrientation.VERTICAL, false, true, true);
+        JFreeChart chart = ChartFactory.createLineChart("Positieve reacties van Sep 2015", "Maand", "Positieve reacties", dataset, PlotOrientation.VERTICAL, false, true, true);
         BarRenderer renderer = null;
         CategoryPlot plot = null;
         renderer = new BarRenderer();
@@ -3722,12 +3726,12 @@ try{
             DefaultTableModel dtm = new DefaultTableModel();
             Vector columns_name = new Vector();
             Vector data_rows = new Vector();            
-            for (int i=1; i<5; i++)
+            for (int i=1; i<7; i++)
             {  columns_name.addElement(rsmdata.getColumnName(i));  }
             dtm.setColumnIdentifiers(columns_name);            
             while(rs.next())
             {   data_rows = new Vector();
-                for(int j=1; j<5; j++)
+                for(int j=1; j<7; j++)
                 { data_rows.addElement(rs.getString(j)); }
                 dtm.addRow(data_rows);  }
             //pass default table object over into jtable
@@ -3742,7 +3746,7 @@ try{
            
 //EXTERNE DATABASE!!______________________
         JDBCCategoryDataset dataset = new JDBCCategoryDataset(Database.Connectie.getConnection(), query);
-        JFreeChart chart = ChartFactory.createLineChart("Negatieve reacties van Oct 2015", "Maand", "Positief reacties", dataset, PlotOrientation.VERTICAL, false, true, true);
+        JFreeChart chart = ChartFactory.createLineChart("Positieve reacties van Oct 2015", "Maand", "Positief reacties", dataset, PlotOrientation.VERTICAL, false, true, true);
         BarRenderer renderer = null;
         CategoryPlot plot = null;
         renderer = new BarRenderer();
@@ -3780,12 +3784,12 @@ try{
             DefaultTableModel dtm = new DefaultTableModel();
             Vector columns_name = new Vector();
             Vector data_rows = new Vector();            
-            for (int i=1; i<5; i++)
+            for (int i=1; i<7; i++)
             {  columns_name.addElement(rsmdata.getColumnName(i));  }
             dtm.setColumnIdentifiers(columns_name);            
             while(rs.next())
             {   data_rows = new Vector();
-                for(int j=1; j<5; j++)
+                for(int j=1; j<7; j++)
                 { data_rows.addElement(rs.getString(j)); }
                 dtm.addRow(data_rows);  }
             //pass default table object over into jtable
@@ -3800,7 +3804,7 @@ try{
            
 //EXTERNE DATABASE!!______________________
         JDBCCategoryDataset dataset = new JDBCCategoryDataset(Database.Connectie.getConnection(), query);
-        JFreeChart chart = ChartFactory.createLineChart("Negatieve reacties van Nov 2015", "Maand", "Positieve reacties", dataset, PlotOrientation.VERTICAL, false, true, true);
+        JFreeChart chart = ChartFactory.createLineChart("Positieve reacties van Nov 2015", "Maand", "Positieve reacties", dataset, PlotOrientation.VERTICAL, false, true, true);
         BarRenderer renderer = null;
         CategoryPlot plot = null;
         renderer = new BarRenderer();
@@ -3838,12 +3842,12 @@ try{
             DefaultTableModel dtm = new DefaultTableModel();
             Vector columns_name = new Vector();
             Vector data_rows = new Vector();            
-            for (int i=1; i<5; i++)
+            for (int i=1; i<7; i++)
             {  columns_name.addElement(rsmdata.getColumnName(i));  }
             dtm.setColumnIdentifiers(columns_name);            
             while(rs.next())
             {   data_rows = new Vector();
-                for(int j=1; j<5; j++)
+                for(int j=1; j<7; j++)
                 { data_rows.addElement(rs.getString(j)); }
                 dtm.addRow(data_rows);  }
             //pass default table object over into jtable
@@ -3858,7 +3862,7 @@ try{
            
 //EXTERNE DATABASE!!______________________
         JDBCCategoryDataset dataset = new JDBCCategoryDataset(Database.Connectie.getConnection(), query);
-        JFreeChart chart = ChartFactory.createLineChart("Negatieve reacties van Dec 2015", "Maand", "Positieve reacties", dataset, PlotOrientation.VERTICAL, false, true, true);
+        JFreeChart chart = ChartFactory.createLineChart("Positieve reacties van Dec 2015", "Maand", "Positieve reacties", dataset, PlotOrientation.VERTICAL, false, true, true);
         BarRenderer renderer = null;
         CategoryPlot plot = null;
         renderer = new BarRenderer();
@@ -4996,10 +5000,6 @@ try{
     }
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
-
     private void secrb2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_secrb2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_secrb2ActionPerformed
@@ -5085,79 +5085,787 @@ try{
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void trdrb3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trdrb3ActionPerformed
-        // TODO add your handling code here:
+        yearGroup.clearSelection();
+        try{
+        //EXTERNE DATABASE_______________________            
+                Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");   
+            String connectionUrl = "jdbc:sqlserver://db4free.net:3306; databaseName=barbawapatest; user=barba; password=Ruggenmerg";
+            Connection con = Database.Connectie.getConnection();            
+         //create connection           
+            Statement state = (Statement) con.createStatement();
+         //EXTERNE DATABASE!!!__________________
+            ResultSet rs = state.executeQuery("select * from tweets where year(dates) = '2013'");
+            ResultSetMetaData rsmdata = rs.getMetaData();
+            //store column numbers
+            int columns = rsmdata.getColumnCount();
+            //set data into Jtable
+            DefaultTableModel dtm = new DefaultTableModel();
+            Vector columns_name = new Vector();
+            Vector data_rows = new Vector();            
+            for (int i=1; i<5; i++)
+            {
+                columns_name.addElement(rsmdata.getColumnName(i));
+            }
+            dtm.setColumnIdentifiers(columns_name);            
+            while(rs.next())
+            {
+                data_rows = new Vector();
+                for(int j=1; j<5; j++)
+                {
+                    data_rows.addElement(rs.getString(j));
+                }
+                dtm.addRow(data_rows);                
+            }
+            //pass default table object over into jtable
+            fbPosT1.setModel(dtm);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Tables.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Tables.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+         try{
+            String query="SELECT extract(month from dates), count(tweet_body) FROM tweets where mood = 'positief' and year(dates) = '2013' GROUP BY extract(month from dates)";
+           
+//EXTERNE DATABASE!!______________________
+        JDBCCategoryDataset dataset = new JDBCCategoryDataset(Database.Connectie.getConnection(), query);
+        JFreeChart chart = ChartFactory.createLineChart("Reacties van 2013", "Maanden", "Aantal reacties van gebruikers", dataset, PlotOrientation.VERTICAL, false, true, true);
+        BarRenderer renderer = null;
+        CategoryPlot plot = null;
+        renderer = new BarRenderer();
+        ChartFrame frame = new ChartFrame("Amount of users that commented", chart);
+        frame.setVisible(true);
+        frame.setSize(1000, 650);        
+        }
+    catch (Exception e) { 
+    JOptionPane.showMessageDialog(null, e);{        
+        }
+        }    
     }//GEN-LAST:event_trdrb3ActionPerformed
 
     private void febtrbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_febtrbActionPerformed
-        // TODO add your handling code here:
+       yearGroup.clearSelection();
+              
+        try{
+        //EXTERNE DATABASE_______________________            
+                Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");   
+            String connectionUrl = "jdbc:sqlserver://db4free.net:3306; databaseName=barbawapatest; user=barba; password=Ruggenmerg";
+            Connection con = Database.Connectie.getConnection();            
+            //create connection           
+            Statement state = (Statement) con.createStatement();
+            //EXTERNE DATABASE QUERY!!!__________________
+            ResultSet rs = state.executeQuery("select * from tweets where month(dates) = '2' and year(dates) = '2015' and mood = 'positief'");
+            ResultSetMetaData rsmdata = rs.getMetaData();
+            //store column numbers
+            int columns = rsmdata.getColumnCount();
+            //set data into Jtable
+            DefaultTableModel dtm = new DefaultTableModel();
+            Vector columns_name = new Vector();
+            Vector data_rows = new Vector();            
+            for (int i=1; i<5; i++)
+            {  columns_name.addElement(rsmdata.getColumnName(i));  }
+            dtm.setColumnIdentifiers(columns_name);            
+            while(rs.next())
+            {   data_rows = new Vector();
+                for(int j=1; j<5; j++)
+                { data_rows.addElement(rs.getString(j)); }
+                dtm.addRow(data_rows);  }
+            //pass default table object over into jtable
+            fbPosT1.setModel(dtm);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Tables.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Tables.class.getName()).log(Level.SEVERE, null, ex);  }
+    
+        try{
+            String query="SELECT extract(day from dates), count(tweet_body) FROM tweets where mood = 'positief' and year(dates) = '2015' and month(dates) = '2' GROUP BY extract(day from dates)";
+           
+//EXTERNE DATABASE!!______________________
+        JDBCCategoryDataset dataset = new JDBCCategoryDataset(Database.Connectie.getConnection(), query);
+        JFreeChart chart = ChartFactory.createLineChart("Positieve reacties van Feb 2015", "Maand", "Positieve reacties", dataset, PlotOrientation.VERTICAL, false, true, true);
+        BarRenderer renderer = null;
+        CategoryPlot plot = null;
+        renderer = new BarRenderer();
+        ChartFrame frame = new ChartFrame("Aantal positieve commentaren in Februari", chart);
+        frame.setVisible(true);
+        frame.setSize(1000, 650);        
+        }
+    catch (Exception e) { 
+    JOptionPane.showMessageDialog(null, e);{        
+        }
+        }     
     }//GEN-LAST:event_febtrbActionPerformed
 
     private void fppmb1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fppmb1ActionPerformed
-        // TODO add your handling code here:
+         try{                    
+//EXTERNE DATABASE!!______________________
+        String query="SELECT extract(month from dates), count(tweet_body) FROM tweets where mood = 'positief' and year(dates) = '2015' group by month(dates);";
+        JDBCCategoryDataset dataset =new JDBCCategoryDataset(Database.Connectie.getConnection(),query);
+        
+        JFreeChart chart = ChartFactory.createLineChart("Reactions", "Months", "users", dataset, PlotOrientation.VERTICAL, false, true, true);
+        BarRenderer renderer = null;
+        CategoryPlot plot = null;
+        renderer = new BarRenderer();
+        ChartFrame frame = new ChartFrame("Amount of users that commented", chart);
+        frame.setVisible(true);
+        frame.setSize(1000, 650);        
+        }
+    catch (Exception e) { 
+    JOptionPane.showMessageDialog(null, e);{        
+}
+    }
     }//GEN-LAST:event_fppmb1ActionPerformed
 
     private void frtrb3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frtrb3ActionPerformed
-        // TODO add your handling code here:
+         monthGroup.clearSelection(); 
+        try{
+        //EXTERNE DATABASE_______________________            
+                Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");   
+            String connectionUrl = "jdbc:sqlserver://db4free.net:3306; databaseName=barbawapatest; user=barba; password=Ruggenmerg";
+            Connection con = Database.Connectie.getConnection();            
+            //create connection           
+            Statement state = (Statement) con.createStatement();
+           //EXTERNE DATABASE!!!__________________
+            ResultSet rs = state.executeQuery("select * from tweets where year(dates) = '2014'");
+            ResultSetMetaData rsmdata = rs.getMetaData();
+            //store column numbers
+            int columns = rsmdata.getColumnCount();
+            //set data into Jtable
+            DefaultTableModel dtm = new DefaultTableModel();
+            Vector columns_name = new Vector();
+            Vector data_rows = new Vector();            
+            for (int i=1; i<5; i++)            {
+                columns_name.addElement(rsmdata.getColumnName(i));
+            }
+            dtm.setColumnIdentifiers(columns_name);            
+            while(rs.next())
+            {
+                data_rows = new Vector();
+                for(int j=1; j<5; j++)
+                {
+                    data_rows.addElement(rs.getString(j));
+                }
+                dtm.addRow(data_rows);                
+            }
+            //pass default table object over into jtable
+            fbPosT1.setModel(dtm);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Tables.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Tables.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        try{
+            String query="SELECT extract(month from dates), count(tweet_body) FROM tweets where mood = 'positief' and year(dates) = '2014' GROUP BY extract(month from dates)";
+                            
+//EXTERNE DATABASE!!______________________
+        JDBCCategoryDataset dataset = new JDBCCategoryDataset(Database.Connectie.getConnection(), query);
+        JFreeChart chart = ChartFactory.createLineChart("Reacties van 2014", "Maanden", "Aantal reacties van gebruikers", dataset, PlotOrientation.VERTICAL, false, true, true);
+        BarRenderer renderer = null;
+        CategoryPlot plot = null;
+        renderer = new BarRenderer();
+        ChartFrame frame = new ChartFrame("Amount of users that commented", chart);
+        frame.setVisible(true);
+        frame.setSize(1000, 650);        
+        }
+    catch (Exception e) { 
+    JOptionPane.showMessageDialog(null, e);{        
+        }
+        }    
     }//GEN-LAST:event_frtrb3ActionPerformed
 
     private void mrttrbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mrttrbActionPerformed
-        // TODO add your handling code here:
+         try{
+        //EXTERNE DATABASE_______________________            
+                Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");   
+            String connectionUrl = "jdbc:sqlserver://db4free.net:3306; databaseName=barbawapatest; user=barba; password=Ruggenmerg";
+            Connection con = Database.Connectie.getConnection();            
+            //create connection           
+            Statement state = (Statement) con.createStatement();
+            //EXTERNE DATABASE QUERY!!!__________________
+            ResultSet rs = state.executeQuery("select * from tweets where month(dates) = '3' and year(dates) = '2015' and mood = 'positief'");
+            ResultSetMetaData rsmdata = rs.getMetaData();
+            //store column numbers
+            int columns = rsmdata.getColumnCount();
+            //set data into Jtable
+            DefaultTableModel dtm = new DefaultTableModel();
+            Vector columns_name = new Vector();
+            Vector data_rows = new Vector();            
+            for (int i=1; i<5; i++)
+            {  columns_name.addElement(rsmdata.getColumnName(i));  }
+            dtm.setColumnIdentifiers(columns_name);            
+            while(rs.next())
+            {   data_rows = new Vector();
+                for(int j=1; j<5; j++)
+                { data_rows.addElement(rs.getString(j)); }
+                dtm.addRow(data_rows);  }
+            //pass default table object over into jtable
+            fbPosT1.setModel(dtm);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Tables.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Tables.class.getName()).log(Level.SEVERE, null, ex);  }
+    
+try{
+            String query="SELECT extract(day from dates), count(tweet_body) FROM tweets where mood = 'poisitief' and year(dates) = '2015' and month(dates) = '3' GROUP BY extract(day from dates)";
+           
+//EXTERNE DATABASE!!______________________
+        JDBCCategoryDataset dataset = new JDBCCategoryDataset(Database.Connectie.getConnection(), query);
+        JFreeChart chart = ChartFactory.createLineChart("Positieve reacties van Mrt 2015", "Maand", "Positieve reacties", dataset, PlotOrientation.VERTICAL, false, true, true);
+        BarRenderer renderer = null;
+        CategoryPlot plot = null;
+        renderer = new BarRenderer();
+        ChartFrame frame = new ChartFrame("Aantal positieve commentaren in Maart", chart);
+        frame.setVisible(true);
+        frame.setSize(1000, 650);        
+        }
+    catch (Exception e) { 
+    JOptionPane.showMessageDialog(null, e);{        
+        }
+        }   
     }//GEN-LAST:event_mrttrbActionPerformed
 
     private void fppjb1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fppjb1ActionPerformed
-        // TODO add your handling code here:
+        try{
+            String query="SELECT extract(year from dates), count(tweet_body) FROM tweets where mood = 'positief' GROUP BY extract(year from dates)";            
+//EXTERNE DATABASE!!______________________
+        JDBCCategoryDataset dataset = new JDBCCategoryDataset(Database.Connectie.getConnection(), query);
+        JFreeChart chart = ChartFactory.createLineChart("Reacties per jaar", "year", "users", dataset, PlotOrientation.VERTICAL, false, true, true);
+        BarRenderer renderer = null;
+        CategoryPlot plot = null;
+        renderer = new BarRenderer();
+        ChartFrame frame = new ChartFrame("Amount of users", chart);
+        frame.setVisible(true);
+        frame.setSize(1000, 650);        
+        }
+    catch (Exception e) { 
+    JOptionPane.showMessageDialog(null, e);{        
+}
+    }
     }//GEN-LAST:event_fppjb1ActionPerformed
 
     private void firstrb3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_firstrb3ActionPerformed
-        // TODO add your handling code here:
+         monthGroup.clearSelection();
+          if (firstrb3.isEnabled()){
+        try{
+        //EXTERNE DATABASE_______________________            
+                Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");   
+            String connectionUrl = "jdbc:sqlserver://db4free.net:3306; databaseName=barbawapatest; user=barba; password=Ruggenmerg";
+            Connection con = Database.Connectie.getConnection();
+            
+            //create connection
+           
+            Statement state = (Statement) con.createStatement();
+            //EXTERNE DATABASE QUERY!!!__________________
+            ResultSet rs = state.executeQuery("select * from tweets where year(dates) = '2011'");
+            ResultSetMetaData rsmdata = rs.getMetaData();
+            //store column numbers
+            int columns = rsmdata.getColumnCount();
+            //set data into Jtable
+            DefaultTableModel dtm = new DefaultTableModel();
+            Vector columns_name = new Vector();
+            Vector data_rows = new Vector();
+            
+            for (int i=1; i<5; i++)
+            {
+                columns_name.addElement(rsmdata.getColumnName(i));
+            }
+            dtm.setColumnIdentifiers(columns_name);
+            
+            while(rs.next())
+            {
+                data_rows = new Vector();
+                for(int j=1; j<5; j++)
+                {
+                    data_rows.addElement(rs.getString(j));
+                }
+                dtm.addRow(data_rows);                
+            }
+            //pass default table object over into jtable
+            fbPosT1.setModel(dtm);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Tables.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Tables.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         }
+         
+         try{
+            String query="SELECT extract(month from dates), count(tweet_body) FROM tweets where mood = 'positief' and year(dates) = '2011' GROUP BY extract(month from dates)";
+           
+//EXTERNE DATABASE!!______________________
+        JDBCCategoryDataset dataset = new JDBCCategoryDataset(Database.Connectie.getConnection(), query);
+        JFreeChart chart = ChartFactory.createLineChart("Reacties van 2011", "Maanden", "Aantal reacties van gebruikers", dataset, PlotOrientation.VERTICAL, false, true, true);
+        BarRenderer renderer = null;
+        CategoryPlot plot = null;
+        renderer = new BarRenderer();
+        ChartFrame frame = new ChartFrame("Amount of users that commented", chart);
+        frame.setVisible(true);
+        frame.setSize(1000, 650);        
+        }
+    catch (Exception e) { 
+    JOptionPane.showMessageDialog(null, e);{        
+        }
+        }         
     }//GEN-LAST:event_firstrb3ActionPerformed
 
     private void aprtrbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aprtrbActionPerformed
-        // TODO add your handling code here:
+       yearGroup.clearSelection();
+        try{
+        //EXTERNE DATABASE_______________________            
+                Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");   
+            String connectionUrl = "jdbc:sqlserver://db4free.net:3306; databaseName=barbawapatest; user=barba; password=Ruggenmerg";
+            Connection con = Database.Connectie.getConnection();            
+            //create connection           
+            Statement state = (Statement) con.createStatement();
+            //EXTERNE DATABASE QUERY!!!__________________
+            ResultSet rs = state.executeQuery("select * from tweets where month(dates) = '4' and year(dates) = '2015' and mood = 'positief'");
+            ResultSetMetaData rsmdata = rs.getMetaData();
+            //store column numbers
+            int columns = rsmdata.getColumnCount();
+            //set data into Jtable
+            DefaultTableModel dtm = new DefaultTableModel();
+            Vector columns_name = new Vector();
+            Vector data_rows = new Vector();            
+            for (int i=1; i<5; i++)
+            {  columns_name.addElement(rsmdata.getColumnName(i));  }
+            dtm.setColumnIdentifiers(columns_name);            
+            while(rs.next())
+            {   data_rows = new Vector();
+                for(int j=1; j<5; j++)
+                { data_rows.addElement(rs.getString(j)); }
+                dtm.addRow(data_rows);  }
+            //pass default table object over into jtable
+            fbPosT1.setModel(dtm);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Tables.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Tables.class.getName()).log(Level.SEVERE, null, ex);  }
+    
+        try{
+            String query="SELECT extract(day from dates), count(tweet_body) FROM tweets where mood = 'positief' and year(dates) = '2015' and month(dates) = '4' GROUP BY extract(day from dates)";
+           
+//EXTERNE DATABASE!!______________________
+        JDBCCategoryDataset dataset = new JDBCCategoryDataset(Database.Connectie.getConnection(), query);
+        JFreeChart chart = ChartFactory.createLineChart("Positieve reacties van Apr 2015", "Maand", "Positieve reacties", dataset, PlotOrientation.VERTICAL, false, true, true);
+        BarRenderer renderer = null;
+        CategoryPlot plot = null;
+        renderer = new BarRenderer();
+        ChartFrame frame = new ChartFrame("Aantal positieve commentaren in April", chart);
+        frame.setVisible(true);
+        frame.setSize(1000, 650);        
+        }
+    catch (Exception e) { 
+    JOptionPane.showMessageDialog(null, e);{        
+        }
+        }     
     }//GEN-LAST:event_aprtrbActionPerformed
 
     private void secrb3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_secrb3ActionPerformed
-        // TODO add your handling code here:
+        monthGroup.clearSelection();
+        try{
+        //EXTERNE DATABASE_______________________            
+                Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");   
+            String connectionUrl = "jdbc:sqlserver://db4free.net:3306; databaseName=barbawapatest; user=barba; password=Ruggenmerg";
+            Connection con = Database.Connectie.getConnection();            
+            //create connection
+            Statement state = (Statement) con.createStatement();
+  //EXTERNE DATABASE QUERY!!!__________________
+            ResultSet rs = state.executeQuery("select * from tweets where year(dates) = '2012'");
+            ResultSetMetaData rsmdata = rs.getMetaData();
+            //store column numbers
+            int columns = rsmdata.getColumnCount();
+            //set data into Jtable
+            DefaultTableModel dtm = new DefaultTableModel();
+            Vector columns_name = new Vector();
+            Vector data_rows = new Vector();
+            
+            for (int i=1; i<5; i++)
+            {
+                columns_name.addElement(rsmdata.getColumnName(i));
+            }
+            dtm.setColumnIdentifiers(columns_name);
+            
+            while(rs.next())
+            {
+                data_rows = new Vector();
+                for(int j=1; j<5; j++)
+                {
+                    data_rows.addElement(rs.getString(j));
+                }
+                dtm.addRow(data_rows);                
+            }
+            //pass default table object over into jtable
+            fbPosT1.setModel(dtm);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Tables.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Tables.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        try{
+            String query="SELECT extract(month from dates), count(tweet_body) FROM tweets where mood = 'positief' and year(dates) = '2012' GROUP BY extract(month from dates)";
+           
+//EXTERNE DATABASE!!______________________
+        JDBCCategoryDataset dataset = new JDBCCategoryDataset(Database.Connectie.getConnection(), query);
+        JFreeChart chart = ChartFactory.createLineChart("Reacties van 2012", "Maanden", "Aantal reacties van gebruikers", dataset, PlotOrientation.VERTICAL, false, true, true);
+        BarRenderer renderer = null;
+        CategoryPlot plot = null;
+        renderer = new BarRenderer();
+        ChartFrame frame = new ChartFrame("Amount of users that commented", chart);
+        frame.setVisible(true);
+        frame.setSize(1000, 650);        
+        }
+    catch (Exception e) { 
+    JOptionPane.showMessageDialog(null, e);{        
+        }
+        }         
     }//GEN-LAST:event_secrb3ActionPerformed
 
     private void meitrbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_meitrbActionPerformed
-        // TODO add your handling code here:
+      yearGroup.clearSelection();
+        try{
+        //EXTERNE DATABASE_______________________            
+                Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");   
+            String connectionUrl = "jdbc:sqlserver://db4free.net:3306; databaseName=barbawapatest; user=barba; password=Ruggenmerg";
+            Connection con = Database.Connectie.getConnection();            
+            //create connection           
+            Statement state = (Statement) con.createStatement();
+            //EXTERNE DATABASE QUERY!!!__________________
+            ResultSet rs = state.executeQuery("select * from tweets where month(dates) = '5' and year(dates) = '2015' and mood = 'positief'");
+            ResultSetMetaData rsmdata = rs.getMetaData();
+            //store column numbers
+            int columns = rsmdata.getColumnCount();
+            //set data into Jtable
+            DefaultTableModel dtm = new DefaultTableModel();
+            Vector columns_name = new Vector();
+            Vector data_rows = new Vector();            
+            for (int i=1; i<5; i++)
+            {  columns_name.addElement(rsmdata.getColumnName(i));  }
+            dtm.setColumnIdentifiers(columns_name);            
+            while(rs.next())
+            {   data_rows = new Vector();
+                for(int j=1; j<5; j++)
+                { data_rows.addElement(rs.getString(j)); }
+                dtm.addRow(data_rows);  }
+            //pass default table object over into jtable
+            fbPosT1.setModel(dtm);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Tables.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Tables.class.getName()).log(Level.SEVERE, null, ex);  }
+    
+        try{
+            String query="SELECT extract(day from dates), count(tweet_body) FROM tweets where mood = 'positief' and year(dates) = '2015' and month(dates) = '5' GROUP BY extract(day from dates)";
+           
+//EXTERNE DATABASE!!______________________
+        JDBCCategoryDataset dataset = new JDBCCategoryDataset(Database.Connectie.getConnection(), query);
+        JFreeChart chart = ChartFactory.createLineChart("Positieve reacties van Mei 2015", "Maand", "Positieve reacties", dataset, PlotOrientation.VERTICAL, false, true, true);
+        BarRenderer renderer = null;
+        CategoryPlot plot = null;
+        renderer = new BarRenderer();
+        ChartFrame frame = new ChartFrame("Aantal positieve commentaren in Mei", chart);
+        frame.setVisible(true);
+        frame.setSize(1000, 650);        
+        }
+    catch (Exception e) { 
+    JOptionPane.showMessageDialog(null, e);{        
+        }
+        }     
+                                      
     }//GEN-LAST:event_meitrbActionPerformed
 
     private void fppwb1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fppwb1ActionPerformed
-        // TODO add your handling code here:
+           try{                    
+//EXTERNE DATABASE!!______________________
+        String query="SELECT extract(week from dates), count(tweet_body) FROM tweets where mood = 'positief' and year(dates) = '2015' group by week(dates);";
+        JDBCCategoryDataset dataset =new JDBCCategoryDataset(Database.Connectie.getConnection(),query);
+        
+        JFreeChart chart = ChartFactory.createLineChart("Reactions", "week", "users", dataset, PlotOrientation.VERTICAL, false, true, true);
+        BarRenderer renderer = null;
+        CategoryPlot plot = null;
+        renderer = new BarRenderer();
+        ChartFrame frame = new ChartFrame("Amount of users that commented", chart);
+        frame.setVisible(true);
+        frame.setSize(1000, 650);        
+        }
+    catch (Exception e) { 
+    JOptionPane.showMessageDialog(null, e);{        
+}
+    }       
     }//GEN-LAST:event_fppwb1ActionPerformed
 
     private void junrb3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_junrb3ActionPerformed
-        // TODO add your handling code here:
+         yearGroup.clearSelection();
+        try{
+        //EXTERNE DATABASE_______________________            
+                Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");   
+            String connectionUrl = "jdbc:sqlserver://db4free.net:3306; databaseName=barbawapatest; user=barba; password=Ruggenmerg";
+            Connection con = Database.Connectie.getConnection();            
+            //create connection           
+            Statement state = (Statement) con.createStatement();
+            //EXTERNE DATABASE QUERY!!!__________________
+            ResultSet rs = state.executeQuery("select * from tweets where month(dates) = '6' and year(dates) = '2015' and mood = 'positief'");
+            ResultSetMetaData rsmdata = rs.getMetaData();
+            //store column numbers
+            int columns = rsmdata.getColumnCount();
+            //set data into Jtable
+            DefaultTableModel dtm = new DefaultTableModel();
+            Vector columns_name = new Vector();
+            Vector data_rows = new Vector();            
+            for (int i=1; i<5; i++)
+            {  columns_name.addElement(rsmdata.getColumnName(i));  }
+            dtm.setColumnIdentifiers(columns_name);            
+            while(rs.next())
+            {   data_rows = new Vector();
+                for(int j=1; j<5; j++)
+                { data_rows.addElement(rs.getString(j)); }
+                dtm.addRow(data_rows);  }
+            //pass default table object over into jtable
+            fbPosT1.setModel(dtm);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Tables.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Tables.class.getName()).log(Level.SEVERE, null, ex);  }
+    
+        try{
+            String query="SELECT extract(day from dates), count(tweet_body) FROM tweets where mood = 'positief' and year(dates) = '2015' and month(dates) = '6' GROUP BY extract(day from dates)";
+           
+//EXTERNE DATABASE!!______________________
+        JDBCCategoryDataset dataset = new JDBCCategoryDataset(Database.Connectie.getConnection(), query);
+        JFreeChart chart = ChartFactory.createLineChart("Positieve reacties van Jun 2015", "Maand", "Positieve reacties", dataset, PlotOrientation.VERTICAL, false, true, true);
+        BarRenderer renderer = null;
+        CategoryPlot plot = null;
+        renderer = new BarRenderer();
+        ChartFrame frame = new ChartFrame("Aantal positieve commentaren in Juni", chart);
+        frame.setVisible(true);
+        frame.setSize(1000, 650);        
+        }
+    catch (Exception e) { 
+    JOptionPane.showMessageDialog(null, e);{        
+        }
+        }   
     }//GEN-LAST:event_junrb3ActionPerformed
 
     private void julrb3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_julrb3ActionPerformed
-        // TODO add your handling code here:
+            yearGroup.clearSelection();
+        try{
+        //EXTERNE DATABASE_______________________            
+                Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");   
+            String connectionUrl = "jdbc:sqlserver://db4free.net:3306; databaseName=barbawapatest; user=barba; password=Ruggenmerg";
+            Connection con = Database.Connectie.getConnection();            
+            //create connection           
+            Statement state = (Statement) con.createStatement();
+            //EXTERNE DATABASE QUERY!!!__________________
+            ResultSet rs = state.executeQuery("select * from tweets where month(dates) = '7' and year(dates) = '2015' and mood = 'positief'");
+            ResultSetMetaData rsmdata = rs.getMetaData();
+            //store column numbers
+            int columns = rsmdata.getColumnCount();
+            //set data into Jtable
+            DefaultTableModel dtm = new DefaultTableModel();
+            Vector columns_name = new Vector();
+            Vector data_rows = new Vector();            
+            for (int i=1; i<5; i++)
+            {  columns_name.addElement(rsmdata.getColumnName(i));  }
+            dtm.setColumnIdentifiers(columns_name);            
+            while(rs.next())
+            {   data_rows = new Vector();
+                for(int j=1; j<5; j++)
+                { data_rows.addElement(rs.getString(j)); }
+                dtm.addRow(data_rows);  }
+            //pass default table object over into jtable
+            fbPosT1.setModel(dtm);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Tables.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Tables.class.getName()).log(Level.SEVERE, null, ex);  }
+    
+        try{
+            String query="SELECT extract(day from dates), count(tweet_body) FROM tweets where mood = 'positief' and year(dates) = '2015' and month(dates) = '7' GROUP BY extract(day from dates)";
+           
+//EXTERNE DATABASE!!______________________
+        JDBCCategoryDataset dataset = new JDBCCategoryDataset(Database.Connectie.getConnection(), query);
+        JFreeChart chart = ChartFactory.createLineChart("Positieve reacties van Jul 2015", "Maand", "Positieve reacties", dataset, PlotOrientation.VERTICAL, false, true, true);
+        BarRenderer renderer = null;
+        CategoryPlot plot = null;
+        renderer = new BarRenderer();
+        ChartFrame frame = new ChartFrame("Aantal positieve commentaren in Juli", chart);
+        frame.setVisible(true);
+        frame.setSize(1000, 650);        
+        }
+    catch (Exception e) { 
+    JOptionPane.showMessageDialog(null, e);{        
+        }
+        }    
     }//GEN-LAST:event_julrb3ActionPerformed
 
     private void fftrb3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fftrb3ActionPerformed
-        // TODO add your handling code here:
+         monthGroup.clearSelection();  
+        try{
+        //EXTERNE DATABASE_______________________            
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");   
+            String connectionUrl = "jdbc:sqlserver://db4free.net:3306; databaseName=barbawapatest; user=barba; password=Ruggenmerg";
+            Connection con = Database.Connectie.getConnection();            
+            //create connection           
+            Statement state = (Statement) con.createStatement();
+           //EXTERNE DATABASE!!!__________________
+            ResultSet rs = state.executeQuery("select * from tweets where year(dates) = '2015' and mood = 'positief'");
+            ResultSetMetaData rsmdata = rs.getMetaData();
+            //store column numbers
+            int columns = rsmdata.getColumnCount();
+            //set data into Jtable
+            DefaultTableModel dtm = new DefaultTableModel();
+            Vector columns_name = new Vector();
+            Vector data_rows = new Vector();            
+            for (int i=1; i<5; i++)
+            {
+                columns_name.addElement(rsmdata.getColumnName(i));
+            }
+            dtm.setColumnIdentifiers(columns_name);            
+            while(rs.next())
+            {
+                data_rows = new Vector();
+                for(int j=1; j<5; j++)
+                {
+                    data_rows.addElement(rs.getString(j));
+                }
+                dtm.addRow(data_rows);                
+            }
+            //pass default table object over into jtable
+            fbPosT1.setModel(dtm);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Tables.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Tables.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        try{
+            String query="SELECT extract(month from dates), count(tweet_body) FROM tweets where mood = 'positief' and year(dates) = '2015' GROUP BY extract(month from dates)";
+           
+//EXTERNE DATABASE!!______________________
+        JDBCCategoryDataset dataset = new JDBCCategoryDataset(Database.Connectie.getConnection(), query);
+        JFreeChart chart = ChartFactory.createLineChart("Reacties van 2015", "Maanden", "Aantal reacties van gebruikers", dataset, PlotOrientation.VERTICAL, false, true, true);
+        BarRenderer renderer = null;
+        CategoryPlot plot = null;
+        renderer = new BarRenderer();
+        ChartFrame frame = new ChartFrame("Amount of users that commented", chart);
+        frame.setVisible(true);
+        frame.setSize(1000, 650);        
+        }
+    catch (Exception e) { 
+    JOptionPane.showMessageDialog(null, e);{        
+        }
+        }         
     }//GEN-LAST:event_fftrb3ActionPerformed
 
     private void augrb3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_augrb3ActionPerformed
-        // TODO add your handling code here:
+        yearGroup.clearSelection();
+        try{
+        //EXTERNE DATABASE_______________________            
+                Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");   
+            String connectionUrl = "jdbc:sqlserver://db4free.net:3306; databaseName=barbawapatest; user=barba; password=Ruggenmerg";
+            Connection con = Database.Connectie.getConnection();            
+            //create connection           
+            Statement state = (Statement) con.createStatement();
+            //EXTERNE DATABASE QUERY!!!__________________
+            ResultSet rs = state.executeQuery("select * from tweets where month(dates) = '8' and year(dates) = '2015' and mood = 'positief'");
+            ResultSetMetaData rsmdata = rs.getMetaData();
+            //store column numbers
+            int columns = rsmdata.getColumnCount();
+            //set data into Jtable
+            DefaultTableModel dtm = new DefaultTableModel();
+            Vector columns_name = new Vector();
+            Vector data_rows = new Vector();            
+            for (int i=1; i<5; i++)
+            {  columns_name.addElement(rsmdata.getColumnName(i));  }
+            dtm.setColumnIdentifiers(columns_name);            
+            while(rs.next())
+            {   data_rows = new Vector();
+                for(int j=1; j<5; j++)
+                { data_rows.addElement(rs.getString(j)); }
+                dtm.addRow(data_rows);  }
+            //pass default table object over into jtable
+            fbPosT1.setModel(dtm);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Tables.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Tables.class.getName()).log(Level.SEVERE, null, ex);  }
+    
+        try{
+            String query="SELECT extract(day from dates), count(tweet_body) FROM tweets where mood = 'positief' and year(dates) = '2015' and month(dates) = '8' GROUP BY extract(day from dates)";
+           
+//EXTERNE DATABASE!!______________________
+        JDBCCategoryDataset dataset = new JDBCCategoryDataset(Database.Connectie.getConnection(), query);
+        JFreeChart chart = ChartFactory.createLineChart("Positieve reacties van Aug 2015", "Maand", "Positieve reacties", dataset, PlotOrientation.VERTICAL, false, true, true);
+        BarRenderer renderer = null;
+        CategoryPlot plot = null;
+        renderer = new BarRenderer();
+        ChartFrame frame = new ChartFrame("Aantal positieve commentaren in Augustus", chart);
+        frame.setVisible(true);
+        frame.setSize(1000, 650);        
+        }
+    catch (Exception e) { 
+    JOptionPane.showMessageDialog(null, e);{        
+        }
+        } 
     }//GEN-LAST:event_augrb3ActionPerformed
 
     private void seprb3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seprb3ActionPerformed
-        // TODO add your handling code here:
+          yearGroup.clearSelection();
+        try{
+        //EXTERNE DATABASE_______________________            
+                Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");   
+            String connectionUrl = "jdbc:sqlserver://db4free.net:3306; databaseName=barbawapatest; user=barba; password=Ruggenmerg";
+            Connection con = Database.Connectie.getConnection();            
+            //create connection           
+            Statement state = (Statement) con.createStatement();
+            //EXTERNE DATABASE QUERY!!!__________________
+            ResultSet rs = state.executeQuery("select * from tweets where month(dates) = '9' and year(dates) = '2015' and mood = 'positief'");
+            ResultSetMetaData rsmdata = rs.getMetaData();
+            //store column numbers
+            int columns = rsmdata.getColumnCount();
+            //set data into Jtable
+            DefaultTableModel dtm = new DefaultTableModel();
+            Vector columns_name = new Vector();
+            Vector data_rows = new Vector();            
+            for (int i=1; i<5; i++)
+            {  columns_name.addElement(rsmdata.getColumnName(i));  }
+            dtm.setColumnIdentifiers(columns_name);            
+            while(rs.next())
+            {   data_rows = new Vector();
+                for(int j=1; j<5; j++)
+                { data_rows.addElement(rs.getString(j)); }
+                dtm.addRow(data_rows);  }
+            //pass default table object over into jtable
+            fbPosT1.setModel(dtm);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Tables.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Tables.class.getName()).log(Level.SEVERE, null, ex);  }
+    
+        try{
+            String query="SELECT extract(day from dates), count(tweet_body) FROM tweets where mood = 'positief' and year(dates) = '2015' and month(dates) = '9' GROUP BY extract(day from dates)";
+           
+//EXTERNE DATABASE!!______________________
+        JDBCCategoryDataset dataset = new JDBCCategoryDataset(Database.Connectie.getConnection(), query);
+        JFreeChart chart = ChartFactory.createLineChart("Positieve reacties van Sep 2015", "Maand", "Positieve reacties", dataset, PlotOrientation.VERTICAL, false, true, true);
+        BarRenderer renderer = null;
+        CategoryPlot plot = null;
+        renderer = new BarRenderer();
+        ChartFrame frame = new ChartFrame("Aantal positieve commentaren in September", chart);
+        frame.setVisible(true);
+        frame.setSize(1000, 650);        
+        }
+    catch (Exception e) { 
+    JOptionPane.showMessageDialog(null, e);{        
+        }
+        }             
     }//GEN-LAST:event_seprb3ActionPerformed
 
     private void jantrbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jantrbActionPerformed
        
         yearGroup.clearSelection();
-        panfbn.setVisible(false);
-        panfbc.setVisible(false);
-        panfbp.setVisible(false); 
-        pantpos.setVisible(true);
-        this.setSize(850, 550);
-        pantpos.setLocation(5, 5);
-        pantpos.setSize(680, 430);        
+           
         try{
         //EXTERNE DATABASE_______________________            
                 Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");   
@@ -5183,7 +5891,7 @@ try{
                 { data_rows.addElement(rs.getString(j)); }
                 dtm.addRow(data_rows);  }
             //pass default table object over into jtable
-            fbPosT.setModel(dtm);
+            fbPosT1.setModel(dtm);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Tables.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
@@ -5191,11 +5899,11 @@ try{
     
         
         try{
-            String query="SELECT extract(day from dates), count(commentBody) FROM tweets where mood = 'positief' and year(dates) = '2015' and month(dates) = '1' GROUP BY extract(day from dates)";
+            String query="SELECT extract(day from dates), count(tweet_body) FROM tweets where mood = 'positief' and year(dates) = '2015' and month(dates) = '1' GROUP BY extract(day from dates)";
            
 //EXTERNE DATABASE!!______________________
         JDBCCategoryDataset dataset = new JDBCCategoryDataset(Database.Connectie.getConnection(), query);
-        JFreeChart chart = ChartFactory.createLineChart("Negatieve reacties van Jan 2015", "Maand", "Positieve reacties", dataset, PlotOrientation.VERTICAL, false, true, true);
+        JFreeChart chart = ChartFactory.createLineChart("Positieve reacties van Jan 2015", "Maand", "Positieve reacties", dataset, PlotOrientation.VERTICAL, false, true, true);
         BarRenderer renderer = null;
         CategoryPlot plot = null;
         renderer = new BarRenderer();
@@ -5210,35 +5918,337 @@ try{
     }//GEN-LAST:event_jantrbActionPerformed
 
     private void octrb3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_octrb3ActionPerformed
-        // TODO add your handling code here:
+         yearGroup.clearSelection();
+        try{
+        //EXTERNE DATABASE_______________________            
+                Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");   
+            String connectionUrl = "jdbc:sqlserver://db4free.net:3306; databaseName=barbawapatest; user=barba; password=Ruggenmerg";
+            Connection con = Database.Connectie.getConnection();            
+            //create connection           
+            Statement state = (Statement) con.createStatement();
+            //EXTERNE DATABASE QUERY!!!__________________
+            ResultSet rs = state.executeQuery("select * from tweets where month(dates) = '10' and year(dates) = '2015' and mood = 'positief'");
+            ResultSetMetaData rsmdata = rs.getMetaData();
+            //store column numbers
+            int columns = rsmdata.getColumnCount();
+            //set data into Jtable
+            DefaultTableModel dtm = new DefaultTableModel();
+            Vector columns_name = new Vector();
+            Vector data_rows = new Vector();            
+            for (int i=1; i<5; i++)
+            {  columns_name.addElement(rsmdata.getColumnName(i));  }
+            dtm.setColumnIdentifiers(columns_name);            
+            while(rs.next())
+            {   data_rows = new Vector();
+                for(int j=1; j<5; j++)
+                { data_rows.addElement(rs.getString(j)); }
+                dtm.addRow(data_rows);  }
+            //pass default table object over into jtable
+            fbPosT1.setModel(dtm);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Tables.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Tables.class.getName()).log(Level.SEVERE, null, ex);  }
+    
+        try{
+            String query="SELECT extract(day from dates), count(tweet_body) FROM tweets where mood = 'positief' and year(dates) = '2015' and month(dates) = '10' GROUP BY extract(day from dates)";
+           
+//EXTERNE DATABASE!!______________________
+        JDBCCategoryDataset dataset = new JDBCCategoryDataset(Database.Connectie.getConnection(), query);
+        JFreeChart chart = ChartFactory.createLineChart("Positieve reacties van Oct 2015", "Maand", "Positief reacties", dataset, PlotOrientation.VERTICAL, false, true, true);
+        BarRenderer renderer = null;
+        CategoryPlot plot = null;
+        renderer = new BarRenderer();
+        ChartFrame frame = new ChartFrame("Aantal positief commentaren in October", chart);
+        frame.setVisible(true); 
+        frame.setSize(1000, 650);        
+        }
+    catch (Exception e) { 
+    JOptionPane.showMessageDialog(null, e);{        
+        }
+        }      
     }//GEN-LAST:event_octrb3ActionPerformed
 
     private void decrb3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decrb3ActionPerformed
-        // TODO add your handling code here:
+         yearGroup.clearSelection();
+        try{
+        //EXTERNE DATABASE_______________________            
+                Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");   
+            String connectionUrl = "jdbc:sqlserver://db4free.net:3306; databaseName=barbawapatest; user=barba; password=Ruggenmerg";
+            Connection con = Database.Connectie.getConnection();            
+            //create connection           
+            Statement state = (Statement) con.createStatement();
+            //EXTERNE DATABASE QUERY!!!__________________
+            ResultSet rs = state.executeQuery("select * from tweets where month(dates) = '12' and year(dates) = '2015' and mood = 'positief'");
+            ResultSetMetaData rsmdata = rs.getMetaData();
+            //store column numbers
+            int columns = rsmdata.getColumnCount();
+            //set data into Jtable
+            DefaultTableModel dtm = new DefaultTableModel();
+            Vector columns_name = new Vector();
+            Vector data_rows = new Vector();            
+            for (int i=1; i<5; i++)
+            {  columns_name.addElement(rsmdata.getColumnName(i));  }
+            dtm.setColumnIdentifiers(columns_name);            
+            while(rs.next())
+            {   data_rows = new Vector();
+                for(int j=1; j<5; j++)
+                { data_rows.addElement(rs.getString(j)); }
+                dtm.addRow(data_rows);  }
+            //pass default table object over into jtable
+            fbPosT1.setModel(dtm);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Tables.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Tables.class.getName()).log(Level.SEVERE, null, ex);  }
+    
+        try{
+            String query="SELECT extract(day from dates), count(tweet_body) FROM tweets where mood = 'positief' and year(dates) = '2015' and month(dates) = '12' GROUP BY extract(day from dates)";
+           
+//EXTERNE DATABASE!!______________________
+        JDBCCategoryDataset dataset = new JDBCCategoryDataset(Database.Connectie.getConnection(), query);
+        JFreeChart chart = ChartFactory.createLineChart("Positieve reacties van Dec 2015", "Maand", "Positieve reacties", dataset, PlotOrientation.VERTICAL, false, true, true);
+        BarRenderer renderer = null;
+        CategoryPlot plot = null;
+        renderer = new BarRenderer();
+        ChartFrame frame = new ChartFrame("Aantal positieve commentaren in December", chart);
+        frame.setVisible(true);
+        frame.setSize(1000, 650);        
+        }
+    catch (Exception e) { 
+    JOptionPane.showMessageDialog(null, e);{        
+        }
+        }  
     }//GEN-LAST:event_decrb3ActionPerformed
 
     private void novrb3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_novrb3ActionPerformed
-        // TODO add your handling code here:
+         yearGroup.clearSelection();
+        try{
+        //EXTERNE DATABASE_______________________            
+                Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");   
+            String connectionUrl = "jdbc:sqlserver://db4free.net:3306; databaseName=barbawapatest; user=barba; password=Ruggenmerg";
+            Connection con = Database.Connectie.getConnection();            
+            //create connection           
+            Statement state = (Statement) con.createStatement();
+            //EXTERNE DATABASE QUERY!!!__________________
+            ResultSet rs = state.executeQuery("select * from tweets where month(dates) = '11' and year(dates) = '2015' and mood = 'positief'");
+            ResultSetMetaData rsmdata = rs.getMetaData();
+            //store column numbers
+            int columns = rsmdata.getColumnCount();
+            //set data into Jtable
+            DefaultTableModel dtm = new DefaultTableModel();
+            Vector columns_name = new Vector();
+            Vector data_rows = new Vector();            
+            for (int i=1; i<5; i++)
+            {  columns_name.addElement(rsmdata.getColumnName(i));  }
+            dtm.setColumnIdentifiers(columns_name);            
+            while(rs.next())
+            {   data_rows = new Vector();
+                for(int j=1; j<5; j++)
+                { data_rows.addElement(rs.getString(j)); }
+                dtm.addRow(data_rows);  }
+            //pass default table object over into jtable
+            fbPosT1.setModel(dtm);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Tables.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Tables.class.getName()).log(Level.SEVERE, null, ex);  }
+    
+        try{
+            String query="SELECT extract(day from dates), count(tweet_body) FROM tweets where mood = 'positief' and year(dates) = '2015' and month(dates) = '11' GROUP BY extract(day from dates)";
+           
+//EXTERNE DATABASE!!______________________
+        JDBCCategoryDataset dataset = new JDBCCategoryDataset(Database.Connectie.getConnection(), query);
+        JFreeChart chart = ChartFactory.createLineChart("Positieve reacties van Nov 2015", "Maand", "Positieve reacties", dataset, PlotOrientation.VERTICAL, false, true, true);
+        BarRenderer renderer = null;
+        CategoryPlot plot = null;
+        renderer = new BarRenderer();
+        ChartFrame frame = new ChartFrame("Aantal positieve commentaren in November", chart);
+        frame.setVisible(true);
+        frame.setSize(1000, 650);        
+        }
+    catch (Exception e) { 
+    JOptionPane.showMessageDialog(null, e);{        
+        }
+        }       
     }//GEN-LAST:event_novrb3ActionPerformed
 
     private void fbjaar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fbjaar1ActionPerformed
-        // TODO add your handling code here:
+         try{
+            String query="SELECT extract(year from dates), count(*) FROM tweets GROUP BY extract(year from dates)";            
+//EXTERNE DATABASE!!______________________
+        JDBCCategoryDataset dataset = new JDBCCategoryDataset(Database.Connectie.getConnection(), query);
+        JFreeChart chart = ChartFactory.createLineChart("Reacties per jaar", "year", "users", dataset, PlotOrientation.VERTICAL, false, true, true);
+        BarRenderer renderer = null;
+        CategoryPlot plot = null;
+        renderer = new BarRenderer();
+        ChartFrame frame = new ChartFrame("Amount of users", chart);
+        frame.setVisible(true);
+        frame.setSize(1000, 650);        
+        }
+    catch (Exception e) { 
+    JOptionPane.showMessageDialog(null, e);{        
+}
+    }
     }//GEN-LAST:event_fbjaar1ActionPerformed
 
     private void fbmaand1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fbmaand1ActionPerformed
-        // TODO add your handling code here:
+       try{
+            String query="SELECT extract(MONTH from dates), count(*) FROM tweets GROUP BY extract(MONTH from dates)";            
+//EXTERNE DATABASE!!______________________
+        JDBCCategoryDataset dataset = new JDBCCategoryDataset(Database.Connectie.getConnection(), query);
+        JFreeChart chart = ChartFactory.createLineChart("Over de jaren", "Months", "users", dataset, PlotOrientation.VERTICAL, false, true, true);
+        BarRenderer renderer = null;
+        CategoryPlot plot = null;
+        renderer = new BarRenderer();
+        ChartFrame frame = new ChartFrame("Amount of users that commented", chart);
+        frame.setVisible(true);
+        frame.setSize(1000, 650);        
+        }
+    catch (Exception e) { 
+    JOptionPane.showMessageDialog(null, e);{        
+}
+    }
     }//GEN-LAST:event_fbmaand1ActionPerformed
 
     private void fbweek1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fbweek1ActionPerformed
-        // TODO add your handling code here:
+        try{
+            String query="SELECT extract(week from dates), count(*) FROM tweets GROUP BY extract(week from dates)";
+           
+        //EXTERNE DATABASE!!______________________
+        JDBCCategoryDataset dataset = new JDBCCategoryDataset(Database.Connectie.getConnection(), query);
+        JFreeChart chart = ChartFactory.createLineChart("Welke weken zijn ze het meest actief", "weeks", "users", dataset, PlotOrientation.VERTICAL, false, true, true);
+        BarRenderer renderer = null;
+        CategoryPlot plot = null;
+        renderer = new BarRenderer();
+        ChartFrame frame = new ChartFrame("Amount of users that commented", chart);
+        frame.setVisible(true);
+        frame.setSize(1000, 650);        
+        }
+    catch (Exception e) { 
+    JOptionPane.showMessageDialog(null, e);{        
+}
+    }
     }//GEN-LAST:event_fbweek1ActionPerformed
 
     private void fbpie1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fbpie1ActionPerformed
-        // TODO add your handling code here:
+        //RECIEVED VALUES ARE STORED IN THESE TEXT FIELDS
+            String positive = posfld1.getText();
+            String negative = negfld1.getText();
+            String neutraal = neufld1.getText();
+            //SETS VALUES INTO THE PIECHART
+            DefaultPieDataset piedata = new DefaultPieDataset();
+            piedata.setValue("Positief", new Integer(positive));
+            piedata.setValue("Negatief", new Integer(negative));
+            piedata.setValue("Neutraal", new Integer(neutraal));
+            JFreeChart ch = ChartFactory.createPieChart("Vergelijking", piedata, true, true, true);
+            PiePlot p = (PiePlot)ch.getPlot();
+            ChartFrame frame = new ChartFrame("Vergelijking", ch);
+            frame.setVisible(true);
+            frame.setSize(400,500);
     }//GEN-LAST:event_fbpie1ActionPerformed
 
     private void fbgrafiek1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fbgrafiek1ActionPerformed
-        // TODO add your handling code here:
+          if(fftrb.isEnabled()){
+          try{
+            String query="SELECT extract(month from dates), count(*) FROM tweets where year(dates) = '2015' GROUP BY extract(month from dates)";
+           
+            
+//EXTERNE DATABASE!!______________________
+        JDBCCategoryDataset dataset = new JDBCCategoryDataset(Database.Connectie.getConnection(), query);
+        JFreeChart chart = ChartFactory.createLineChart("Reacties van 2015", "Maanden", "Aantal reacties van gebruikers", dataset, PlotOrientation.VERTICAL, false, true, true);
+        BarRenderer renderer = null;
+        CategoryPlot plot = null;
+        renderer = new BarRenderer();
+        ChartFrame frame = new ChartFrame("Amount of users that commented", chart);
+        frame.setVisible(true);
+        frame.setSize(1000, 650);        
+        }
+    catch (Exception e) { 
+    JOptionPane.showMessageDialog(null, e);{        
+        }
+        }         
+        }    
+      
+      else if(frtrb.isEnabled()){
+          try{
+            String query="SELECT extract(month from dates), count(*) FROM tweets where year(dates) = '2014' GROUP BY extract(month from dates)";
+           
+//EXTERNE DATABASE!!______________________
+        JDBCCategoryDataset dataset = new JDBCCategoryDataset(Database.Connectie.getConnection(), query);
+        JFreeChart chart = ChartFactory.createLineChart("Reacties van 2014", "Maanden", "Aantal reacties van gebruikers", dataset, PlotOrientation.VERTICAL, false, true, true);
+        BarRenderer renderer = null;
+        CategoryPlot plot = null;
+        renderer = new BarRenderer();
+        ChartFrame frame = new ChartFrame("Amount of users that commented", chart);
+        frame.setVisible(true);
+        frame.setSize(1000, 650);        
+        }
+    catch (Exception e) { 
+    JOptionPane.showMessageDialog(null, e);{        
+        }
+        }         
+        }    
+        
+      else if(trdrb.isEnabled()){
+          try{
+            String query="SELECT extract(month from dates), count(*) FROM tweets where year(dates) = '2013' GROUP BY extract(month from dates)";
+           
+//EXTERNE DATABASE!!______________________
+        JDBCCategoryDataset dataset = new JDBCCategoryDataset(Database.Connectie.getConnection(), query);
+        JFreeChart chart = ChartFactory.createLineChart("Reacties van 2013", "Maanden", "Aantal reacties van gebruikers", dataset, PlotOrientation.VERTICAL, false, true, true);
+        BarRenderer renderer = null;
+        CategoryPlot plot = null;
+        renderer = new BarRenderer();
+        ChartFrame frame = new ChartFrame("Amount of users that commented", chart);
+        frame.setVisible(true);
+        frame.setSize(1000, 650);        
+        }
+    catch (Exception e) { 
+    JOptionPane.showMessageDialog(null, e);{        
+        }
+        }         
+        }    
+        
+            else if(secrb.isEnabled()){
+          try{
+            String query="SELECT extract(month from dates), count(*) FROM tweets where year(dates) = '2012' GROUP BY extract(month from dates)";
+           
+//EXTERNE DATABASE!!______________________
+        JDBCCategoryDataset dataset = new JDBCCategoryDataset(Database.Connectie.getConnection(), query);
+        JFreeChart chart = ChartFactory.createLineChart("Reacties van 2012", "Maanden", "Aantal reacties van gebruikers", dataset, PlotOrientation.VERTICAL, false, true, true);
+        BarRenderer renderer = null;
+        CategoryPlot plot = null;
+        renderer = new BarRenderer();
+        ChartFrame frame = new ChartFrame("Amount of users that commented", chart);
+        frame.setVisible(true);
+        frame.setSize(1000, 650);        
+        }
+    catch (Exception e) { 
+    JOptionPane.showMessageDialog(null, e);{        
+        }
+        }         
+        }    
+        
+            else if(firstrb.isEnabled()){
+          try{
+            String query="SELECT extract(month from dates), count(*) FROM tweets where year(dates) = '2011' GROUP BY extract(month from dates)";
+           
+//EXTERNE DATABASE!!______________________
+        JDBCCategoryDataset dataset = new JDBCCategoryDataset(Database.Connectie.getConnection(), query);
+        JFreeChart chart = ChartFactory.createLineChart("Reacties van 2011", "Maanden", "Aantal reacties van gebruikers", dataset, PlotOrientation.VERTICAL, false, true, true);
+        BarRenderer renderer = null;
+        CategoryPlot plot = null;
+        renderer = new BarRenderer();
+        ChartFrame frame = new ChartFrame("Amount of users that commented", chart);
+        frame.setVisible(true);
+        frame.setSize(1000, 650);        
+        }
+    catch (Exception e) { 
+    JOptionPane.showMessageDialog(null, e);{        
+        }
+        }         
+        }    
     }//GEN-LAST:event_fbgrafiek1ActionPerformed
 
     private void fbtjaarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fbtjaarActionPerformed
@@ -5267,21 +6277,136 @@ try{
         panfbc.setVisible(false);
         pantneg.setVisible(false);
         pantpos.setVisible(false);
-        pantall.setVisible(false);
+        pantall.setVisible(true);
         panfbt.setVisible(false);    
         yearGroup.clearSelection();  
         monthGroup.clearSelection();  
+        pantall.setLocation(5, 5);
+        pantall.setSize(680, 432);
+        try{
+        //EXTERNE DATABASE_______________________            
+                Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");   
+            String connectionUrl = "jdbc:sqlserver://db4free.net:3306; databaseName=barbawapatest; user=barba; password=Ruggenmerg";
+            Connection con = Database.Connectie.getConnection();            
+            //create connection           
+            Statement state = (Statement) con.createStatement();
+            ResultSet rs = state.executeQuery("select * from tweets");
+            ResultSetMetaData rsmdata = rs.getMetaData();
+            //store column numbers
+            int columns = rsmdata.getColumnCount();
+            //set data into Jtable
+            DefaultTableModel dtm = new DefaultTableModel();
+            Vector columns_name = new Vector();
+            Vector data_rows = new Vector();
+            
+            for (int i=1; i<5; i++)
+            {
+                columns_name.addElement(rsmdata.getColumnName(i));
+            }
+            dtm.setColumnIdentifiers(columns_name);
+            
+            while(rs.next())
+            {
+                data_rows = new Vector();
+                for(int j=1; j<5; j++)
+                {
+                    data_rows.addElement(rs.getString(j));
+                }
+                dtm.addRow(data_rows);                
+            }
+            //pass default table object over into jtable
+            fbComTable1.setModel(dtm);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Tables.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Tables.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        try{
+        //EXTERNE DATABASE_______________________            
+                Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");   
+            String connectionUrl = "jdbc:sqlserver://db4free.net:3306; databaseName=barbawapatest; user=barba; password=Ruggenmerg";
+            Connection con = Database.Connectie.getConnection();           
+            //create connection           
+            Statement state = (Statement) con.createStatement();
+           //EXTERNE DATABASE QUERY!!__________________
+            ResultSet rs = state.executeQuery("SELECT count(mood)as positive FROM tweets where mood = 'positief'");
+            while (rs.next()) {
+                posfld1.setText(rs.getString(WIDTH));
+            }
+            
+            ResultSet rs1 = state.executeQuery("SELECT count(mood)FROM tweets where mood = 'negatief'");
+            while (rs1.next()) {
+                negfld1.setText(rs1.getString(WIDTH));
+            }
+            
+            ResultSet rs2 = state.executeQuery("SELECT count(mood)FROM tweets where mood = 'no keywords'");
+            while (rs2.next()) {
+                neufld1.setText(rs2.getString(WIDTH));
+            }
+            
+            } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Tables.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Tables.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
     }//GEN-LAST:event_TCRBActionPerformed
 
     private void TPRBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TPRBActionPerformed
-       panfbn.setVisible(false);
+        panfbn.setVisible(false);
         panfbp.setVisible(false);
         panfbc.setVisible(false);
         pantneg.setVisible(false);
-        pantpos.setVisible(false);
+        pantpos.setVisible(true);
         pantall.setVisible(false);
         panfbt.setVisible(false);
+        
+        
+        pantpos.setLocation(5, 5);
+        pantpos.setSize(680, 432);
+        try{
+        //EXTERNE DATABASE_______________________            
+                Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");   
+            String connectionUrl = "jdbc:sqlserver://db4free.net:3306; databaseName=barbawapatest; user=barba; password=Ruggenmerg";
+            Connection con = Database.Connectie.getConnection();            
+            //create connection           
+            Statement state = (Statement) con.createStatement();
+            ResultSet rs = state.executeQuery("select * from tweets where mood = 'positief'");
+            ResultSetMetaData rsmdata = rs.getMetaData();
+            //store column numbers
+            int columns = rsmdata.getColumnCount();
+            //set data into Jtable
+            DefaultTableModel dtm = new DefaultTableModel();
+            Vector columns_name = new Vector();
+            Vector data_rows = new Vector();            
+            for (int i=1; i<5; i++)
+            {
+                columns_name.addElement(rsmdata.getColumnName(i));
+            }
+            dtm.setColumnIdentifiers(columns_name);            
+            while(rs.next())
+            {
+                data_rows = new Vector();
+                for(int j=1; j<5; j++)
+                {
+                    data_rows.addElement(rs.getString(j));
+                }
+                dtm.addRow(data_rows);                
+            }
+            //pass default table object over into jtable
+            fbPosT1.setModel(dtm);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Tables.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Tables.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_TPRBActionPerformed
+
+    private void negfld1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_negfld1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_negfld1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -5406,7 +6531,6 @@ try{
     private javax.swing.JRadioButton frtrb3;
     private javax.swing.JLabel here;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
